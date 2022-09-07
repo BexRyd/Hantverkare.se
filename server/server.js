@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const routerServices = require("./Api/serviceAPI")
 const routerSignUp = require("./Api/SignUpAPI")
 /*   const cors = require("cors")   */
+const cookieParser = require("cookie-parser");
 const db = require("./database/db")
 
 dotenv.config({ path: './config.env' });
@@ -11,6 +12,7 @@ const app = express();
 const port = 8080;
 
 app.use(bodyParser.json());
+app.use(cookieParser);
 
  /* app.use(cors({
     orgin: "http://127.0.0.1:3000",
