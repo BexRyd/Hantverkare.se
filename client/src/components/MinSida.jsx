@@ -81,7 +81,7 @@ const uploadImage = async () => {
               <p className='popUp--description'>{description}</p>
 
               <button onClick={() => {
-                post("http://127.0.0.1:8080/myPage", {
+                post("/myPage", {
                   id: counter,
                   img: imageUrl,
                   heading: heading,
