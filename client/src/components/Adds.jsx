@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import NavLink from "react-bootstrap/esm/NavLink";
 import Form from "./Form";
-export default function Adds() {
+export default function Adds(props) {
   const [id, setId] = useState("");
   const [adds, setAdds] = useState([]);
   const [title, setTitle] = useState("");

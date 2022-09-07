@@ -6,7 +6,7 @@ import Axios from "axios"
 import {Image} from "cloudinary-react"
 
 
-export default function MinSida() {
+export default function MinSida(props) {
 
   const [heading, setHeading] = useState("")
   const [description, setDescription] = useState("")
@@ -51,6 +51,9 @@ const uploadImage = async () => {
   return (
 
     <div>
+      {props.authorized?(
+        <h1>hej</h1>
+      ):null}
       <div>
         <h1>Upload image</h1>
         <input type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>

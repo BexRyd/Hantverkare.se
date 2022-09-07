@@ -1,11 +1,11 @@
-const { fail } = require("assert");
+
 const jwt = require("jsonwebtoken");
 const {promisify} = require("util");
 const User = require('./../models/userModel');
 const catchAsync = require('./../utility/catchAsync');
 const sendEmail = require("./../utility/email")
 const crypto = require("crypto");
-const { REFUSED } = require("dns");
+
 
 
 const signToken = id => {
@@ -30,7 +30,7 @@ const createSendToken = (user, statuscode,res)=>{
 
   
 //remove password from output
-  res.cookie('JWT', token, cookieOptions)
+  res.cookie('jwt', token, cookieOptions)
  user.password = undefined
     res.
    
@@ -105,6 +105,9 @@ exports.protect = catchAsync(async (req, res, next) => {
         token = req.headers.authorization.split(' ')[1];
 
     }
+    else if(req.cookies.jwt){
+        token = req.cookies.jwt;
+    }
     
 
     if (!token) {
@@ -145,6 +148,45 @@ exports.protect = catchAsync(async (req, res, next) => {
     
     next()
 });
+
+//only for rendered pages, no errors
+/*  exports.isLoggedIn = catchAsync(async (req, res, next) => {
+    
+
+    if(req.cookies.jwt){
+       
+    
+     //verification token
+    const decoded = await promisify(jwt.verify)(req.cookie.jwt, process.env.JWT_SECRET);
+        
+        //check if user still exsists.
+        const currentUser = await User.findById(decoded.id);
+        req.user = currentUser;
+    if(!currentUser){
+        return next();
+    }
+                                       //iat =issued at
+        //check if user changed password after the token was issued
+    if(currentUser.changedPasswordAfter(decoded.iat)){
+        return next();
+    }
+
+    
+    
+    
+     res.locals.user = currentUser;
+   
+    next()
+   
+    }
+
+    
+    
+    //there is a logged in user
+   
+
+next();
+});  */
 
 exports.restrictTo = (...roles) =>{
     return (req,res,next)=>{
