@@ -87,13 +87,16 @@ function Header(props) {
               />
 
             <Container className='Buttons_container'>
-             {props.autorized?(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
-                handlePopUp(setLogin);              
-              }}>Logga in</Button>)
+             {autorized?(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
+                 props.setLogginPage("");              
+                 setAutorized(""); 
+                 get("/logout")             
+              }}>Logga ut</Button>)
 
              :(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
-                handlePopUp(setLogin);              
-              }}>Logga ut</Button>)}
+              
+                handlePopUp(setLogin); 
+              }}>Logga in</Button>)}
               
               
 

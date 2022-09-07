@@ -22,6 +22,14 @@ router.post("/login", authController.login, (request, response, next) => {
 
   })
 });
+router.get("/logout", authController.logout, (request, response, next) => {
+
+  response.json({
+    status: "success",
+    method: request.method,
+
+  })
+});
 router.post("/forgotPassword", authController.forgotPassword, (request, response, next) => {
 
   response.json({
