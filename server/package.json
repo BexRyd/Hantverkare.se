@@ -8,6 +8,10 @@
     "dev": "nodemon -L server.js",
     "start": ""
   },
+  "engines": {
+    "npm": "8.15.0",
+    "node": "16.17.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dkingbrandt/Backend-hantverkare.se.git"
