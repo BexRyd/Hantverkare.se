@@ -35,5 +35,22 @@ createAdds = (req, res) => {
 
 }
 
+deleteAdds = async (req, res) => {
+  try{await Adds.findOneAndDelete({ _id: req.params.AddsId }, (err, Add) => {
+    
+    return res.status(200).json({ success: true, data: Add })
+    
+  }
+   
+  ).clone()}
+   
+    catch(err) {
+     return res.status(400).json({ success: false, error: err });
+    }
+};
 
-module.exports = { getAdds, createAdds }
+
+
+
+
+module.exports = { getAdds, createAdds, deleteAdds }

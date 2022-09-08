@@ -1,21 +1,24 @@
 import Button from 'react-bootstrap/Button';
+import { NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import "../css/header.css"
 import '../css/Adds.css'
 import {get, post} from "./../utility/fetchHealper"
 
 
-function Header() {
+
+
+
+
+function Header(props) {
 
   const [registrera, setRegistrera] = useState(false);
   const [login, setLogin] = useState(false);
-
-  const[token, setToken] = useState("");
 
   const [loginPassword, setLoginPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
@@ -26,7 +29,14 @@ function Header() {
   const [emailConfirm, setEmailConfirm] = useState(""); // ska vara en validering för email endast på frontend- Ska jämföras med email och emailconfirm innan det skickas till backend.
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  
+  const [autorized, setAutorized] = useState("");
+  
 
+
+ /*   useEffect(() => {
+    get("/login").then((response) => setLogin(response.data));
+  }, []);  */
 
   const handlePopUp = (state) => {
     state(current => !current); //toggle
@@ -40,11 +50,35 @@ function Header() {
           <Navbar.Brand className="logo" href="/">hantverkare.se</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav>
-              <Nav.Link className='navlink' href="/">Hem</Nav.Link>
-              <Nav.Link className='navlink' href="Categories">Sätt in annons</Nav.Link>
-              <Nav.Link className='navlink' href="Adds">Mina Tjänster</Nav.Link>
-            </Nav>
+            <ul>
+            <li>
+              <NavLink className='navlink' to="/"
+               style={({ isActive }) =>
+                isActive ? { color: "grey" } : { color: "black" }
+              }>Hem
+              </NavLink>
+              </li>
+              {autorized?(
+              <li>
+              <NavLink className='navlink' to="/MinSida"
+               style={({ isActive }) =>
+                isActive ? { color: "grey" } : { color: "black" }
+              }
+              >Min sida
+              
+              </NavLink>
+              </li>
+                   ):null}
+              <li>    
+              <NavLink className='navlink' to="/Adds"
+               style={({ isActive }) =>
+                isActive ? { color: "grey" } : { color: "black" }
+              }
+              >Annonser
+               
+              </NavLink>
+              </li>
+          </ul>
               <Form.Control
                 type="search"
                 placeholder="Sök"
@@ -53,9 +87,21 @@ function Header() {
               />
 
             <Container className='Buttons_container'>
-              <Button className='btn_register' size="sm" variant="dark" onClick={() => {
-                handlePopUp(setLogin);              
-              }}>Logga in</Button>
+             {autorized?(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
+                 props.setLogginPage("");              
+                 setAutorized(""); 
+                 get("/logout")             
+              }}>Logga ut</Button>)
+
+             :(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
+              
+                handlePopUp(setLogin); 
+                
+              }}>Logga in</Button>)}
+              
+              
+
+              
               <div className='blurr'
                 style={{
                   opacity: login ? '1' : '0',
@@ -99,13 +145,29 @@ function Header() {
                                
 
   
-                        }).then((response) => setToken(response.token))
+                        }).then((response) =>{ 
+                          props.setLogginPage(response.data)
+                         // props.setUser(response.data)
+                          setAutorized(response.data)
+                          
+                         if (response.data) {
+                       handlePopUp(setLogin);
+                    }
+                        
+                         
+
+                          
+
+
+                          
+                           })
+                        
                         }}
                         >
                           Logga in
                         </Button >
 
-                        <div>{token}</div>
+                       
                       </Form>
                     </div>
                   </div>
