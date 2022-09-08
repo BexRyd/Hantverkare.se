@@ -25,6 +25,15 @@ router.post("/myPage", addsController.createAdds, (request, response) => {
     
   });
 })
+router.delete("/myPage", addsController.deleteAdds, (request, response) => {
+  
+
+  response.json({
+    status: "success",
+    method: request.method,
+    
+  });
+})
 
 router.put("/myPage/:serviceid", (request, response) => {
 
@@ -58,7 +67,7 @@ router.put("/myPage/:serviceid", (request, response) => {
 
 })
 
-router.delete('/myPage/:serviceid', (request, response) => {
+/* router.delete('/myPage/:serviceid', (request, response) => {
 
   const serviceid = Number(request.params.serviceid)
 
@@ -75,6 +84,6 @@ router.delete('/myPage/:serviceid', (request, response) => {
     method: request.method,
     data: serviceid,
   });
-})
+}) */
 
 module.exports = router;
