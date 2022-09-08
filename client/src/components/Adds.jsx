@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import NavLink from "react-bootstrap/esm/NavLink";
 import Form from "./Form";
 export default function Adds(props) {
-  const [id, setId] = useState("");
+  const [AddsId, setAddsId] = useState("");
   const [adds, setAdds] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -22,8 +22,9 @@ export default function Adds(props) {
       setTitle(adds[id].heading);
       setDescription(adds[id].description);
       setImg(adds[id].img);
+      setAddsId(adds[id]._id);
 
-      console.log(adds[id].heading);
+    
     }
   }
 
@@ -110,12 +111,7 @@ export default function Adds(props) {
               >
                 mer info
               </button>
-              {props.authorized ?
-              props.authorized.user.role ==="admin"?(
-              <button
-              className="addsBtn"
-              >ta bort</button>):null
-            :null}
+             
               
               
                
@@ -144,6 +140,23 @@ export default function Adds(props) {
             <img className="popUp--img" src={img}></img>
             <h1 className="popUp--title">{title}</h1>
             <p className="popUp--description">{description}</p>
+
+             {props.authorized ?
+              props.authorized.user.role ==="admin"?
+              (
+              <button
+              className="addsBtn"
+            
+              onClick={()=>{
+                 
+                
+                console.log(AddsId)
+                erase(`/myPage/${AddsId}`);
+                 get("/myPage").then((response) => setAdds(response.data));
+              }}
+              >ta bort</button>):null
+            :null
+            }
           </div>
 
           <Form />

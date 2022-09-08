@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const addsController = require("../controller/addsController")
+const authController = require("../controller/authController")
 
 
 
@@ -16,7 +17,7 @@ router.get("/myPage", addsController.getAdds, (request, response) => {
 
 
 
-router.post("/myPage", addsController.createAdds, (request, response) => {
+router.post("/myPage", authController.protect,addsController.createAdds, (request, response) => {
   
 
   response.json({
@@ -25,7 +26,7 @@ router.post("/myPage", addsController.createAdds, (request, response) => {
     
   });
 })
-router.delete("/myPage", addsController.deleteAdds, (request, response) => {
+router.delete("/myPage/:AddsId",authController.protect,authController.restrictTo("admin"), addsController.deleteAdds, (request, response) => {
   
 
   response.json({

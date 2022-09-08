@@ -36,7 +36,7 @@ createAdds = (req, res) => {
 }
 
 deleteAdds = async (req, res) => {
-  try{await Adds.findOneAndDelete({ _id: req.body.AddsId }, (err, Add) => {
+  try{await Adds.findOneAndDelete({ _id: req.params.AddsId }, (err, Add) => {
     
     return res.status(200).json({ success: true, data: Add })
     
