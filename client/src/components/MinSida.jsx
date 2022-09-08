@@ -1,7 +1,8 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import { erase, post, put, get } from "../utility/fetchHealper"
 import "./../css/Adds.css"
+import "./../css/MinSida.css"
 import Axios from "axios"
 import {Image} from "cloudinary-react"
 
@@ -15,13 +16,22 @@ export default function MinSida(props) {
   const [counter, setCounter] = useState(0)
   const [popUp, setPopUp] = useState(false)
   const [imageUrl, setImageUrl] =useState("");
+  const [userEmail, setUserEmail] = useState("");
   
 
 
- 
+ useEffect(() => {
+    setEmail()
+  
+  }, [props.authorized]);
 
 //"https://api.cloudinary.com/v1_1/bexryd/image/upload"
-
+const setEmail = ()=>{
+  if(props.authorized){
+setUserEmail(props.authorized.user.email)
+  console.log(props.authorized.user.email)
+  }
+};
   const handlePopUp = () => {
     setPopUp(current => !current); //toggle
   }
@@ -51,11 +61,15 @@ const uploadImage = async () => {
   return (
 
     <div>
+      
       {props.authorized?(
+       
         <h1>hej</h1>
+
       ):null}
       <div>
-        <h1>Upload image</h1>
+        <div className='uploadAdd-Container'>
+        <h2>Ladda upp en bild</h2>
         <input type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
         {loading? (<h3>Loading...</h3>):null}
        {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
@@ -66,6 +80,7 @@ const uploadImage = async () => {
           uploadImage();
           handlePopUp();
         }} >Förhandsgranska</button>
+        </div>
 
         <div className='blurr'
           style={{
@@ -89,6 +104,8 @@ const uploadImage = async () => {
                   img: imageUrl,
                   heading: heading,
                   description: description,
+                  
+                  email:userEmail
 
 
                 })
@@ -99,6 +116,7 @@ const uploadImage = async () => {
               }}
               >Publicera Annons</button>
             </div>
+            
 
 
 
