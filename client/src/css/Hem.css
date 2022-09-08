@@ -59,7 +59,16 @@ body {
     margin-left: 0;
 }
 
+.navlink {
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
 
+    color: black;
+
+
+
+}
 .main_btn {
     display: flex;
     align-items: center;
@@ -69,6 +78,7 @@ body {
     height: 60px;
     border-radius: 3px;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .main_btn:hover {

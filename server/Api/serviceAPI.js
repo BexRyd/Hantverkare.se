@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const addsController = require("../controller/addsController")
+const authController = require("../controller/authController")
 
 
 
@@ -12,11 +13,28 @@ router.get("/myPage", addsController.getAdds, (request, response) => {
  
   })
 });
+router.get("/myPage/:email", addsController.getUserAdds, (request, response) => {
+
+  response.json({
+    status: "success",
+    method: request.method,
+ 
+  })
+});
 
 
 
 
-router.post("/myPage", addsController.createAdds, (request, response) => {
+router.post("/myPage", authController.protect,addsController.createAdds, (request, response) => {
+  
+
+  response.json({
+    status: "success",
+    method: request.method,
+    
+  });
+})
+router.delete("/myPage/:AddsId",authController.protect,authController.restrictTo("admin"), addsController.deleteAdds, (request, response) => {
   
 
   response.json({
@@ -58,7 +76,7 @@ router.put("/myPage/:serviceid", (request, response) => {
 
 })
 
-router.delete('/myPage/:serviceid', (request, response) => {
+/* router.delete('/myPage/:serviceid', (request, response) => {
 
   const serviceid = Number(request.params.serviceid)
 
@@ -75,6 +93,6 @@ router.delete('/myPage/:serviceid', (request, response) => {
     method: request.method,
     data: serviceid,
   });
-})
+}) */
 
 module.exports = router;

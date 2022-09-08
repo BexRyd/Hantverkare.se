@@ -8,11 +8,12 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import NavLink from "react-bootstrap/esm/NavLink";
 import Form from "./Form";
-export default function Adds() {
-  const [id, setId] = useState("");
+export default function Adds(props) {
+  const [AddsId, setAddsId] = useState("");
   const [adds, setAdds] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [email, setEmail] = useState("");
   const [img, setImg] = useState("");
   const [popUp, setPopUp] = useState(false);
 
@@ -22,8 +23,10 @@ export default function Adds() {
       setTitle(adds[id].heading);
       setDescription(adds[id].description);
       setImg(adds[id].img);
+      setEmail(adds[id].email);
+      setAddsId(adds[id]._id);
 
-      console.log(adds[id].heading);
+    
     }
   }
 
@@ -110,6 +113,10 @@ export default function Adds() {
               >
                 mer info
               </button>
+             
+              
+              
+               
             </div>
           </div>
         );
@@ -135,6 +142,26 @@ export default function Adds() {
             <img className="popUp--img" src={img}></img>
             <h1 className="popUp--title">{title}</h1>
             <p className="popUp--description">{description}</p>
+            {props.authorized?
+             <p>{email}</p>  
+          :null}
+
+             {props.authorized ?
+              props.authorized.user.role ==="admin"?
+              (
+              <button
+              className="addsBtn"
+            
+              onClick={()=>{
+                 
+                
+                console.log(AddsId)
+                erase(`/myPage/${AddsId}`);
+                 get("/myPage").then((response) => setAdds(response.data));
+              }}
+              >ta bort</button>):null
+            :null
+            }
           </div>
 
           <Form />
