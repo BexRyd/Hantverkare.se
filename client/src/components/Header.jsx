@@ -102,7 +102,10 @@ function Header(props) {
               
 
               
-              <div className='blurr'
+              <div className='blurr'  onClick={() => {
+                      handlePopUp(setRegistrera);
+                      if(login ===true) {setLogin(false)}
+                    }}
                 style={{
                   opacity: login ? '1' : '0',
                   visibility: login ? 'visible' : 'hidden',
@@ -180,7 +183,10 @@ function Header(props) {
               }} >Registrera</Button>
 
 
-              <div className='blurr'
+              <div className='blurr'  onClick={() => {
+                      handlePopUp(setRegistrera);
+                      if(registrera ===true) {setRegistrera(false)}
+                    }}
                 style={{
                   opacity: registrera ? '1' : '0',
                   visibility: registrera ? 'visible' : 'hidden',
