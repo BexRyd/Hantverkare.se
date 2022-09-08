@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { erase, post, put, get } from "../utility/fetchHealper"
 import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
-import {Image} from "cloudinary-react"
+import { Image } from "cloudinary-react"
 
 
 export default function MinSida(props) {
@@ -15,120 +15,120 @@ export default function MinSida(props) {
   const [loading, setLoading] = useState(false);
   const [counter, setCounter] = useState(0)
   const [popUp, setPopUp] = useState(false)
-  const [imageUrl, setImageUrl] =useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [useradds, setUserAdds] = useState([]);
-   
 
-useEffect(()=>{
- 
-  if(props.authorized){
-    
-  get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
-  console.log(useradds)
-  }
-  
-},[props.authorized])
 
- useEffect(() => {
+  useEffect(() => {
+
+    if (props.authorized) {
+
+      get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
+      console.log(useradds)
+    }
+
+  }, [props.authorized])
+
+  useEffect(() => {
     setEmail()
     setUserAdds([])
-  
+
   }, [props.authorized]);
 
-//"https://api.cloudinary.com/v1_1/bexryd/image/upload"
-const setEmail = ()=>{
-  if(props.authorized){
-setUserEmail(props.authorized.user.email)
-  console.log(props.authorized.user.email)
-  }
-};
+  //"https://api.cloudinary.com/v1_1/bexryd/image/upload"
+  const setEmail = () => {
+    if (props.authorized) {
+      setUserEmail(props.authorized.user.email)
+      console.log(props.authorized.user.email)
+    }
+  };
   const handlePopUp = () => {
     setPopUp(current => !current); //toggle
   }
 
-const uploadImage = async () => {
+  const uploadImage = async () => {
     const formData = new FormData();
     formData.append('file', img);
     formData.append('upload_preset', "Hantverkare");
     try {
       setLoading(true);
       const res = await Axios.post('https://api.cloudinary.com/v1_1/bexryd/image/upload', formData);
-       setImageUrl( res.data.secure_url);
-    
+      setImageUrl(res.data.secure_url);
+
       setLoading(false);
-     
+
     } catch (err) {
       console.error(err);
     }
   };
 
-/* const uploadImage = (files)=>{
-  const formData = new formData();
-  formData.append("file", files[0])
-  formData.append("upload_preset", "Hantverkare")
- Axios.post("https://api.cloudinary.com/v1_1/bexryd/image/upload",formData).then((response)=>console.log(response))
-} */
+  /* const uploadImage = (files)=>{
+    const formData = new formData();
+    formData.append("file", files[0])
+    formData.append("upload_preset", "Hantverkare")
+   Axios.post("https://api.cloudinary.com/v1_1/bexryd/image/upload",formData).then((response)=>console.log(response))
+  } */
   return (
 
     <div>
-      {props.authorized?(
-       
+      {props.authorized ? (
+
         <h1>Välkommen {props.authorized.user.name}</h1>
 
-      ):null}
+      ) : null}
       <div className='pageContainer'>
 
         <div className='userOptions'>
-         <button>Mina Annonser</button>
-         <button>Ändra användare</button>
+          <button>Mina Annonser</button>
+          <button>Ändra användare</button>
         </div>
-     
+
         <div className='uploadAdd-Container'>
-        <h2>Ladda upp en bild</h2>
-        <input type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
-        {loading? (<h3>Loading...</h3>):null}
-       {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
-        <input value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
-        <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
+          <h2>Ladda upp en bild</h2>
+          <input type="file" name='file' placeholder="Ladda upp en bild" onChange={(e) => { setImg(e.target.files[0]) }}></input>
+          {loading ? (<h3>Loading...</h3>) : null}
+          {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
+          <input value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
+          <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
 
-        <button onClick={() => {
-          uploadImage();
-          handlePopUp();
-        }} >Förhandsgranska</button>
+          <button onClick={() => {
+            uploadImage();
+            handlePopUp();
+          }} >Förhandsgranska</button>
         </div>
 
-      <div className='userAddsContainer'>
-      {
-      props.authorized?
-      useradds.map((add, id) => {
-        return (
-         
-            <div className="userAdds" key={id}>
-              <img className="addsImg" src={add.img}></img>
+        <div className='userAddsContainer'>
+          {
+            props.authorized ?
+              useradds.map((add, id) => {
+                return (
 
-              <div className="textBox">
-                <h3 className="addsHeading">{add.heading}</h3>
-                <p className="addsDescription">{add.description}</p>
-              </div>
+                  <div className="userAdds" key={id}>
+                    <img className="addsImg" src={add.img}></img>
 
-              <button
-                className="addsBtn"
-                id={id}
-                onClick={() => {
-                 // showDetail(id);
-                 // handlePopUp();
-                }}
-              >
-                mer info
-              </button>
-             
-            </div>
-          
-        );
-      }):null}
-      </div>
-      
+                    <div className="textBox">
+                      <h3 className="addsHeading">{add.heading}</h3>
+                      <p className="addsDescription">{add.description}</p>
+                    </div>
+
+                    <button
+                      className="addsBtn"
+                      id={id}
+                      onClick={() => {
+                        // showDetail(id);
+                        // handlePopUp();
+                      }}
+                    >
+                      mer info
+                    </button>
+
+                  </div>
+
+                );
+              }) : null}
+        </div>
+
 
 
 
@@ -149,13 +149,13 @@ const uploadImage = async () => {
               <p className='popUp--description'>{description}</p>
 
               <button onClick={() => {
-                post("/myPage", {
+                post("/https://hantverkare-backend.herokuapp.com/minSida", {
                   id: counter,
                   img: imageUrl,
                   heading: heading,
                   description: description,
-                  
-                  email:userEmail
+
+                  email: userEmail
 
 
                 })
@@ -167,7 +167,7 @@ const uploadImage = async () => {
               >Publicera Annons</button>
             </div>
 
-           
+
           </div>
         </div>
 
