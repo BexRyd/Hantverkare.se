@@ -79,6 +79,10 @@ max-width: 100%;
   background-color: black;
 }
 
+.addsBtn:hover{
+  cursor: pointer;
+}
+
 .blurr{
    
       height: 100vh;
@@ -86,6 +90,7 @@ max-width: 100%;
       position: fixed;
      top: 0;
      left: 0;
+     
 
     /*  opacity: 0;
      visibility:hidden;

@@ -96,6 +96,7 @@ function Header(props) {
              :(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
               
                 handlePopUp(setLogin); 
+                
               }}>Logga in</Button>)}
               
               
@@ -147,8 +148,17 @@ function Header(props) {
                         }).then((response) =>{ 
                           props.setLogginPage(response.data)
                          // props.setUser(response.data)
-                         
                           setAutorized(response.data)
+                          
+                         if (response.data) {
+                       handlePopUp(setLogin);
+                    }
+                        
+                         
+
+                          
+
+
                           
                            })
                         

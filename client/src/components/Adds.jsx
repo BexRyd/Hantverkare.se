@@ -110,6 +110,15 @@ export default function Adds(props) {
               >
                 mer info
               </button>
+              {props.authorized ?
+              props.authorized.user.role ==="admin"?(
+              <button
+              className="addsBtn"
+              >ta bort</button>):null
+            :null}
+              
+              
+               
             </div>
           </div>
         );
