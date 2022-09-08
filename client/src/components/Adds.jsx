@@ -26,7 +26,7 @@ export default function Adds(props) {
       setEmail(adds[id].email);
       setAddsId(adds[id]._id);
 
-    
+
     }
   }
 
@@ -113,10 +113,10 @@ export default function Adds(props) {
               >
                 mer info
               </button>
-             
-              
-              
-               
+
+
+
+
             </div>
           </div>
         );
@@ -142,25 +142,25 @@ export default function Adds(props) {
             <img className="popUp--img" src={img}></img>
             <h1 className="popUp--title">{title}</h1>
             <p className="popUp--description">{description}</p>
-            {props.authorized?
-             <p>{email}</p>  
-          :null}
+            {props.authorized ?
+              <p>{email}</p>
+              : null}
 
-             {props.authorized ?
-              props.authorized.user.role ==="admin"?
-              (
-              <button
-              className="addsBtn"
-            
-              onClick={()=>{
-                 
-                
-                console.log(AddsId)
-                erase(`/myPage/${AddsId}`);
-                 get("/myPage").then((response) => setAdds(response.data));
-              }}
-              >ta bort</button>):null
-            :null
+            {props.authorized ?
+              props.authorized.user.role === "admin" ?
+                (
+                  <button
+                    className="addsBtn"
+
+                    onClick={() => {
+
+
+                      console.log(AddsId)
+                      erase(`/myPage/${AddsId}`);
+                      get("/myPage").then((response) => setAdds(response.data));
+                    }}
+                  >ta bort</button>) : null
+              : null
             }
           </div>
 
