@@ -1,6 +1,28 @@
-/* .uploadAdd-Container {
+.uploadAdd-Container {
     width: 500px;
-    margin: 0 auto;
-    margin-top: -500px;
+ 
+  
     border: solid;
-} */
+}
+
+.userAddsContainer{
+    width: 700px;
+    height: auto;
+    flex-direction: column;
+    display: flex;
+    border: solid;
+}
+
+.userAdds{
+    display: flex;
+    flex-direction: row;
+    border: solid;
+}
+.pageContainer{
+    display: flex;
+    flex-direction: row;
+    border: solid;
+}
+.userOptions{
+    width: 500px;
+}

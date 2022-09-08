@@ -17,11 +17,22 @@ export default function MinSida(props) {
   const [popUp, setPopUp] = useState(false)
   const [imageUrl, setImageUrl] =useState("");
   const [userEmail, setUserEmail] = useState("");
-  
+  const [useradds, setUserAdds] = useState([]);
+   
 
+useEffect(()=>{
+ 
+  if(props.authorized){
+    
+  get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
+  console.log(useradds)
+  }
+  
+},[props.authorized])
 
  useEffect(() => {
     setEmail()
+    setUserAdds([])
   
   }, [props.authorized]);
 
@@ -61,13 +72,18 @@ const uploadImage = async () => {
   return (
 
     <div>
-      
       {props.authorized?(
        
-        <h1>hej</h1>
+        <h1>Välkommen {props.authorized.user.name}</h1>
 
       ):null}
-      <div>
+      <div className='pageContainer'>
+
+        <div className='userOptions'>
+         <button>Mina Annonser</button>
+         <button>Ändra användare</button>
+        </div>
+     
         <div className='uploadAdd-Container'>
         <h2>Ladda upp en bild</h2>
         <input type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
@@ -81,6 +97,40 @@ const uploadImage = async () => {
           handlePopUp();
         }} >Förhandsgranska</button>
         </div>
+
+      <div className='userAddsContainer'>
+      {
+      props.authorized?
+      useradds.map((add, id) => {
+        return (
+         
+            <div className="userAdds" key={id}>
+              <img className="addsImg" src={add.img}></img>
+
+              <div className="textBox">
+                <h3 className="addsHeading">{add.heading}</h3>
+                <p className="addsDescription">{add.description}</p>
+              </div>
+
+              <button
+                className="addsBtn"
+                id={id}
+                onClick={() => {
+                 // showDetail(id);
+                 // handlePopUp();
+                }}
+              >
+                mer info
+              </button>
+             
+            </div>
+          
+        );
+      }):null}
+      </div>
+      
+
+
 
         <div className='blurr'
           style={{
@@ -116,12 +166,8 @@ const uploadImage = async () => {
               }}
               >Publicera Annons</button>
             </div>
-            
 
-
-
-
-
+           
           </div>
         </div>
 

@@ -13,6 +13,14 @@ router.get("/myPage", addsController.getAdds, (request, response) => {
  
   })
 });
+router.get("/myPage/:email", addsController.getUserAdds, (request, response) => {
+
+  response.json({
+    status: "success",
+    method: request.method,
+ 
+  })
+});
 
 
 
