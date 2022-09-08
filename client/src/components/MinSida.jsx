@@ -1,7 +1,8 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import { erase, post, put, get } from "../utility/fetchHealper"
 import "./../css/Adds.css"
+import "./../css/MinSida.css"
 import Axios from "axios"
 import {Image} from "cloudinary-react"
 
@@ -15,13 +16,33 @@ export default function MinSida(props) {
   const [counter, setCounter] = useState(0)
   const [popUp, setPopUp] = useState(false)
   const [imageUrl, setImageUrl] =useState("");
-  
+  const [userEmail, setUserEmail] = useState("");
+  const [useradds, setUserAdds] = useState([]);
+   
 
-
+useEffect(()=>{
  
+  if(props.authorized){
+    
+  get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
+  console.log(useradds)
+  }
+  
+},[props.authorized])
+
+ useEffect(() => {
+    setEmail()
+    setUserAdds([])
+  
+  }, [props.authorized]);
 
 //"https://api.cloudinary.com/v1_1/bexryd/image/upload"
-
+const setEmail = ()=>{
+  if(props.authorized){
+setUserEmail(props.authorized.user.email)
+  console.log(props.authorized.user.email)
+  }
+};
   const handlePopUp = () => {
     setPopUp(current => !current); //toggle
   }
@@ -52,10 +73,19 @@ const uploadImage = async () => {
 
     <div>
       {props.authorized?(
-        <h1>hej</h1>
+       
+        <h1>Välkommen {props.authorized.user.name}</h1>
+
       ):null}
-      <div>
-        <h1>Upload image</h1>
+      <div className='pageContainer'>
+
+        <div className='userOptions'>
+         <button>Mina Annonser</button>
+         <button>Ändra användare</button>
+        </div>
+     
+        <div className='uploadAdd-Container'>
+        <h2>Ladda upp en bild</h2>
         <input type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
         {loading? (<h3>Loading...</h3>):null}
        {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
@@ -66,6 +96,41 @@ const uploadImage = async () => {
           uploadImage();
           handlePopUp();
         }} >Förhandsgranska</button>
+        </div>
+
+      <div className='userAddsContainer'>
+      {
+      props.authorized?
+      useradds.map((add, id) => {
+        return (
+         
+            <div className="userAdds" key={id}>
+              <img className="addsImg" src={add.img}></img>
+
+              <div className="textBox">
+                <h3 className="addsHeading">{add.heading}</h3>
+                <p className="addsDescription">{add.description}</p>
+              </div>
+
+              <button
+                className="addsBtn"
+                id={id}
+                onClick={() => {
+                 // showDetail(id);
+                 // handlePopUp();
+                }}
+              >
+                mer info
+              </button>
+             
+            </div>
+          
+        );
+      }):null}
+      </div>
+      
+
+
 
         <div className='blurr'
           style={{
@@ -89,6 +154,8 @@ const uploadImage = async () => {
                   img: imageUrl,
                   heading: heading,
                   description: description,
+                  
+                  email:userEmail
 
 
                 })
@@ -100,10 +167,7 @@ const uploadImage = async () => {
               >Publicera Annons</button>
             </div>
 
-
-
-
-
+           
           </div>
         </div>
 
