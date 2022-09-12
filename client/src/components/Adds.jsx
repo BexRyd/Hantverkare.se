@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { get, post, put, erase } from "./../utility/fetchHealper";
+import { get, erase } from "./../utility/fetchHealper";
 import "./../css/Adds.css";
 
 import Button from "react-bootstrap/esm/Button";
