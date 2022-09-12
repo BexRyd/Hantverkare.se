@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 
 app.use(cors({
-    orgin: "http://127.0.0.1:3000/",
+    orgin: "https://hantverkare-frontend.herokuapp.com/",
     credentials: true
 }))
 
