@@ -35,7 +35,7 @@ export default function Adds(props) {
   };
 
   useEffect(() => {
-    get("http://127.0.0.1:8080/myPage").then((response) =>
+    get("https://hantverkare-backend.herokuapp.com/mypage").then((response) =>
       setAdds(response.data)
     );
   }, []);
