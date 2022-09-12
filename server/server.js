@@ -40,7 +40,7 @@ app.use(routerSignUp);
 app.use(routerServices);
 
 
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
     console.log(`server is listening to port ${port}`)
