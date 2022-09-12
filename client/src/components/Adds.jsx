@@ -35,7 +35,7 @@ export default function Adds(props) {
   };
 
   useEffect(() => {
-    get("https://hantverkare-backend.herokuom/app.cmyPage").then((response) =>
+    get("http://127.0.0.1:8080/myPage").then((response) =>
       setAdds(response.data)
     );
   }, []);
@@ -96,7 +96,7 @@ export default function Adds(props) {
         return (
           <div>
             <div className="addsContainer" key={id}>
-              {/* <img className="addsImg" src={add.img}></img> */}
+              <img className="addsImg" src={add.img}></img>
 
               <div className="textBox">
                 <h3 className="addsHeading">{add.heading}</h3>
@@ -139,7 +139,7 @@ export default function Adds(props) {
             <p className="popUp--close" onClick={handlePopUp}>
               &times;{" "}
             </p>
-            {/* <img className="popUp--img" src={img}></img> */}
+            <img className="popUp--img" src={img}></img>
             <h1 className="popUp--title">{title}</h1>
             <p className="popUp--description">{description}</p>
             {props.authorized ?
