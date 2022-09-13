@@ -6,6 +6,7 @@ const routerServices = require("./Api/serviceAPI")
 const routerSignUp = require("./Api/SignUpAPI")
 // const cors = require("cors")
 const cookieParser = require("cookie-parser");
+const path = require('path')
 // const db = require("./database/db")
 
 const mongoose = require("mongoose")
@@ -44,7 +45,7 @@ app.get('*', (req, res) => {
 
 
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
