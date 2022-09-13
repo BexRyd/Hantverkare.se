@@ -6,7 +6,8 @@ const routerServices = require("./Api/serviceAPI")
 const routerSignUp = require("./Api/SignUpAPI")
 const cors = require("cors")
 const cookieParser = require("cookie-parser");
-// const db = require("./database/db")
+const db = require("./database/db")
+const path = require("path");
 const mongoose = require("mongoose")
 
 
@@ -16,19 +17,30 @@ const app = express();
 
 
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://dkingbrandt:gorilla1986@cluster0.9zx9wmx.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://dkingbrandt:gorilla1986@cluster0.9zx9wmx.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
 
-app.use(cors({
-    orgin: "https://hantverkare-frontend.herokuapp.com/",
-    credentials: true
-}))
+// app.use(cors({
+//     origin: [
+//         'http://localhost:3000',
+
+//     ],
+//     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+//     allowedHeaders: ['*', 'Authorization'],
+
+//     exposedHeaders: ['*', 'Authorization'],
+//     credentials: true,
+// }));
 
 
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+
+
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
@@ -38,7 +50,7 @@ app.use((req, res, next) => {
 
 app.use(routerSignUp);
 app.use(routerServices);
-
+app.use(express.static(path.resolve(__dirname, ".././client/build")));
 
 const port = process.env.PORT || 8080;
 

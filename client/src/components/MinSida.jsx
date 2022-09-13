@@ -24,7 +24,7 @@ export default function MinSida(props) {
 
     if (props.authorized) {
 
-      get(`https://hantverkare-backend.herokuapp.com/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
+      get(`myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
       console.log(useradds)
     }
 
@@ -149,7 +149,7 @@ export default function MinSida(props) {
               <p className='popUp--description'>{description}</p>
 
               <button onClick={() => {
-                post("/https://hantverkare-backend.herokuapp.com/minSida", {
+                post("/myPage", {
                   id: counter,
                   img: imageUrl,
                   heading: heading,

@@ -137,7 +137,8 @@ function Header(props) {
                         <Button variant="primary"
 
                           onClick={() => {
-                            post("https://hantverkare-backend.herokuapp.com/login", {
+                            post("/login", {
+
 
 
                               email: loginEmail,

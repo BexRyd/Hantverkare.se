@@ -21,8 +21,8 @@ const createSendToken = (user, statuscode, res) => {
             new Date().getTime() + 100 * 1000
         ),
         httpOnly: true,
-        //sameSite: 'none', // set to none for cross-request
-        path: "https://hantverkare-frontend.herokuapp.com/",
+        // sameSite: 'none', // set to none for cross-request
+        path: "http://localhost:3000/",
 
     };
 
