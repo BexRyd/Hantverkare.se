@@ -24,7 +24,7 @@ export default function MinSida(props) {
 
     if (props.authorized) {
 
-      get(`myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
+      get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
       console.log(useradds)
     }
 

@@ -35,7 +35,7 @@ export default function Adds(props) {
   };
 
   useEffect(() => {
-    get("/mypage").then((response) =>
+    get("/myPage").then((response) =>
       setAdds(response.data)
     );
   }, []);

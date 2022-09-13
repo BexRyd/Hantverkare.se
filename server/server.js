@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const bodyParser = require("body-parser");
 const routerServices = require("./Api/serviceAPI")
 const routerSignUp = require("./Api/SignUpAPI")
-const cors = require("cors")
+// const cors = require("cors")
 const cookieParser = require("cookie-parser");
 const db = require("./database/db")
 
