@@ -7,7 +7,7 @@ const routerSignUp = require("./Api/SignUpAPI")
 const cors = require("cors")
 const cookieParser = require("cookie-parser");
 const db = require("./database/db")
-const path = require("path");
+
 const mongoose = require("mongoose")
 
 
@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 //     ],
 //     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
-//     allowedHeaders: ['*', 'Authorization'],
+//     allowedHeaders: ['*', 'Authorization', 'Set-Cookie'],
 
 //     exposedHeaders: ['*', 'Authorization'],
 //     credentials: true,
@@ -50,7 +50,7 @@ app.use((req, res, next) => {
 
 app.use(routerSignUp);
 app.use(routerServices);
-app.use(express.static(path.resolve(__dirname, ".././client/build")));
+
 
 const port = process.env.PORT || 8080;
 

@@ -22,7 +22,7 @@ const createSendToken = (user, statuscode, res) => {
         ),
         httpOnly: true,
         // sameSite: 'none', // set to none for cross-request
-        path: "http://localhost:3000/",
+        path: "http://localhost:3000",
 
     };
 
