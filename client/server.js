@@ -6,7 +6,7 @@ const routerServices = require("./Api/serviceAPI")
 const routerSignUp = require("./Api/SignUpAPI")
 // const cors = require("cors")
 const cookieParser = require("cookie-parser");
-const db = require("./database/db")
+// const db = require("./database/db")
 
 const mongoose = require("mongoose")
 
@@ -17,11 +17,15 @@ const app = express();
 
 
 
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://dkingbrandt:gorilla1986@cluster0.9zx9wmx.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://dkingbrandt:gorilla1986@cluster0.9zx9wmx.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.use(express.static(path.join(__dirname, './build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './build'))
+})
 
 // app.use(cors({
 //     origin: [

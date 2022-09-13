@@ -35,7 +35,7 @@ export default function Adds(props) {
   };
 
   useEffect(() => {
-    get("/myPage").then((response) =>
+    get("https://hantverkare-heroku.herokuapp.com/myPage").then((response) =>
       setAdds(response.data)
     );
   }, []);
