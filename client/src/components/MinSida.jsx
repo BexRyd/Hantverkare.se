@@ -75,15 +75,18 @@ const uploadImage = async () => {
   return (
 
     <div>
-      {props.authorized?(
-       
-        <h1>Välkommen {props.authorized.user.name}</h1>
-
-      ):null}
+      
       <div className='pageContainer'>
 
         <div className='userOptions'>
-         <button
+          {props.authorized?(
+            !myAdds?(
+       
+        <h1 className='header_options'>Välkommen {props.authorized.user.name}</h1>
+            ):null
+
+      ):null}
+         <button className='optionBtn '
          onClick={()=>{
           get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
   
@@ -91,8 +94,8 @@ const uploadImage = async () => {
          }}
        
          >Mina Annonser</button>
-         <button>Inställningar</button>
-         <button 
+         <button className='optionBtn '>Inställningar</button>
+         <button className='optionBtn '
          onClick={()=>{
           setNewAdd(true)
          }}
