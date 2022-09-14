@@ -7,6 +7,7 @@ import Axios from "axios"
 import {Image} from "cloudinary-react"
 
 
+
 export default function MinSida(props) {
 
   const [heading, setHeading] = useState("")
