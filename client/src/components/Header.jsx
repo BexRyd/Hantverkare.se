@@ -9,9 +9,10 @@ import React from 'react';
 import "../css/header.css"
 import '../css/Adds.css'
 import {get, post} from "./../utility/fetchHealper"
+import LoginError from './LoginError'
 
 
-
+ 
 
 
 
@@ -167,7 +168,7 @@ function Header(props) {
                           Logga in
                         </Button >
 
-                       
+                      <LoginError/>
                       </Form>
                     </div>
                   </div>
