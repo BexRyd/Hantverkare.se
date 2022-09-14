@@ -23,6 +23,7 @@ function Header(props) {
 
   const [loginPassword, setLoginPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
+  const [errorLogin, setErrorLogin] = useState(false);
 
 
   const [name, setName] = useState("");
@@ -154,6 +155,9 @@ function Header(props) {
                          if (response.data) {
                        handlePopUp(setLogin);
                     }
+                    else{
+                      handlePopUp(setErrorLogin);
+                    }
                         
                          
 
@@ -167,8 +171,16 @@ function Header(props) {
                         >
                           Logga in
                         </Button >
-
-                      <LoginError/>
+             {errorLogin?(
+                      <LoginError 
+                      setLoginError={(btnUseState) => {
+                      setErrorLogin(btnUseState);
+          
+        }}
+                      />
+                   )
+                :null
+                }
                       </Form>
                     </div>
                   </div>
