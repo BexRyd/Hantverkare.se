@@ -1,8 +1,9 @@
 .uploadAdd-Container {
     width: 500px;
- 
-  
-    border: solid;
+    text-align: center;
+    height: 250px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .userAddsContainer{
@@ -10,18 +11,53 @@
     height: auto;
     flex-direction: column;
     display: flex;
-    border: solid;
+    align-items: center;
+    position: relative;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   
 }
 
 .userAdds{
     display: flex;
     flex-direction: row;
-    border: solid;
+    
+    width: 70%;
+    margin: 1%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.newAdd--close_form{
+color: black;
+    position: absolute;
+    top: 1%;
+    left: 44%;
+    font-size: 3rem;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1;
+}
+
+.newAdd--close_form:hover,.Adds--close_form:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.521);
+}
+
+.Adds--close_form{
+        color: black;
+        position: absolute;
+        top: 1%;
+        left: 93%;
+        font-size: 3rem;
+        text-decoration: none;
+        display: inline-block;
+        line-height: 1;
 }
 .pageContainer{
     display: flex;
     flex-direction: row;
-    border: solid;
+  
+    
 }
 .userOptions{
     width: 500px;

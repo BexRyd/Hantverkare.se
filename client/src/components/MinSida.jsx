@@ -19,6 +19,8 @@ export default function MinSida(props) {
   const [imageUrl, setImageUrl] =useState("");
   const [userEmail, setUserEmail] = useState("");
   const [useradds, setUserAdds] = useState([]);
+  const [myAdds, setMyAdds] = useState(false);
+  const[newAdd, setNewAdd] = useState(false);
    
 
 useEffect(()=>{
@@ -29,7 +31,7 @@ useEffect(()=>{
   console.log(useradds)
   }
   
-},[props.authorized])
+},[])
 
  useEffect(() => {
     setEmail()
@@ -81,11 +83,27 @@ const uploadImage = async () => {
       <div className='pageContainer'>
 
         <div className='userOptions'>
-         <button>Mina Annonser</button>
-         <button>Ändra användare</button>
+         <button
+         onClick={()=>{
+          get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
+  
+          setMyAdds(true);
+         }}
+       
+         >Mina Annonser</button>
+         <button>Inställningar</button>
+         <button 
+         onClick={()=>{
+          setNewAdd(true)
+         }}
+         >Lägg till annons</button>
         </div>
-     
+        {newAdd?(
         <div className='uploadAdd-Container'>
+            <p className="newAdd--close_form" onClick={() => {
+                      setNewAdd(false);
+                    }}
+                    >&times; </p>
         <h2>Ladda upp en bild</h2>
         <input type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
         {loading? (<h3>Loading...</h3>):null}
@@ -98,8 +116,13 @@ const uploadImage = async () => {
           handlePopUp();
         }} >Förhandsgranska</button>
         </div>
-
+        ):null}
+     {myAdds?(
       <div className='userAddsContainer'>
+        <p className="Adds--close_form" onClick={() => {
+                      setMyAdds(false);
+                    }}
+                    >&times; </p>
       {
       props.authorized?
       useradds.map((add, id) => {
@@ -129,6 +152,7 @@ const uploadImage = async () => {
         );
       }):null}
       </div>
+):null}
       
 
 
