@@ -22,6 +22,30 @@ export default function MinSida(props) {
   const [myAdds, setMyAdds] = useState(false);
   const[newAdd, setNewAdd] = useState(false);
   const [settings, setSettings]= useState(false);
+  const [newAddPopup, setNewAddPopup] = useState(false);
+
+  const [AddsIdPopup, setAddsIdPopup] = useState("");
+  const [titlePopup, setTitlePopup] = useState("");
+  const [descriptionPopup, setDescriptionPopup] = useState("");
+  const [emailPopup, setEmailPopup] = useState("");
+  const [imgPopup, setImgPopup] = useState("");
+  const [popUpAdds, setPopUpAdds] = useState(false);
+
+  
+
+
+  function showDetail(id) {
+    const index = useradds[id];
+    if (index == useradds[id]) {
+      setTitlePopup(useradds[id].heading);
+      setDescriptionPopup(useradds[id].description);
+      setImgPopup(useradds[id].img);
+      setEmailPopup(useradds[id].email);
+      setAddsIdPopup(useradds[id]._id);
+
+    
+    }
+  }
    
 
 useEffect(()=>{
@@ -126,6 +150,7 @@ const uploadImage = async () => {
           onClick={() => {
           uploadImage();
           handlePopUp();
+          setNewAddPopup(true);
         }} >Förhandsgranska</button>
         </div>
         ):null}
@@ -152,8 +177,9 @@ const uploadImage = async () => {
                 className="addsBtn"
                 id={id}
                 onClick={() => {
-                 // showDetail(id);
-                 // handlePopUp();
+                  showDetail(id);
+                  handlePopUp();
+                  setPopUpAdds(true);
                 }}
               >
                 mer info
@@ -178,6 +204,7 @@ const uploadImage = async () => {
           }}
 
         >
+          {newAddPopup?(
           <div className='popUp'>
             <div>
               <p className="popUp--close" onClick={handlePopUp} >&times; </p>
@@ -206,6 +233,38 @@ const uploadImage = async () => {
 
            
           </div>
+          ):null}
+
+
+        
+        {popUpAdds?(
+        <div className="popUp">
+          <div>
+            <p className="popUp--close" onClick={()=>{
+              handlePopUp();
+              setPopUpAdds(false);
+            
+            }}
+              >
+              &times;{" "}
+            </p>
+            <img className="popUp--img" src={imgPopup}></img>
+            <h1 className="popUp--title">{titlePopup}</h1>
+            <p className="popUp--description">{descriptionPopup}</p>
+             <p>{emailPopup}</p>  
+        
+
+             
+              <button
+              
+              >ta bort</button>
+            
+          </div>
+
+         
+        </div>
+        ):null}
+
         </div>
 
 
