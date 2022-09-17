@@ -4,13 +4,16 @@
     height: 250px;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 15%;
 }
 
 .userAddsContainer{
     width: 700px;
    
     height: auto;
-    margin-left: 40%;
+   
+   
+  
     margin-top: 2%;
     margin-bottom: 2%;
     flex-direction: column;
@@ -60,23 +63,21 @@ color: black;
 .pageContainer{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+   
   
     
 }
 .userOptions{
     width: 500px;
-    position: absolute;
+    position: fixed;
     top: 20%;
     left: 5%;
 
     display: flex;
     flex-direction: column;
 }
-.header_options{
-    position: absolute;
-    left: 150%;
-    top: -35%;
-}
+
 
 .ErrorPopup{
     width: 300px;

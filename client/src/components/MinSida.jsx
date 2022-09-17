@@ -21,6 +21,7 @@ export default function MinSida(props) {
   const [useradds, setUserAdds] = useState([]);
   const [myAdds, setMyAdds] = useState(false);
   const[newAdd, setNewAdd] = useState(false);
+  const [settings, setSettings]= useState(false);
    
 
 useEffect(()=>{
@@ -77,27 +78,31 @@ const uploadImage = async () => {
     <div>
       
       <div className='pageContainer'>
-
-        <div className='userOptions'>
-          {props.authorized?(
-            !myAdds?(
        
-        <h1 className='header_options'>Välkommen {props.authorized.user.name}</h1>
-            ):null
-
-      ):null}
+        <div className='userOptions'>
+         
          <button className='optionBtn '
          onClick={()=>{
           get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
   
           setMyAdds(true);
+          setNewAdd(false);
+          setSettings(false);
          }}
        
          >Mina Annonser</button>
-         <button className='optionBtn '>Inställningar</button>
          <button className='optionBtn '
          onClick={()=>{
-          setNewAdd(true)
+          setMyAdds(false);
+          setNewAdd(false);
+          setSettings(true);
+         }}
+         >Inställningar</button>
+         <button className='optionBtn '
+         onClick={()=>{
+         setMyAdds(false);
+          setNewAdd(true);
+          setSettings(false);
          }}
          >Lägg till annons</button>
         </div>
@@ -108,13 +113,17 @@ const uploadImage = async () => {
                     }}
                     >&times; </p>
         <h2>Ladda upp en bild</h2>
-        <input type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
+        <label className="img_label" htmlFor="addImg_input">   </label>
+        <input className="img_input" id="addImg_input"  type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
+       
         {loading? (<h3>Loading...</h3>):null}
        {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
-        <input value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
+        <input   value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
         <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
 
-        <button onClick={() => {
+        <button 
+          className='optionBtn '
+          onClick={() => {
           uploadImage();
           handlePopUp();
         }} >Förhandsgranska</button>
