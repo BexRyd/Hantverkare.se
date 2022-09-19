@@ -10,6 +10,7 @@ import "../css/header.css"
 import '../css/Adds.css'
 import {get, post} from "./../utility/fetchHealper"
 import LoginError from './LoginError'
+import Recaptcha from './ReCAPTCHA'
 
 
  
@@ -137,6 +138,7 @@ function Header(props) {
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                         </Form.Group>
+                        <Recaptcha />
                         <Button variant="primary" 
                         
                           onClick = {()=>{
