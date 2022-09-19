@@ -93,12 +93,7 @@ function Header(props) {
                 </NavLink>
               </li>
             </ul>
-            <Form.Control
-              type="search"
-              placeholder="Sök"
-              className="me-2"
-              aria-label="Search"
-            />
+
 
 
 
@@ -126,70 +121,74 @@ function Header(props) {
                   zIndex: login ? '2' : '-2',
                 }}
               >
+                {login ?
 
-                <div className='popup_form'>
-                  <div>
-                    <p className="popUp--close_form" onClick={() => {
-                      handlePopUp(setLogin);
-                    }}
-                    >&times; </p>
-                    <div className="popup_login_form">
-                      <h2 className='popUp--title_form'>Logga in</h2>
-                      <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label>E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={e => setLoginEmail(e.target.value)} />
-                          {/* <Form.Text className="text-muted">
+
+
+                  (<div className='popup_form'>
+                    <div>
+                      <p className="popUp--close_form" onClick={() => {
+                        handlePopUp(setLogin);
+                      }}
+                      >&times; </p>
+                      <div className="popup_login_form">
+                        <h2 className='popUp--title_form'>Logga in</h2>
+                        <Form>
+                          <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>E-post</Form.Label>
+                            <Form.Control type="email" placeholder="Ange e-post" onChange={e => setLoginEmail(e.target.value)} />
+                            {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
-                        </Form.Group>
+                          </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                          <Form.Label>Lösenord</Form.Label>
-                          <Form.Control type="password" placeholder="Ange lösenord" onChange={e => setLoginPassword(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
-                        </Form.Group>
-                        <Button variant="primary"
+                          <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Lösenord</Form.Label>
+                            <Form.Control type="password" placeholder="Ange lösenord" onChange={e => setLoginPassword(e.target.value)} />
+                          </Form.Group>
+                          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
+                          </Form.Group>
+                          <Button variant="primary"
 
-                          onClick={() => {
-                            post("/login", {
-
-
-
-                              email: loginEmail,
-                              password: loginPassword,
+                            onClick={() => {
+                              post("/login", {
 
 
 
-                            }).then((response) => {
-                              props.setLogginPage(response.data)
-                              // props.setUser(response.data)
-                              setAutorized(response.data)
-
-                              if (response.data) {
-                                handlePopUp(setLogin);
-                              }
+                                email: loginEmail,
+                                password: loginPassword,
 
 
+
+                              }).then((response) => {
+                                props.setLogginPage(response.data)
+                                // props.setUser(response.data)
+                                setAutorized(response.data)
+
+                                if (response.data) {
+                                  handlePopUp(setLogin);
+                                }
 
 
 
 
 
-                            })
-
-                          }}
-                        >
-                          Logga in
-                        </Button >
 
 
-                      </Form>
+                              })
+
+                            }}
+                          >
+                            Logga in
+                          </Button >
+
+
+                        </Form>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  ) : null}
               </div>
 
 
@@ -206,61 +205,63 @@ function Header(props) {
 
                 }}
               >
-                <div className='popup_form'>
-                  <div>
-                    <p className="popUp--close_form" onClick={() => {
-                      handlePopUp(setRegistrera);
-                    }}
-                    >&times; </p>
-                    <div className="popup_login_form">
-                      <h2 className='popUp--title_form'>Bli medlem</h2>
-                      <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                          <Form.Label>Ange namn</Form.Label>
-                          <Form.Control type="text" placeholder="Ange e-post" onChange={(e) => setName(e.target.value)} />
-                          <Form.Label>Ange E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={(e) => setEmail(e.target.value)} />
-                          <Form.Label>Upprepa E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={(e) => setEmailConfirm(e.target.value)} />
+                {login ?
+                  (<div className='popup_form'>
+                    <div>
+                      <p className="popUp--close_form" onClick={() => {
+                        handlePopUp(setRegistrera);
+                      }}
+                      >&times; </p>
+                      <div className="popup_login_form">
+                        <h2 className='popUp--title_form'>Bli medlem</h2>
+                        <Form>
+                          <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Ange namn</Form.Label>
+                            <Form.Control type="text" placeholder="Ange e-post" onChange={(e) => setName(e.target.value)} />
+                            <Form.Label>Ange E-post</Form.Label>
+                            <Form.Control type="email" placeholder="Ange e-post" onChange={(e) => setEmail(e.target.value)} />
+                            <Form.Label>Upprepa E-post</Form.Label>
+                            <Form.Control type="email" placeholder="Ange e-post" onChange={(e) => setEmailConfirm(e.target.value)} />
 
-                          {/* <Form.Text className="text-muted">
+                            {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
-                        </Form.Group>
+                          </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                          <Form.Label>Lösenord</Form.Label>
-                          <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                          <Form.Label>Upprepa lösenordet</Form.Label>
-                          <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
-                        </Form.Group>
-                        <Button variant="primary"
+                          <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Lösenord</Form.Label>
+                            <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
+                          </Form.Group>
+                          <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Upprepa lösenordet</Form.Label>
+                            <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
+                          </Form.Group>
+                          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
+                          </Form.Group>
+                          <Button variant="primary"
 
-                          onClick={() => {
-                            post("/signUp", {
-                              name: name,
-                              email: email,
-                              password: password,
-                              passwordConfirm: passwordConfirm
-
-
-                            })
-                          }}
-                        >
+                            onClick={() => {
+                              post("/signUp", {
+                                name: name,
+                                email: email,
+                                password: password,
+                                passwordConfirm: passwordConfirm
 
 
+                              })
+                            }}
+                          >
 
-                          Registrera dig
-                        </Button>
-                      </Form>
+
+
+                            Registrera dig
+                          </Button>
+                        </Form>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  ) : null}
               </div>
 
             </Container>

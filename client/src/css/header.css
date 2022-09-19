@@ -35,6 +35,7 @@ li {
 
 .navbar {
     display: flex;
+    position: fixed;
     height: 100px;
     background-image: linear-gradient(to left, #ffb900, #ffb900, #ff7730);
 

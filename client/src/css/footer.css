@@ -11,7 +11,7 @@ footer {
   align-items: center;
   text-align: center;
   padding-top: 20px;
-  background-color: rgb(0, 0, 0);
+  background-image: linear-gradient(to left, #f0642c, #f0642c, #d64747, #d64747);
   height: 100px;
   width: 100%;
 }

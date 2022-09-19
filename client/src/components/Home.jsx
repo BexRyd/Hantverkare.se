@@ -13,8 +13,8 @@ export default function Home(props) {
         <NavLink className="navlink" to="/Adds">
           <button className="main_btn">Hitta en tjänst</button>
         </NavLink>
-        <div class="bg-video">
-          <video class="bg-video__content" autoPlay muted loop>
+        <div className="bg-video">
+          <video className="bg-video__content" autoPlay muted loop>
             <source src={video} type="video/mp4" />
             <source src="img/video.webm" type="video/webm" />
             Your browser is not supported!

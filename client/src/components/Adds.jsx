@@ -37,19 +37,65 @@ export default function Adds(props) {
     setPopUp((current) => !current); //toggle
   };
 
+  const resetInputField = () => {
+    setSearch("");
+  };
+
+
   useEffect(() => {
     get("/myPage").then((response) =>
       setAdds(response.data)
     );
   }, []);
 
+
   return (
+
     <div className="mainContainer">
-      <h2 className="title_adds">Tillgängliga Tjänster</h2>
+
+      <div className="searchBox">
+
+        <Form className="searchFieldbox">
+          <Form.Control
+
+
+            type="search"
+            placeholder="Sök"
+            className="searchField"
+            aria-label="Search"
+            onChange={(e) => setSearch(e.target.value)}
+
+
+          />
+          <Button className="searchButton" style={{ backgroundColor: "lightgrey", border: "none", maxWidth: "50px" }} onClick={() => {
+            get(`/search/${search}`).then((response) => setAdds(response.data)
+
+            )
+
+
+
+
+          }} >
+
+          </Button>
+          <NavLink className="navlink" to="/Adds">
+            <Button className="backButton" onClick={() => {
+
+              get("/myPage").then((response) =>
+                setAdds(response.data)
+
+              );
+
+            }} >Tillbaka</Button>
+          </NavLink>
+        </Form>
+      </div>
+
+
+
       <div className="mainCategoryContainer">
-        <NavLink className="navlink" href="/">
-          Gå tillbaka
-        </NavLink>
+
+
         <Row xs={1} s={3} md={6} lg={12} className="CategoryChoices">
           <Col className="mr-1 ">
 
@@ -106,68 +152,53 @@ export default function Adds(props) {
             </Button>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <Form>
-              <Form.Control
 
-
-                type="search"
-                placeholder="Sök"
-                className="me-2"
-                aria-label="Search"
-                onChange={(e) => setSearch(e.target.value)}
-
-
-              />
-              <Button onClick={() => {
-                get(`/search/${search}`).then((response) => setAdds(response.data)
-                )
-
-
-
-              }} >
-
-              </Button>
-            </Form>
-
-          </Col>
-        </Row>
 
       </div>
 
 
       {
-        adds.map((add, id) => {
+        adds ? (
+          adds.map((add, id) => {
 
-          return (
-            <div>
-              <div className="addsContainer" key={id}>
-                <img className="addsImg" src={add.img}></img>
+            return (
+              <div>
+                <div className="addsContainer" key={id}>
+                  <img className="addsImg" src={add.img}></img>
 
-                <div className="textBox">
-                  <h3 className="addsHeading">{add.heading}</h3>
-                  <p className="addsDescription">{add.description}</p>
+                  <div className="textBox">
+                    <h3 className="addsHeading">{add.heading}</h3>
+                    <p className="addsDescription">{add.description}</p>
+                  </div>
+
+                  <button
+                    className="addsBtn"
+                    id={id}
+                    onClick={() => {
+                      showDetail(id);
+                      handlePopUp();
+                    }}
+                  >
+                    mer info
+                  </button>
+
+
+
+
                 </div>
-
-                <button
-                  className="addsBtn"
-                  id={id}
-                  onClick={() => {
-                    showDetail(id);
-                    handlePopUp();
-                  }}
-                >
-                  mer info
-                </button>
-
-
-
-
               </div>
-            </div>
-          );
-        })
+
+            );
+
+          })
+        ) : (
+
+
+          <h2>Kunde inte hitta vad du söker</h2>
+
+
+
+        )
       }
 
 
