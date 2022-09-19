@@ -9,8 +9,7 @@ import React from 'react';
 import "../css/header.css"
 import '../css/Adds.css'
 import {get, post} from "./../utility/fetchHealper"
-
-
+import Recaptcha from "./ReCAPTCHA"
 
 
 
@@ -31,9 +30,12 @@ function Header(props) {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   
   const [autorized, setAutorized] = useState("");
-  
+  const [searchTerm, setSearchTerm] = useState('');
 
-
+  function search(adds){
+    return adds.name.toLowerCase().includes(searchTerm.toLowerCase())
+     ||  adds.description.toLowerCase().includes(searchTerm.toLowerCase());
+ }
  /*   useEffect(() => {
     get("/login").then((response) => setLogin(response.data));
   }, []);  */
@@ -79,14 +81,18 @@ function Header(props) {
               </NavLink>
               </li>
           </ul>
-              <Form.Control
+              <Form.Control 
+               value={searchTerm}
+               onChange={event => setSearchTerm(event.target.value)} 
                 type="search"
                 placeholder="Sök"
                 className="me-2"
                 aria-label="Search"
               />
+            
 
             <Container className='Buttons_container'>
+     
              {autorized?(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
                  props.setLogginPage("");              
                  setAutorized(""); 
@@ -137,6 +143,7 @@ function Header(props) {
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                         </Form.Group>
+                        <Recaptcha />
                         <Button variant="primary" 
                         
                           onClick = {()=>{

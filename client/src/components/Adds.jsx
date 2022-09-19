@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import { get, post, put, erase } from "./../utility/fetchHealper";
 import "./../css/Adds.css";
 
@@ -39,6 +39,8 @@ export default function Adds(props) {
       setAdds(response.data)
     );
   }, []);
+  
+
 
   return (
     <div className="mainContainer">
@@ -115,10 +117,11 @@ export default function Adds(props) {
               </button>
              
               
-              
+         
                
             </div>
           </div>
+        
         );
       })}
 
@@ -127,15 +130,21 @@ export default function Adds(props) {
       z-index: -2; */}
 
       <div
-        className="blurr"
+        className="blurr"  onClick={() => {
+          handlePopUp(showDetail);
+          if(showDetail ===true) {showDetail(false)}
+        }}
         style={{
           opacity: popUp ? "1" : "0",
           visibility: popUp ? "visible" : "hidden",
           zIndex: popUp ? "2" : "-2",
         }}
+      
       >
+        
         <div className="popUp">
           <div>
+    
             <p className="popUp--close" onClick={handlePopUp}>
               &times;{" "}
             </p>
