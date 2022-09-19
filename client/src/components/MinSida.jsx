@@ -5,6 +5,8 @@ import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
 import {Image} from "cloudinary-react"
+/* import UserAdds from './userAdds' */
+
 
 
 
@@ -59,6 +61,16 @@ useEffect(()=>{
   }
   
 },[])
+
+useEffect(()=>{
+ 
+  if(props.authorized){
+    
+  get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
+ 
+  }
+  
+},[popUpAdds])
 
  useEffect(() => {
     setEmail()
@@ -119,6 +131,7 @@ const uploadImage = async () => {
          >Mina Annonser</button>
          <button className='optionBtn '
          onClick={()=>{
+           get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
           setMyAdds(false);
           setNewAdd(false);
           setSettings(true);
@@ -194,6 +207,7 @@ const uploadImage = async () => {
           
         );
       }):null}
+      {/* <UserAdds useradds={useradds} authorized={props.authorized}/> */}
       </div>
 ):null}
       
@@ -250,7 +264,7 @@ const uploadImage = async () => {
             <p className="popUp--close" onClick={()=>{
               handlePopUp();
               setPopUpAdds(false);
-               setPopUpAdds(false);
+               
             
             }}
               >
@@ -276,6 +290,17 @@ const uploadImage = async () => {
              
               <button
               className="addsBtn"
+
+              onClick={()=>{
+                 
+                erase(`/myAdd/${AddsIdPopup}`)
+  
+                handlePopUp();
+                setPopUpAdds(false);
+               
+                
+                
+              }}
               
               >ta bort annons</button>
               <button

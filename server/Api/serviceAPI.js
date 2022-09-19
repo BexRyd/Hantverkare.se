@@ -43,6 +43,15 @@ router.delete("/myPage/:AddsId",authController.protect,authController.restrictTo
     
   });
 })
+router.delete("/myAdd/:AddsId",authController.protect, addsController.deleteAdds, (request, response) => {
+  
+
+  response.json({
+    status: "success",
+    method: request.method,
+    
+  });
+})
 
 router.put("/myPage/:serviceid", (request, response) => {
 

@@ -142,8 +142,8 @@ max-width: 100%;
 }
 
 .popUp--img{
-  width: 400px;
-  height: auto;
+  max-width: 300px;
+  max-height: 250px;
   
 }
 .popUp--title{
