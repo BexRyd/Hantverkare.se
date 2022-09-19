@@ -198,3 +198,21 @@ margin-top: 4%;
     color: #f8d815;
 }
 
+.changeTitle-box{
+  display: flex;
+  flex-direction:row;
+
+  
+}
+.change-box{
+  display: flex;
+  flex-direction:column;
+
+  
+}
+
+
+.update-box{
+  display: flex;
+    flex-direction: row;
+}

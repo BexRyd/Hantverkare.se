@@ -33,7 +33,11 @@ export default function MinSida(props) {
   const [imgPopup, setImgPopup] = useState("");
   const [popUpAdds, setPopUpAdds] = useState(false);
 
-  const [changeImgAdds, setChangeImgAdds] = useState(false);
+  //usestate for changing add
+
+  const [changeAdds, setChangeAdds] = useState(false);
+  const [changeTitlePopup, setChangeTitlePopup]= useState(titlePopup)
+  const [changeDescriptionPopup, setChangeDescriptionPopup]= useState(descriptionPopup)
 
   
 
@@ -61,6 +65,16 @@ useEffect(()=>{
   }
   
 },[])
+useEffect(()=>{
+ 
+setChangeTitlePopup(titlePopup)
+  
+},[titlePopup])
+useEffect(()=>{
+ 
+setChangeDescriptionPopup(descriptionPopup)
+  
+},[descriptionPopup])
 
 useEffect(()=>{
  
@@ -264,30 +278,56 @@ const uploadImage = async () => {
             <p className="popUp--close" onClick={()=>{
               handlePopUp();
               setPopUpAdds(false);
+              setChangeAdds(false);
+              setChangeTitlePopup(titlePopup);
+              setChangeDescriptionPopup(descriptionPopup);
                
             
             }}
               >
               &times;{" "}
             </p>
-           
+              <div className='update-box'>
             <img className="popUp--img" src={imgPopup}></img>
-           
-           
-            
-            <input className="img_input" id="addImg_input"  type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
-            <button
-            onClick={()=>{
-             uploadImage();
-            }}
-           
-            >Ändra</button>
-            <h1 className="popUp--title">{titlePopup}</h1>
-            <p className="popUp--description">{descriptionPopup}</p>
+            {changeAdds?(
+              <div>
+            <h3 className="popUp--title">{changeTitlePopup}</h3>
+             <p className="popUp--description">{changeDescriptionPopup}</p>
              <p>{emailPopup}</p>  
         
-
+            
+            </div>
+            
+            )
+          :null}
+          </div>
+           
+          
+            {changeAdds?(
+              <div className='change-box'>
+           
+            <input type="text"  placeholder="Rubrik" onChange={(e)=>setChangeTitlePopup(e.target.value)} />
+            
+                <textarea
+                placeholder="Beskrivning" onChange={(e) => setChangeDescriptionPopup(e.target.value)} ></textarea>
+                
              
+            </div>
+              
+            ):
+
+            (<div>
+            <h1 className="popUp--title">{titlePopup}</h1>
+             <p className="popUp--description">{descriptionPopup}</p>
+             <p>{emailPopup}</p>  
+        
+             </div>
+            )
+             }
+          
+             
+           {!changeAdds?(
+             <div>
               <button
               className="addsBtn"
 
@@ -305,8 +345,14 @@ const uploadImage = async () => {
               >ta bort annons</button>
               <button
               className="addsBtn"
+              onClick={()=>setChangeAdds(true)}
               
               >ändra annons</button>
+              </div>
+           ):
+           <button>Spara</button>
+
+            }
             
           </div>
 
