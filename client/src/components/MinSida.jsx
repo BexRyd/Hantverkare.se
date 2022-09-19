@@ -31,6 +31,8 @@ export default function MinSida(props) {
   const [imgPopup, setImgPopup] = useState("");
   const [popUpAdds, setPopUpAdds] = useState(false);
 
+  const [changeImgAdds, setChangeImgAdds] = useState(false);
+
   
 
 
@@ -134,6 +136,7 @@ const uploadImage = async () => {
         <div className='uploadAdd-Container'>
             <p className="newAdd--close_form" onClick={() => {
                       setNewAdd(false);
+                      setImg("");
                     }}
                     >&times; </p>
         <h2>Ladda upp en bild</h2>
@@ -146,6 +149,7 @@ const uploadImage = async () => {
         <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
 
         <button 
+        
           className='optionBtn '
           onClick={() => {
           uploadImage();
@@ -180,6 +184,7 @@ const uploadImage = async () => {
                   showDetail(id);
                   handlePopUp();
                   setPopUpAdds(true);
+                  setNewAddPopup(false);
                 }}
               >
                 mer info
@@ -212,7 +217,9 @@ const uploadImage = async () => {
               <h1 className='popUp--title'>{heading}</h1>
               <p className='popUp--description'>{description}</p>
 
-              <button onClick={() => {
+              <button
+               className="addsBtn"
+              onClick={() => {
                 post("/myPage", {
                   id: counter,
                   img: imageUrl,
@@ -243,12 +250,24 @@ const uploadImage = async () => {
             <p className="popUp--close" onClick={()=>{
               handlePopUp();
               setPopUpAdds(false);
+               setPopUpAdds(false);
             
             }}
               >
               &times;{" "}
             </p>
+           
             <img className="popUp--img" src={imgPopup}></img>
+           
+           
+            
+            <input className="img_input" id="addImg_input"  type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
+            <button
+            onClick={()=>{
+             uploadImage();
+            }}
+           
+            >Ändra</button>
             <h1 className="popUp--title">{titlePopup}</h1>
             <p className="popUp--description">{descriptionPopup}</p>
              <p>{emailPopup}</p>  
@@ -256,8 +275,13 @@ const uploadImage = async () => {
 
              
               <button
+              className="addsBtn"
               
-              >ta bort</button>
+              >ta bort annons</button>
+              <button
+              className="addsBtn"
+              
+              >ändra annons</button>
             
           </div>
 
