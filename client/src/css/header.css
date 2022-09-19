@@ -6,13 +6,17 @@
     margin: 0;
 }
 
-html,body {
+html,
+body {
     font-family: 'Karla', sans-serif;
 }
-ul{ width:300%;
-    margin-left:-30%;
-  
+
+ul {
+    width: 300%;
+    margin-left: -30%;
+
 }
+
 li {
     display: inline;
     list-style-type: none;
@@ -32,7 +36,9 @@ li {
 .navbar {
     display: flex;
     height: 100px;
-    background-color: #f8d815;
+    background-image: linear-gradient(to left, #ffb900, #ffb900, #ff7730);
+
+
 }
 
 .logo {
@@ -48,16 +54,16 @@ li {
     margin: 0 25px;
 }
 
-  
+
 .navlink {
     letter-spacing: 1px;
     text-align: center;
     text-decoration: none;
-    
+
     color: black;
 
-   
-   
+
+
 }
 
 .form {
@@ -87,27 +93,28 @@ li {
     align-items: center;
     justify-content: center;
 }
+
 .popup_form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  left: 40%;
-  top: 7%;
-  z-index: 0;
-  padding: 4%;
-  background-color: rgb(255, 255, 255);
-  width: 50vh;
-  min-height: 40vh;
-  visibility: visible;
-  border-radius: 10px;
-  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 40%;
+    top: 7%;
+    z-index: 0;
+    padding: 4%;
+    background-color: rgb(255, 255, 255);
+    width: 50vh;
+    min-height: 40vh;
+    visibility: visible;
+    border-radius: 10px;
+
 }
 
-.popUp--close_form{
-  color: black;
+.popUp--close_form {
+    color: black;
     position: absolute;
-    top:5px;
+    top: 5px;
     left: 92%;
     font-size: 2rem;
     text-decoration: none;
@@ -116,23 +123,24 @@ li {
 
 }
 
-.popUp--close_form:hover{
-  cursor: pointer;
-  color: rgba(0, 0, 0, 0.521);
+.popUp--close_form:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.521);
 }
 
 .popUp--img {
-  width: 400px;
-  height: auto;
-  
+    width: 400px;
+    height: auto;
+
 }
+
 .popUp--title_form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-bottom: 30px;
-  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 30px;
+
 }
 
 /* MEDIA QUERIES To Do */

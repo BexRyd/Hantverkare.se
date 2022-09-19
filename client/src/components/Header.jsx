@@ -30,6 +30,7 @@ function Header(props) {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
+
   const [autorized, setAutorized] = useState("");
 
 
@@ -37,6 +38,19 @@ function Header(props) {
   /*   useEffect(() => {
      get("/login").then((response) => setLogin(response.data));
    }, []);  */
+
+
+  // useEffect(() => {
+  //   if (search === "") {
+  //     return;
+  //   }
+  //   if (search === false) {
+  //     return;
+  //   }
+  //   s.products = s.allProducts.filter((x) =>
+  //     x.name.toLowerCase().includes(search.toLowerCase())
+  //   );
+  // }, [searchTerm]);
 
   const handlePopUp = (state) => {
     state(current => !current); //toggle
@@ -85,6 +99,9 @@ function Header(props) {
               className="me-2"
               aria-label="Search"
             />
+
+
+
 
             <Container className='Buttons_container'>
               {autorized ? (<Button className='btn_register' size="sm" variant="dark" onClick={() => {

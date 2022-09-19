@@ -18,6 +18,7 @@ export default function MinSida(props) {
   const [imageUrl, setImageUrl] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [useradds, setUserAdds] = useState([]);
+  const [category, setCategory] = useState("")
 
 
   useEffect(() => {
@@ -89,6 +90,15 @@ export default function MinSida(props) {
           <input type="file" name='file' placeholder="Ladda upp en bild" onChange={(e) => { setImg(e.target.files[0]) }}></input>
           {loading ? (<h3>Loading...</h3>) : null}
           {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
+          <select value={category} onChange={(e) => setCategory(e.target.value)}
+          >
+
+            <option value="Målare">Målare</option>
+            <option value="Snickare">Snickare</option>
+            <option value="Rörmokare">Rörmokare</option>
+            <option value="Golvläggare">Golvläggare</option>
+          </select>
+
           <input value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
           <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
 
@@ -154,6 +164,7 @@ export default function MinSida(props) {
                   img: imageUrl,
                   heading: heading,
                   description: description,
+                  category: category,
 
                   email: userEmail
 

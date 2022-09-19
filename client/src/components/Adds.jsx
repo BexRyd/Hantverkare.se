@@ -7,15 +7,18 @@ import Button from "react-bootstrap/esm/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import NavLink from "react-bootstrap/esm/NavLink";
-import Form from "./Form";
+import Form from 'react-bootstrap/Form';
+
 export default function Adds(props) {
   const [AddsId, setAddsId] = useState("");
   const [adds, setAdds] = useState([]);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
   const [img, setImg] = useState("");
   const [popUp, setPopUp] = useState(false);
+  const [search, setSearch] = useState("")
 
   function showDetail(id) {
     const index = adds[id];
@@ -35,7 +38,7 @@ export default function Adds(props) {
   };
 
   useEffect(() => {
-    get("https://hantverkare-heroku.herokuapp.com/myPage").then((response) =>
+    get("/myPage").then((response) =>
       setAdds(response.data)
     );
   }, []);
@@ -49,78 +52,127 @@ export default function Adds(props) {
         </NavLink>
         <Row xs={1} s={3} md={6} lg={12} className="CategoryChoices">
           <Col className="mr-1 ">
-            <img
-              className="categoryImg"
-              src="./images/Worker.png"
-              alt="carpenter"
-            />
 
-            <Button className="mt-2  mr-1 cat-btn" variant="dark">
+
+            <Button className="mt-2  mr-1 cat-btn" variant="dark" onClick={() => {
+
+              get("/carpenter").then((response) =>
+                setAdds(response.data)
+
+              );
+
+            }} >
+
               Snickare
             </Button>
           </Col>
           <Col className="mr-1 ">
-            <img
-              className="categoryImg"
-              src="./images/Worker.png"
-              alt="painter"
-            />
-            <Button className="mt-2 cat-btn mr-1 " variant="dark">
+
+            <Button className="mt-2 cat-btn mr-1 " variant="dark" onClick={() => {
+
+              get("/painter").then((response) =>
+                setAdds(response.data)
+
+              );
+
+            }}  >
               Målare
             </Button>
           </Col>
           <Col className="mr-1 ">
-            <img
-              className="categoryImg"
-              src="./images/Worker.png"
-              alt="electrician"
-            />
-            <Button className="mt-2 cat-btn mr-1 " variant="dark">
-              Elektriker
+
+            <Button className="mt-2 cat-btn mr-1 " variant="dark" onClick={() => {
+
+              get("/floorlayer").then((response) =>
+                setAdds(response.data)
+
+              );
+
+            }} >
+              Golvläggare
             </Button>
           </Col>
           <Col className="mr-1 ">
-            <img
-              className="categoryImg"
-              src="./images/Worker.png"
-              alt="plumber"
-            />
-            <Button className="mt-2 cat-btn mr-1 " variant="dark">
+
+            <Button className="mt-2 cat-btn mr-1 " variant="dark" onClick={() => {
+
+              get("/plumber").then((response) =>
+                setAdds(response.data)
+
+              );
+
+            }} >
               Rörmokare
             </Button>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <Form>
+              <Form.Control
+
+
+                type="search"
+                placeholder="Sök"
+                className="me-2"
+                aria-label="Search"
+                onChange={(e) => setSearch(e.target.value)}
+
+
+              />
+              <Button onClick={() => {
+                get(`/search/${search}`).then((response) => setAdds(response.data)
+                )
+
+
+
+              }} >
+
+              </Button>
+            </Form>
+
+          </Col>
+        </Row>
+
       </div>
 
-      {adds.map((add, id) => {
-        return (
-          <div>
-            <div className="addsContainer" key={id}>
-              <img className="addsImg" src={add.img}></img>
 
-              <div className="textBox">
-                <h3 className="addsHeading">{add.heading}</h3>
-                <p className="addsDescription">{add.description}</p>
+      {
+        adds.map((add, id) => {
+
+          return (
+            <div>
+              <div className="addsContainer" key={id}>
+                <img className="addsImg" src={add.img}></img>
+
+                <div className="textBox">
+                  <h3 className="addsHeading">{add.heading}</h3>
+                  <p className="addsDescription">{add.description}</p>
+                </div>
+
+                <button
+                  className="addsBtn"
+                  id={id}
+                  onClick={() => {
+                    showDetail(id);
+                    handlePopUp();
+                  }}
+                >
+                  mer info
+                </button>
+
+
+
+
               </div>
-
-              <button
-                className="addsBtn"
-                id={id}
-                onClick={() => {
-                  showDetail(id);
-                  handlePopUp();
-                }}
-              >
-                mer info
-              </button>
-
-
-
-
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      }
+
+
+
+
 
       {/* opacity: 0;
      visibility:hidden;
@@ -167,6 +219,6 @@ export default function Adds(props) {
           <Form />
         </div>
       </div>
-    </div>
+    </div >
   );
 }
