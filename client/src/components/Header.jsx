@@ -23,6 +23,7 @@ function Header(props) {
 
   const [loginPassword, setLoginPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
+  const [errorLogin, setErrorLogin] = useState(false);
 
 
   const [name, setName] = useState("");
@@ -31,7 +32,7 @@ function Header(props) {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   
-  const [autorized, setAutorized] = useState("");
+  const [autorized, setAutorized] = useState(false);
   
 
 
@@ -115,6 +116,7 @@ function Header(props) {
                   <div>
                     <p className="popUp--close_form" onClick={() => {
                       handlePopUp(setLogin);
+                      setErrorLogin(false)
                     }}
                     >&times; </p>
                     <div className="popup_login_form">
@@ -149,10 +151,13 @@ function Header(props) {
                         }).then((response) =>{ 
                           props.setLogginPage(response.data)
                          // props.setUser(response.data)
-                          setAutorized(response.data)
+                          setAutorized(true)
                           
                          if (response.data) {
                        handlePopUp(setLogin);
+                    }
+                    else{
+                      handlePopUp(setErrorLogin);
                     }
                         
                          
@@ -167,8 +172,16 @@ function Header(props) {
                         >
                           Logga in
                         </Button >
-
-                      <LoginError/>
+             {errorLogin?(
+                      <LoginError 
+                      setLoginError={(btnUseState) => {
+                      setErrorLogin(btnUseState);
+          
+        }}
+                      />
+                   )
+                :null
+                }
                       </Form>
                     </div>
                   </div>
@@ -200,11 +213,11 @@ function Header(props) {
                       <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>Ange namn</Form.Label>
-                          <Form.Control type="text" placeholder="Ange e-post" onChange={ (e) => setName(e.target.value)} />
+                          <Form.Control type="text" placeholder="Ange namn" onChange={ (e) => setName(e.target.value)} />
                           <Form.Label>Ange E-post</Form.Label>
                           <Form.Control type="email" placeholder="Ange e-post" onChange={ (e) => setEmail(e.target.value)} />
                           <Form.Label>Upprepa E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={ (e) => setEmailConfirm(e.target.value)} />
+                          <Form.Control type="email" placeholder="Upprepa e-post" onChange={ (e) => setEmailConfirm(e.target.value)} />
                           
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
@@ -232,6 +245,13 @@ function Header(props) {
                                   passwordConfirm:passwordConfirm
 
   
+                        }).then((response) =>{ 
+                        if(response){
+                          setRegistrera(false);
+                           props.setLogginPage(response.data)
+                            setAutorized(true)
+                          
+                        }   
                         })
                         }}
                         >

@@ -30,6 +30,7 @@ li {
 }
 
 .navbar {
+ 
     display: flex;
     height: 100px;
     background-color: #f8d815;
