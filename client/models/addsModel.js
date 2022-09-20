@@ -8,12 +8,14 @@ addsSchema = new mongoose.Schema({
   heading: { type: String },
   description: { type: String },
   img: { type: String },
-  email: { type: String }
+  email: { type: String },
+  category: { type: String }
 
 
 },
   { timestamps: true },
 )
+addsSchema.index({ '$**': 'text' });
 
 const adds = mongoose.model("add", addsSchema)
 

@@ -10,37 +10,80 @@ router.get("/myPage", addsController.getAdds, (request, response) => {
   response.json({
     status: "success",
     method: request.method,
- 
+
   })
 });
+
+
 router.get("/myPage/:email", addsController.getUserAdds, (request, response) => {
 
   response.json({
     status: "success",
     method: request.method,
- 
+
+  })
+});
+router.get("/painter", addsController.getPainter, (request, response) => {
+
+  response.json({
+    status: "success",
+    method: request.method,
+
+  })
+});
+router.get("/carpenter", addsController.getCarpenter, (request, response) => {
+
+  response.json({
+    status: "success",
+    method: request.method,
+
+  })
+});
+router.get("/plumber", addsController.getPlumber, (request, response) => {
+
+  response.json({
+    status: "success",
+    method: request.method,
+
+  })
+});
+router.get("/floorlayer", addsController.getFloorLayer, (request, response) => {
+
+  response.json({
+    status: "success",
+    method: request.method,
+
+  })
+});
+router.get("/search/:searchKey", addsController.searchAdds, (request, response) => {
+
+  response.json({
+    status: "success",
+    method: request.method,
+
+
   })
 });
 
 
 
 
-router.post("/myPage", authController.protect,addsController.createAdds, (request, response) => {
-  
+router.post("/myPage", authController.protect, addsController.createAdds, (request, response) => {
+
 
   response.json({
     status: "success",
     method: request.method,
-    
+
   });
 })
-router.delete("/myPage/:AddsId",authController.protect,authController.restrictTo("admin"), addsController.deleteAdds, (request, response) => {
-  
+router.delete("/myPage/:AddsId", authController.protect, authController.restrictTo("admin"), addsController.deleteAdds, (request, response) => {
+
 
   response.json({
     status: "success",
     method: request.method,
-    
+
   });
 })
 router.delete("/myAdd/:AddsId",authController.protect, addsController.deleteAdds, (request, response) => {

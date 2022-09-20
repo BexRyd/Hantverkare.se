@@ -46,6 +46,7 @@ body {
     padding: 30px 0 0 0;
     font-size: 2.5rem;
     font-weight: 700;
+
 }
 
 
@@ -69,16 +70,37 @@ body {
 
 
 }
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .30;
+    overflow: hidden;
+}
+
+.bg-video__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 .main_btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f8d815;
+    background-color: #ffb900;
     width: 160px;
     height: 60px;
     border-radius: 3px;
     font-weight: 600;
     text-decoration: none;
+    margin-bottom: 25%;
+
+    border: none;
 }
 
 .main_btn:hover {

@@ -7,9 +7,15 @@ const fetchUtility = (url, method, body) => {
   if (method === 'POST' || method === 'PUT') {
     options.headers = {
       "Content-Type": "application/json",
+
+
+
+
+
     }
 
     options.body = JSON.stringify(body);
+
   }
 
   return fetch(url, options).then((response) => response.json().then(body))
@@ -18,7 +24,7 @@ const fetchUtility = (url, method, body) => {
 
 
 
-const get = (url) => fetchUtility(url, "GET");
+const get = (url) => fetchUtility(url, "GET",);
 
 const post = (url, body) => fetchUtility(url, "POST", body);
 

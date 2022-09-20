@@ -38,7 +38,11 @@
     "dev": "nodemon -L server.js",
     "frontend": "react-scripts start "
   },
+<<<<<<< HEAD
   "proxy": "http://localhost:8080/",
+=======
+  "proxy": "http://localhost:8080",
+>>>>>>> 9589cd7f9cc55ff5ba88076f870b65e8a02f5022
   "eslintConfig": {
     "extends": [
       "react-app",

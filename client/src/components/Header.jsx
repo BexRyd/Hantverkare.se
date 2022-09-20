@@ -37,9 +37,13 @@ function Header(props) {
   
 
 
- /*   useEffect(() => {
-    get("/login").then((response) => setLogin(response.data));
-  }, []);  */
+
+  /*   useEffect(() => {
+     get("/login").then((response) => setLogin(response.data));
+   }, []);  */
+
+
+  
 
   const handlePopUp = (state) => {
     state(current => !current); //toggle
@@ -54,57 +58,55 @@ function Header(props) {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <ul>
-            <li>
-              <NavLink className='navlink' to="/"
-               style={({ isActive }) =>
-                isActive ? { color: "grey" } : { color: "black" }
-              }>Hem
-              </NavLink>
-              </li>
-              {autorized?(
               <li>
-              <NavLink className='navlink' to="/MinSida"
-               style={({ isActive }) =>
-                isActive ? { color: "grey" } : { color: "black" }
-              }
-              >Min sida
-              
-              </NavLink>
+                <NavLink className='navlink' to="/"
+                  style={({ isActive }) =>
+                    isActive ? { color: "grey" } : { color: "black" }
+                  }>Hem
+                </NavLink>
               </li>
-                   ):null}
-              <li>    
-              <NavLink className='navlink' to="/Adds"
-               style={({ isActive }) =>
-                isActive ? { color: "grey" } : { color: "black" }
-              }
-              >Annonser
-               
-              </NavLink>
+              {autorized ? (
+                <li>
+                  <NavLink className='navlink' to="/MinSida"
+                    style={({ isActive }) =>
+                      isActive ? { color: "grey" } : { color: "black" }
+                    }
+                  >Min sida
+
+                  </NavLink>
+                </li>
+              ) : null}
+              <li>
+                <NavLink className='navlink' to="/Adds"
+                  style={({ isActive }) =>
+                    isActive ? { color: "grey" } : { color: "black" }
+                  }
+                >Annonser
+
+                </NavLink>
               </li>
-          </ul>
-              <Form.Control
-                type="search"
-                placeholder="Sök"
-                className="me-2"
-                aria-label="Search"
-              />
+            </ul>
+
+
+
+
 
             <Container className='Buttons_container'>
-             {autorized?(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
-                 props.setLogginPage("");              
-                 setAutorized(""); 
-                 get("/logout")             
+              {autorized ? (<Button className='btn_register' size="sm" variant="dark" onClick={() => {
+                props.setLogginPage("");
+                setAutorized("");
+                get("/logout")
               }}>Logga ut</Button>)
 
-             :(<Button className='btn_register' size="sm" variant="dark" onClick={() => {
-              
-                handlePopUp(setLogin); 
-                
-              }}>Logga in</Button>)}
-              
-              
+                : (<Button className='btn_register' size="sm" variant="dark" onClick={() => {
 
-              
+                  handlePopUp(setLogin);
+
+                }}>Logga in</Button>)}
+
+
+
+
               <div className='blurr'
                 style={{
                   opacity: login ? '1' : '0',
@@ -112,6 +114,7 @@ function Header(props) {
                   zIndex: login ? '2' : '-2',
                 }}
               >
+                {login ?(
 
                 <div className='popup_form'>
                   <div>
@@ -129,7 +132,7 @@ function Header(props) {
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
-                        </Form.Group>
+                          </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Lösenord</Form.Label>
@@ -162,15 +165,12 @@ function Header(props) {
                       handlePopUp(setErrorLogin);
                     }
                         
-                         
-
-                          
-
-
                           
                            })
                         
                         }}
+
+
                         >
                           Logga in
                         </Button >
@@ -185,9 +185,10 @@ function Header(props) {
                 :null
                 }
                       </Form>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  ) : null}
               </div>
 
 
@@ -204,6 +205,7 @@ function Header(props) {
 
                 }}
               > 
+              {login?(
               <div className='popup_form'>
                   <div>
                     <p className="popUp--close_form" onClick={() => {
@@ -224,51 +226,45 @@ function Header(props) {
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
-                        </Form.Group>
+                          </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                          <Form.Label>Lösenord</Form.Label>
-                          <Form.Control type="password" placeholder="Minst 8 tecken"  onChange={ (e) => setPassword(e.target.value)}/>
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                          <Form.Label>Upprepa lösenordet</Form.Label>
-                          <Form.Control type="password" placeholder="Minst 8 tecken" onChange={ (e) => setPasswordConfirm(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                         {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
-                        </Form.Group>
-                        <Button variant="primary"  
-                        
-                        onClick = {()=>{
-                            post("/signUp",{
-                                  name: name,
-                                  email:email,
-                                  password: password,
-                                  passwordConfirm:passwordConfirm
+                          <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Lösenord</Form.Label>
+                            <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
+                          </Form.Group>
+                          <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Upprepa lösenordet</Form.Label>
+                            <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
+                          </Form.Group>
+                          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
+                          </Form.Group>
+                          <Button variant="primary"
 
-  
-                        }).then((response) =>{ 
-                        if(response){
-                          setRegistrera(false);
-                           props.setLogginPage(response.data)
-                            setAutorized(true)
-                          
-                        }   
-                        })
-                        }}
-                        >
-                        
-                        
+                            onClick={() => {
+                              post("/signUp", {
+                                name: name,
+                                email: email,
+                                password: password,
+                                passwordConfirm: passwordConfirm
 
-                          Registrera dig
-                        </Button>
-                      </Form>
+
+                              })
+                            }}
+                          >
+
+
+
+                            Registrera dig
+                          </Button>
+                        </Form>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  ) : null}
               </div>
-                
-              </Container>
+
+            </Container>
           </Navbar.Collapse>
         </Container>
       </Navbar>
