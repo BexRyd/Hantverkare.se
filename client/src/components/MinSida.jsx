@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { post, get } from "../utility/fetchHealper"
+import { post, get, erase } from "../utility/fetchHealper"
 import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
