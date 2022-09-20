@@ -3,11 +3,8 @@ import { useState, useEffect } from "react";
 import { get, erase } from "./../utility/fetchHealper";
 import "./../css/Adds.css";
 
-import Button from "react-bootstrap/esm/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import NavLink from "react-bootstrap/esm/NavLink";
-import Form from 'react-bootstrap/Form';
+import { Button, Col, Row, NavLink, Form, Container } from "react-bootstrap";
+
 
 export default function Adds(props) {
   const [AddsId, setAddsId] = useState("");
@@ -37,9 +34,7 @@ export default function Adds(props) {
     setPopUp((current) => !current); //toggle
   };
 
-  const resetInputField = () => {
-    setSearch("");
-  };
+
 
 
   useEffect(() => {
@@ -53,105 +48,99 @@ export default function Adds(props) {
 
     <div className="mainContainer">
 
+
       <div className="searchBox">
 
-        <Form className="searchFieldbox">
-          <Form.Control
+
+        <input
 
 
-            type="search"
-            placeholder="Sök"
-            className="searchField"
-            aria-label="Search"
-            onChange={(e) => setSearch(e.target.value)}
+          type="search"
+          placeholder="Sök"
+          className="searchField"
+          aria-label="Search"
+          style={{ width: "200px" }}
+          onChange={(e) => setSearch(e.target.value)}
 
 
-          />
-          <Button className="searchButton" style={{ backgroundColor: "lightgrey", border: "none", maxWidth: "50px" }} onClick={() => {
-            get(`/search/${search}`).then((response) => setAdds(response.data)
+        />
+        <button className="searchButton" style={{ backgroundColor: "lightgrey", border: "none", maxWidth: "50px" }} onClick={() => {
+          get(`/search/${search}`).then((response) => setAdds(response.data)
 
-            )
-
-
+          )
 
 
-          }} >
 
-          </Button>
-          <NavLink className="navlink" to="/Adds">
-            <Button className="backButton" onClick={() => {
 
-              get("/myPage").then((response) =>
-                setAdds(response.data)
+        }} >
 
-              );
+        </button>
 
-            }} >Tillbaka</Button>
-          </NavLink>
-        </Form>
+
       </div>
+
 
 
 
       <div className="mainCategoryContainer">
 
 
-        <Row xs={1} s={3} md={6} lg={12} className="CategoryChoices">
-          <Col className="mr-1 ">
 
 
-            <Button className="mt-2  mr-1 cat-btn" variant="dark" onClick={() => {
 
-              get("/carpenter").then((response) =>
-                setAdds(response.data)
 
-              );
+        <button className="categoryBtn" onClick={() => {
 
-            }} >
+          get("/carpenter").then((response) =>
+            setAdds(response.data)
 
-              Snickare
-            </Button>
-          </Col>
-          <Col className="mr-1 ">
+          );
 
-            <Button className="mt-2 cat-btn mr-1 " variant="dark" onClick={() => {
+        }} >
 
-              get("/painter").then((response) =>
-                setAdds(response.data)
+          Snickare
+        </button>
 
-              );
 
-            }}  >
-              Målare
-            </Button>
-          </Col>
-          <Col className="mr-1 ">
 
-            <Button className="mt-2 cat-btn mr-1 " variant="dark" onClick={() => {
+        <button className="categoryBtn" onClick={() => {
 
-              get("/floorlayer").then((response) =>
-                setAdds(response.data)
+          get("/painter").then((response) =>
+            setAdds(response.data)
 
-              );
+          );
 
-            }} >
-              Golvläggare
-            </Button>
-          </Col>
-          <Col className="mr-1 ">
+        }}  >
+          Målare
+        </button>
 
-            <Button className="mt-2 cat-btn mr-1 " variant="dark" onClick={() => {
 
-              get("/plumber").then((response) =>
-                setAdds(response.data)
 
-              );
+        <button className="categoryBtn" onClick={() => {
 
-            }} >
-              Rörmokare
-            </Button>
-          </Col>
-        </Row>
+          get("/floorlayer").then((response) =>
+            setAdds(response.data)
+
+          );
+
+        }} >
+          Golvläggare
+        </button>
+
+
+
+        <button className="categoryBtn" onClick={() => {
+
+          get("/plumber").then((response) =>
+            setAdds(response.data)
+
+          );
+
+        }} >
+          Rörmokare
+        </button>
+
+
 
 
       </div>
@@ -247,7 +236,7 @@ export default function Adds(props) {
             }
           </div>
 
-          <Form />
+
         </div>
       </div>
     </div >

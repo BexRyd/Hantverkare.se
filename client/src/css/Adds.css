@@ -1,5 +1,9 @@
+body {
+  margin: 0 auto;
+}
+
 .mainContainer {
-  display: flex;
+
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -11,8 +15,8 @@
 .addsContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  margin: 30px 50px;
+
+  margin-top: 2%;
   padding: 40px;
   width: 70%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -213,7 +217,7 @@
 }
 
 .searchField {
-  background-color: orange;
+
   width: 100px;
   margin-bottom: 30px;
 }
@@ -238,12 +242,19 @@
 
 .mainCategoryContainer {
   margin-top: 100px;
-  margin-left: 10%;
+
 }
 
 .searchBox {
   background-image: linear-gradient(to left, #f0642c, #f0642c, #d64747, #d64747);
-  position: fixed;
+  position: absolute;
+  max-width: 100%;
   top: 100px;
+
+}
+
+
+.categoryBtn {
+  width: 200px;
 
 }
