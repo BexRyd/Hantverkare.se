@@ -61,7 +61,7 @@ function Header(props) {
               <li>
                 <NavLink className='navlink' to="/"
                   style={({ isActive }) =>
-                    isActive ? { color: "grey" } : { color: "black" }
+                    isActive ? { color: "white" } : { color: "black" }
                   }>Hem
                 </NavLink>
               </li>
@@ -69,7 +69,7 @@ function Header(props) {
                 <li>
                   <NavLink className='navlink' to="/MinSida"
                     style={({ isActive }) =>
-                      isActive ? { color: "grey" } : { color: "black" }
+                      isActive ? { color: "white" } : { color: "black" }
                     }
                   >Min sida
 
@@ -79,7 +79,7 @@ function Header(props) {
               <li>
                 <NavLink className='navlink' to="/Adds"
                   style={({ isActive }) =>
-                    isActive ? { color: "grey" } : { color: "black" }
+                    isActive ? { color: "white" } : { color: "black" }
                   }
                 >Annonser
 

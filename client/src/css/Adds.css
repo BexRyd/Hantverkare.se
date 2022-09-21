@@ -2,20 +2,11 @@ body {
   margin: 0 auto;
 }
 
-.mainContainer {
-
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  scroll-behavior: smooth;
-}
 
 .addsContainer {
   display: flex;
   flex-direction: row;
-
+  margin-left: 15%;
   margin-top: 2%;
   padding: 40px;
   width: 70%;
@@ -70,9 +61,11 @@ body {
 .mainContainer {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  width: 100%;
+ 
   margin-bottom: 7%;
+  scroll-behavior: smooth;
+;
+
 }
 
 .addsBtn {
@@ -226,7 +219,7 @@ body {
 }
 
 
-.searchFieldbox {
+/* .searchFieldbox {
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -234,7 +227,7 @@ body {
 
 
   margin-top: 10px;
-}
+} */
 
 .searchField {
 
@@ -262,6 +255,11 @@ body {
 
 .mainCategoryContainer {
   margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ padding: 2%;
+ 
 
 }
 
@@ -270,6 +268,7 @@ body {
   position: absolute;
   max-width: 100%;
   top: 100px;
+  left: 0;
 
 }
 
@@ -278,3 +277,68 @@ body {
   width: 200px;
 
 }
+.tools,.painter, .floorLayer, .plumber{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+    width: 250px;
+    height: 166px;
+    background-size: cover;
+    background-blend-mode: screen;
+    border-radius: 10px;
+   
+}
+.tools {
+  background-image: linear-gradient(to right, #eb4040, #eb4040), url(../img/tools-ga351a9cd6_250.jpg);
+margin-right: 2%;
+}
+.plumber {
+  background-image: linear-gradient(to right, #ed5407dc, #ed5407dc), url(../img/plumbing-gc34751c1c_250.jpg);
+}
+.painter{
+  margin-right: 2%;
+  background-image: linear-gradient(to right, #f0632cd9,#f0632cd9), url(../img/paint-brush-g5165d4524_250.jpg);  
+}
+.floorLayer{
+  margin-right: 2%;
+  background-image: linear-gradient(to right, #fee907ac,#f3b408da), url(../img/tiler-g13aaf9b5e_250.jpg);  
+}
+.painter:hover, .tools:hover, .floorLayer:hover, .plumber:hover{
+ cursor: pointer;
+
+}
+.painter_h4, .tools_h4, .floorLayer_h4, .plumber_h4{
+color: white;
+  padding: 1rem 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 75%;
+  
+
+}
+
+.painter_h4_span, .tools_h4_span, .floorLayer_h4_span, .plumber_h4_span{
+
+padding: 5px 5px;
+margin-top: 2px;
+-webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.painter_h4_span{
+background-image: linear-gradient(to right, #f0632cd2, #f0632ce6);
+}
+.plumber_h4_span{
+background-image: linear-gradient(to right, #ed5407dc, #ed5407dc);
+}
+.tools_h4_span{
+background-image: linear-gradient(to right, #eb4040, #eb4040);
+
+}
+.floorLayer_h4_span{
+background-image: linear-gradient(to right, #f3b408da, #f3b408da);
+
+}
+

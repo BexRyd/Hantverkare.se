@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { get, erase } from "./../utility/fetchHealper";
 import "./../css/Adds.css";
 
+
 import { Button, Col, Row, NavLink, Form, Container } from "react-bootstrap";
 
 
@@ -49,7 +50,7 @@ export default function Adds(props) {
     <div className="mainContainer">
 
 
-      <div className="searchBox">
+       <div className="searchBox">
 
 
         <input
@@ -77,7 +78,7 @@ export default function Adds(props) {
         </button>
 
 
-      </div>
+      </div> 
 
 
 
@@ -85,11 +86,7 @@ export default function Adds(props) {
       <div className="mainCategoryContainer">
 
 
-
-
-
-
-        <button className="categoryBtn" onClick={() => {
+        <div className="categoryBtn tools" onClick={() => {
 
           get("/carpenter").then((response) =>
             setAdds(response.data)
@@ -98,12 +95,12 @@ export default function Adds(props) {
 
         }} >
 
-          Snickare
-        </button>
+                    <h4 className="tools_h4"><span className="tools_h4_span"> Annonser för Snickare</span></h4>
+        </div>
 
 
 
-        <button className="categoryBtn" onClick={() => {
+        <div className="categoryBtn painter" onClick={() => {
 
           get("/painter").then((response) =>
             setAdds(response.data)
@@ -111,12 +108,15 @@ export default function Adds(props) {
           );
 
         }}  >
-          Målare
-        </button>
+         
+         
+          <h4 className="painter_h4"><span className="painter_h4_span"> Annonser för Målare</span></h4>
+          
+        </div>
 
 
 
-        <button className="categoryBtn" onClick={() => {
+        <div className="categoryBtn floorLayer" onClick={() => {
 
           get("/floorlayer").then((response) =>
             setAdds(response.data)
@@ -124,12 +124,12 @@ export default function Adds(props) {
           );
 
         }} >
-          Golvläggare
-        </button>
+           <h4 className="floorLayer_h4"><span className="floorLayer_h4_span"> Annonser för Golvläggare</span></h4>
+        </div>
 
 
 
-        <button className="categoryBtn" onClick={() => {
+        <div className="categoryBtn plumber" onClick={() => {
 
           get("/plumber").then((response) =>
             setAdds(response.data)
@@ -137,13 +137,12 @@ export default function Adds(props) {
           );
 
         }} >
-          Rörmokare
-        </button>
-
-
+           <h4 className="plumber_h4"><span className="plumber_h4_span"> Annonser för Rörmokare</span></h4>
+        </div>
 
 
       </div>
+     
 
 
       {
