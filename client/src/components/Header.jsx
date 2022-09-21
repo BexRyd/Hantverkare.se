@@ -9,6 +9,8 @@ import React from 'react';
 import "../css/header.css"
 import '../css/Adds.css'
 import { get, post } from "./../utility/fetchHealper"
+import LoginError from './LoginError'
+import Recaptcha from './ReCAPTCHA'
 
 
 
@@ -22,6 +24,7 @@ function Header(props) {
 
   const [loginPassword, setLoginPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
+  const [errorLogin, setErrorLogin] = useState(false);
 
 
   const [name, setName] = useState("");
@@ -30,10 +33,27 @@ function Header(props) {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
+  const [autorized, setAutorized] = useState(false);
 
-  const [autorized, setAutorized] = useState("");
 
 
+
+  /*   useEffect(() => {
+     get("/login").then((response) => setLogin(response.data));
+   }, []);  */
+
+
+  // useEffect(() => {
+  //   if (search === "") {
+  //     return;
+  //   }
+  //   if (search === false) {
+  //     return;
+  //   }
+  //   s.products = s.allProducts.filter((x) =>
+  //     x.name.toLowerCase().includes(search.toLowerCase())
+  //   );
+  // }, [searchTerm]);
 
   const handlePopUp = (state) => {
     state(current => !current); //toggle
@@ -51,7 +71,7 @@ function Header(props) {
               <li>
                 <NavLink className='navlink' to="/"
                   style={({ isActive }) =>
-                    isActive ? { color: "grey" } : { color: "black" }
+                    isActive ? { color: "white" } : { color: "black" }
                   }>Hem
                 </NavLink>
               </li>
@@ -59,7 +79,7 @@ function Header(props) {
                 <li>
                   <NavLink className='navlink' to="/MinSida"
                     style={({ isActive }) =>
-                      isActive ? { color: "grey" } : { color: "black" }
+                      isActive ? { color: "white" } : { color: "black" }
                     }
                   >Min sida
 
@@ -69,7 +89,7 @@ function Header(props) {
               <li>
                 <NavLink className='navlink' to="/Adds"
                   style={({ isActive }) =>
-                    isActive ? { color: "grey" } : { color: "black" }
+                    isActive ? { color: "white" } : { color: "black" }
                   }
                 >Annonser
 
@@ -104,14 +124,13 @@ function Header(props) {
                   zIndex: login ? '2' : '-2',
                 }}
               >
-                {login ?
+                {login ? (
 
-
-
-                  (<div className='popup_form'>
+                  <div className='popup_form'>
                     <div>
                       <p className="popUp--close_form" onClick={() => {
                         handlePopUp(setLogin);
+                        setErrorLogin(false)
                       }}
                       >&times; </p>
                       <div className="popup_login_form">
@@ -132,11 +151,11 @@ function Header(props) {
                           <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                           </Form.Group>
+                          <Recaptcha />
                           <Button variant="primary"
 
                             onClick={() => {
                               post("/login", {
-
 
 
                                 email: loginEmail,
@@ -147,31 +166,39 @@ function Header(props) {
                               }).then((response) => {
                                 props.setLogginPage(response.data)
                                 // props.setUser(response.data)
-                                setAutorized(response.data)
+                                setAutorized(true)
 
                                 if (response.data) {
                                   handlePopUp(setLogin);
                                 }
-
-
-
-
-
+                                else {
+                                  handlePopUp(setErrorLogin);
+                                }
 
 
                               })
 
                             }}
+
+
                           >
                             Logga in
                           </Button >
+                          {errorLogin ? (
+                            <LoginError
+                              setLoginError={(btnUseState) => {
+                                setErrorLogin(btnUseState);
 
-
+                              }}
+                            />
+                          )
+                            : null
+                          }
                         </Form>
                       </div>
                     </div>
                   </div>
-                  ) : null}
+                ) : null}
               </div>
 
 
@@ -188,8 +215,8 @@ function Header(props) {
 
                 }}
               >
-                {login ?
-                  (<div className='popup_form'>
+                {login ? (
+                  <div className='popup_form'>
                     <div>
                       <p className="popUp--close_form" onClick={() => {
                         handlePopUp(setRegistrera);
@@ -200,11 +227,11 @@ function Header(props) {
                         <Form>
                           <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Ange namn</Form.Label>
-                            <Form.Control type="text" placeholder="Ange e-post" onChange={(e) => setName(e.target.value)} />
+                            <Form.Control type="text" placeholder="Ange namn" onChange={(e) => setName(e.target.value)} />
                             <Form.Label>Ange E-post</Form.Label>
                             <Form.Control type="email" placeholder="Ange e-post" onChange={(e) => setEmail(e.target.value)} />
                             <Form.Label>Upprepa E-post</Form.Label>
-                            <Form.Control type="email" placeholder="Ange e-post" onChange={(e) => setEmailConfirm(e.target.value)} />
+                            <Form.Control type="email" placeholder="Upprepa e-post" onChange={(e) => setEmailConfirm(e.target.value)} />
 
                             {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
@@ -244,7 +271,7 @@ function Header(props) {
                       </div>
                     </div>
                   </div>
-                  ) : null}
+                ) : null}
               </div>
 
             </Container>

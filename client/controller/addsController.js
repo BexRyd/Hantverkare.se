@@ -14,8 +14,8 @@ getAdds = async (req, res) => {
     return res.status(200).json({ success: true, data: add })
   }).clone().catch(err => console.log(err))
 }
-getAdds = async (req, res) => {
-  await Adds.find({}, (err, add) => {
+getUserAdds = async (req, res) => {
+  await Adds.find({email:req.params.email}, (err, add) => {
     if (err) {
       return res.status(404).json({ success: false, error: err })
     } if (!add.length) {
@@ -127,19 +127,17 @@ createAdds = (req, res) => {
 }
 
 deleteAdds = async (req, res) => {
-  try {
-    await Adds.findOneAndDelete({ _id: req.params.AddsId }, (err, Add) => {
-
-      return res.status(200).json({ success: true, data: Add })
-
+  try{await Adds.findOneAndDelete({ _id: req.params.AddsId }, (err, Add) => {
+    
+    return res.status(200).json({ success: true, data: Add })
+    
+  }
+   
+  ).clone()}
+   
+    catch(err) {
+     return res.status(400).json({ success: false, error: err });
     }
-
-    ).clone()
-  }
-
-  catch (err) {
-    return res.status(400).json({ success: false, error: err });
-  }
 };
 
 
