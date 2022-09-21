@@ -4,7 +4,7 @@ import { post, get, erase } from "../utility/fetchHealper"
 import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
-import {Image} from "cloudinary-react"
+import { Image } from "cloudinary-react"
 /* import UserAdds from './userAdds' */
 
 
@@ -22,8 +22,8 @@ export default function MinSida(props) {
   const [userEmail, setUserEmail] = useState("");
   const [useradds, setUserAdds] = useState([]);
   const [myAdds, setMyAdds] = useState(false);
-  const[newAdd, setNewAdd] = useState(false);
-  const [settings, setSettings]= useState(false);
+  const [newAdd, setNewAdd] = useState(false);
+  const [settings, setSettings] = useState(false);
   const [newAddPopup, setNewAddPopup] = useState(false);
 
   const [AddsIdPopup, setAddsIdPopup] = useState("");
@@ -36,10 +36,10 @@ export default function MinSida(props) {
   //usestate for changing add
 
   const [changeAdds, setChangeAdds] = useState(false);
-  const [changeTitlePopup, setChangeTitlePopup]= useState(titlePopup)
-  const [changeDescriptionPopup, setChangeDescriptionPopup]= useState(descriptionPopup)
+  const [changeTitlePopup, setChangeTitlePopup] = useState(titlePopup)
+  const [changeDescriptionPopup, setChangeDescriptionPopup] = useState(descriptionPopup)
 
-  
+
 
 
   function showDetail(id) {
@@ -51,40 +51,40 @@ export default function MinSida(props) {
       setEmailPopup(useradds[id].email);
       setAddsIdPopup(useradds[id]._id);
 
-    
+
     }
   }
-   
 
-useEffect(()=>{
- 
-  if(props.authorized){
-    
-  get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
-  console.log(useradds)
-  }
-  
-},[])
-useEffect(()=>{
- 
-setChangeTitlePopup(titlePopup)
-  
-},[titlePopup])
-useEffect(()=>{
- 
-setChangeDescriptionPopup(descriptionPopup)
-  
-},[descriptionPopup])
 
-useEffect(()=>{
- 
-  if(props.authorized){
-    
-  get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
- 
-  }
-  
-},[popUpAdds])
+  useEffect(() => {
+
+    if (props.authorized) {
+
+      get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
+      console.log(useradds)
+    }
+
+  }, [])
+  useEffect(() => {
+
+    setChangeTitlePopup(titlePopup)
+
+  }, [titlePopup])
+  useEffect(() => {
+
+    setChangeDescriptionPopup(descriptionPopup)
+
+  }, [descriptionPopup])
+
+  useEffect(() => {
+
+    if (props.authorized) {
+
+      get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
+
+    }
+
+  }, [popUpAdds])
   const [category, setCategory] = useState("")
 
 
@@ -140,89 +140,101 @@ useEffect(()=>{
   return (
 
     <div>
-      
+
       <div className='pageContainer'>
-       
+
         <div className='userOptions'>
-         
-         <button className='optionBtn '
-         onClick={()=>{
-          get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
-  
-          setMyAdds(true);
-          setNewAdd(false);
-          setSettings(false);
-         }}
-       
-         >Mina Annonser</button>
-         <button className='optionBtn '
-         onClick={()=>{
-           get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
-          setMyAdds(false);
-          setNewAdd(false);
-          setSettings(true);
-         }}
-         >Inställningar</button>
-         <button className='optionBtn '
-         onClick={()=>{
-         setMyAdds(false);
-          setNewAdd(true);
-          setSettings(false);
-         }}
-         >Lägg till annons</button>
+
+          <button className='optionBtn '
+            onClick={() => {
+              get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
+
+              setMyAdds(true);
+              setNewAdd(false);
+              setSettings(false);
+            }}
+
+          >Mina Annonser</button>
+          <button className='optionBtn '
+            onClick={() => {
+              get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
+              setMyAdds(false);
+              setNewAdd(false);
+              setSettings(true);
+            }}
+          >Inställningar</button>
+          <button className='optionBtn '
+            onClick={() => {
+              setMyAdds(false);
+              setNewAdd(true);
+              setSettings(false);
+            }}
+          >Lägg till annons</button>
         </div>
-        {newAdd?(
-        <div className='uploadAdd-Container'>
+        {newAdd ? (
+          <div className='uploadAdd-Container'>
             <p className="newAdd--close_form" onClick={() => {
-                      setNewAdd(false);
-                      setImg("");
-                    }}
-                    >&times; </p>
-        <h2>Ladda upp en bild</h2>
-        <label className="img_label" htmlFor="addImg_input">   </label>
-        <input className="img_input" id="addImg_input"  type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
-       
-        {loading? (<h3>Loading...</h3>):null}
-       {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
-                 <select value={category} onChange={(e) => setCategory(e.target.value)}
-          >
+              setNewAdd(false);
+              setImg("");
+            }}
+            >&times; </p>
+            <h2>Ladda upp en bild</h2>
+            <label className="img_label" htmlFor="addImg_input">   </label>
+            <input className="img_input" id="addImg_input" type="file" name='file' placeholder="Ladda upp en bild" onChange={(e) => { setImg(e.target.files[0]) }}></input>
 
-            <option value="Målare">Målare</option>
-            <option value="Snickare">Snickare</option>
-            <option value="Rörmokare">Rörmokare</option>
-            <option value="Golvläggare">Golvläggare</option>
-          </select>
+            {loading ? (<h3>Loading...</h3>) : null}
+            {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
+            <select value={category} onChange={(e) => setCategory(e.target.value)}
+            >
 
-<<<<<<< HEAD
-          <input value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
-          <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
+              <option value="Målare">Målare</option>
+              <option value="Snickare">Snickare</option>
+              <option value="Rörmokare">Rörmokare</option>
+              <option value="Golvläggare">Golvläggare</option>
+            </select>
 
-          <button onClick={() => {
-            uploadImage();
-            handlePopUp();
-          }} >Förhandsgranska</button>
-        </div>
+            <input value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
+            <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
 
-        <div className='userAddsContainer'>
-          {
-            props.authorized ? (
+            <button
+
+              className='optionBtn '
+              onClick={() => {
+                uploadImage();
+                handlePopUp();
+                setNewAddPopup(true);
+              }} >Förhandsgranska</button>
+          </div>
+        ) : null}
+        {myAdds ? (
+          <div className='userAddsContainer'>
+            <p className="Adds--close_form" onClick={() => {
+              setMyAdds(false);
+            }}
+            >&times; </p>
+            {props.authorized ? (
               useradds.map((add, id) => {
                 return (
 
                   <div className="userAdds" key={id}>
                     <img className="addsImg" src={add.img}></img>
-
                     <div className="textBox">
                       <h3 className="addsHeading">{add.heading}</h3>
                       <p className="addsDescription">{add.description}</p>
                     </div>
 
+
+
+
+
                     <button
                       className="addsBtn"
                       id={id}
                       onClick={() => {
-                        // showDetail(id);
-                        // handlePopUp();
+                        showDetail(id);
+                        handlePopUp();
+                        setPopUpAdds(true);
+                        setNewAddPopup(false);
                       }}
                     >
                       mer info
@@ -234,63 +246,8 @@ useEffect(()=>{
                 );
               })) : null}
 
-=======
-        <input   value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
-        <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
-
-        <button 
-        
-          className='optionBtn '
-          onClick={() => {
-          uploadImage();
-          handlePopUp();
-          setNewAddPopup(true);
-        }} >Förhandsgranska</button>
->>>>>>> 8b22be8a4a3bc3105585a1c0e7774d802d830c8c
-        </div>
-        ):null}
-     {myAdds?(
-      <div className='userAddsContainer'>
-        <p className="Adds--close_form" onClick={() => {
-                      setMyAdds(false);
-                    }}
-                    >&times; </p>
-      { props.authorized?(
-      useradds.map((add, id) => {
-        return (
-         
-           <div className="userAdds" key={id}>
-               <img className="addsImg" src={add.img}></img>
-                <div className="textBox">
-                  <h3 className="addsHeading">{add.heading}</h3>
-                  <p className="addsDescription">{add.description}</p>
-                </div>
-
-                   
-                 
-    
-
-              <button
-                className="addsBtn"
-                id={id}
-                onClick={() => {
-                  showDetail(id);
-                  handlePopUp();
-                  setPopUpAdds(true);
-                  setNewAddPopup(false);
-                }}
-              >
-                mer info
-              </button>
-             
-            </div>
-            
-          
-        );
-      })):null}
-      {/* <UserAdds useradds={useradds} authorized={props.authorized}/> */}
-      </div>
-     ):null}
+          </div>
+        ) : null}
 
 
 
@@ -303,135 +260,135 @@ useEffect(()=>{
           }}
 
         >
-          {newAddPopup?(
-          <div className='popUp'>
-            <div>
-              <p className="popUp--close" onClick={handlePopUp} >&times; </p>
-              <img className='popUp--img' src={imageUrl}></img>
-              <h1 className='popUp--title'>{heading}</h1>
-              <p className='popUp--description'>{description}</p>
-
-              <button
-               className="addsBtn"
-              onClick={() => {
-                post("/myPage", {
-                  id: counter,
-                  img: imageUrl,
-                  heading: heading,
-                  description: description,
-                  category: category,
-
-                  email: userEmail
-
-
-                })
-
-                setCounter(Date.now())
-                setImageUrl("");
-                handlePopUp();
-              }}
-              >Publicera Annons</button>
-            </div>
-
-
-          </div>
-          ):null}
-
-
-        
-        {popUpAdds?(
-        <div className="popUp">
-          <div>
-            <p className="popUp--close" onClick={()=>{
-              handlePopUp();
-              setPopUpAdds(false);
-              setChangeAdds(false);
-              setChangeTitlePopup(titlePopup);
-              setChangeDescriptionPopup(descriptionPopup);
-               
-            
-            }}
-              >
-              &times;{" "}
-            </p>
-              <div className='update-box'>
-            <img className="popUp--img" src={imgPopup}></img>
-            {changeAdds?(
+          {newAddPopup ? (
+            <div className='popUp'>
               <div>
-            <h3 className="popUp--title">{changeTitlePopup}</h3>
-             <p className="popUp--description">{changeDescriptionPopup}</p>
-             <p>{emailPopup}</p>  
-        
-            
-            </div>
-            
-            )
-          :null}
-          </div>
-           
-          
-            {changeAdds?(
-              <div className='change-box'>
-           
-            <input type="text"  placeholder="Rubrik" onChange={(e)=>setChangeTitlePopup(e.target.value)} />
-            
-                <textarea
-                placeholder="Beskrivning" onChange={(e) => setChangeDescriptionPopup(e.target.value)} ></textarea>
-                
-             
-            </div>
-              
-            ):
+                <p className="popUp--close" onClick={handlePopUp} >&times; </p>
+                <img className='popUp--img' src={imageUrl}></img>
+                <h1 className='popUp--title'>{heading}</h1>
+                <p className='popUp--description'>{description}</p>
 
-            (<div>
-            <h1 className="popUp--title">{titlePopup}</h1>
-             <p className="popUp--description">{descriptionPopup}</p>
-             <p>{emailPopup}</p>  
-        
-             </div>
-            )
-             }
-          
-             
-           {!changeAdds?(
-             <div>
-              <button
-              className="addsBtn"
+                <button
+                  className="addsBtn"
+                  onClick={() => {
+                    post("/myPage", {
+                      id: counter,
+                      img: imageUrl,
+                      heading: heading,
+                      description: description,
+                      category: category,
 
-              onClick={()=>{
-                 
-                erase(`/myAdd/${AddsIdPopup}`)
-  
-                handlePopUp();
-                setPopUpAdds(false);
-               
-                
-                
-              }}
-              
-              >ta bort annons</button>
-              <button
-              className="addsBtn"
-              onClick={()=>setChangeAdds(true)}
-              
-              >ändra annons</button>
+                      email: userEmail
+
+
+                    })
+
+                    setCounter(Date.now())
+                    setImageUrl("");
+                    handlePopUp();
+                  }}
+                >Publicera Annons</button>
               </div>
-           ):
-           <button>Spara</button>
 
-            }
-            
-          </div>
 
-         
+            </div>
+          ) : null}
+
+
+
+          {popUpAdds ? (
+            <div className="popUp">
+              <div>
+                <p className="popUp--close" onClick={() => {
+                  handlePopUp();
+                  setPopUpAdds(false);
+                  setChangeAdds(false);
+                  setChangeTitlePopup(titlePopup);
+                  setChangeDescriptionPopup(descriptionPopup);
+
+
+                }}
+                >
+                  &times;{" "}
+                </p>
+                <div className='update-box'>
+                  <img className="popUp--img" src={imgPopup}></img>
+                  {changeAdds ? (
+                    <div>
+                      <h3 className="popUp--title">{changeTitlePopup}</h3>
+                      <p className="popUp--description">{changeDescriptionPopup}</p>
+                      <p>{emailPopup}</p>
+
+
+                    </div>
+
+                  )
+                    : null}
+                </div>
+
+
+                {changeAdds ? (
+                  <div className='change-box'>
+
+                    <input type="text" placeholder="Rubrik" onChange={(e) => setChangeTitlePopup(e.target.value)} />
+
+                    <textarea
+                      placeholder="Beskrivning" onChange={(e) => setChangeDescriptionPopup(e.target.value)} ></textarea>
+
+
+                  </div>
+
+                ) :
+
+                  (<div>
+                    <h1 className="popUp--title">{titlePopup}</h1>
+                    <p className="popUp--description">{descriptionPopup}</p>
+                    <p>{emailPopup}</p>
+
+                  </div>
+                  )
+                }
+
+
+                {!changeAdds ? (
+                  <div>
+                    <button
+                      className="addsBtn"
+
+                      onClick={() => {
+
+                        erase(`/myAdd/${AddsIdPopup}`)
+
+                        handlePopUp();
+                        setPopUpAdds(false);
+
+
+
+                      }}
+
+                    >ta bort annons</button>
+                    <button
+                      className="addsBtn"
+                      onClick={() => setChangeAdds(true)}
+
+                    >ändra annons</button>
+                  </div>
+                ) :
+                  <button>Spara</button>
+
+                }
+
+              </div>
+
+
+            </div>
+          ) : null}
+
         </div>
-        ):null}
-
-        </div>
 
 
 
-      
+
       </div>
     </div >
   )
