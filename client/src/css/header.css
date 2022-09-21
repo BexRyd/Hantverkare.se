@@ -56,6 +56,31 @@ li {
     margin: 0 25px;
 }
 
+.loginBtn{
+background-color: #090401;
+color: white;
+
+border-radius: 10px;
+}
+.signUpBtn{
+background-color: #ffb900;
+border-color:#090401;
+border-radius: 10px;
+border-width: 1px;
+color: #090401;
+}
+.signUpBtn:hover{
+    background-color: #090401;
+   
+    color: white;
+  
+}
+.loginBtn:hover{
+    background-color: #ffb900;
+    border-width: 1px;
+    border-color: #090401;
+    color: #090401;
+}
 
 .navlink {
     letter-spacing: 1px;

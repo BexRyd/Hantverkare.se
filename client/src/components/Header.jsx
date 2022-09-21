@@ -92,17 +92,17 @@ function Header(props) {
 
 
             <Container className='Buttons_container'>
-              {autorized ? (<Button className='btn_register' size="sm" variant="dark" onClick={() => {
+              {autorized ? (<button className='btn_register loginBtn' onClick={() => {
                 props.setLogginPage("");
                 setAutorized("");
                 get("/logout")
-              }}>Logga ut</Button>)
+              }}>Logga ut</button>)
 
-                : (<Button className='btn_register' size="sm" variant="dark" onClick={() => {
+                : (<button className='btn_register loginBtn'  onClick={() => {
 
                   handlePopUp(setLogin);
 
-                }}>Logga in</Button>)}
+                }}>Logga in</button>)}
 
 
 
@@ -142,7 +142,7 @@ function Header(props) {
                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                         </Form.Group>
                         <Recaptcha />
-                        <Button variant="primary" 
+                        <Button 
                         
                           onClick = {()=>{
                             post("/login",{
@@ -192,9 +192,9 @@ function Header(props) {
               </div>
 
 
-              <Button size="sm" variant="outline-secondary" onClick={() => {
+              <button className='signUpBtn'   onClick={() => {
                 handlePopUp(setRegistrera);
-              }} >Registrera</Button>
+              }} >Registrera</button>
 
 
               <div className='blurr'
@@ -205,7 +205,7 @@ function Header(props) {
 
                 }}
               > 
-              {login?(
+              {registrera?(
               <div className='popup_form'>
                   <div>
                     <p className="popUp--close_form" onClick={() => {

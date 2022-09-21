@@ -50,43 +50,11 @@ export default function Adds(props) {
     <div className="mainContainer">
 
 
-       <div className="searchBox">
-
-
-        <input
-
-
-          type="search"
-          placeholder="Sök"
-          className="searchField"
-          aria-label="Search"
-          style={{ width: "200px" }}
-          onChange={(e) => setSearch(e.target.value)}
-
-
-        />
-        <button className="searchButton" style={{ backgroundColor: "lightgrey", border: "none", maxWidth: "50px" }} onClick={() => {
-          get(`/search/${search}`).then((response) => setAdds(response.data)
-
-          )
-
-
-
-
-        }} >
-
-        </button>
-
-
-      </div> 
-
-
-
-
+  
       <div className="mainCategoryContainer">
 
 
-        <div className="categoryBtn tools" onClick={() => {
+        <div className=" tools" onClick={() => {
 
           get("/carpenter").then((response) =>
             setAdds(response.data)
@@ -100,7 +68,19 @@ export default function Adds(props) {
 
 
 
-        <div className="categoryBtn painter" onClick={() => {
+        <div className=" floorLayer" onClick={() => {
+
+          get("/floorlayer").then((response) =>
+            setAdds(response.data)
+
+          );
+
+        }} >
+           <h4 className="floorLayer_h4"><span className="floorLayer_h4_span"> Annonser för Golvläggare</span></h4>
+        </div>
+
+
+          <div className=" painter" onClick={() => {
 
           get("/painter").then((response) =>
             setAdds(response.data)
@@ -116,20 +96,7 @@ export default function Adds(props) {
 
 
 
-        <div className="categoryBtn floorLayer" onClick={() => {
-
-          get("/floorlayer").then((response) =>
-            setAdds(response.data)
-
-          );
-
-        }} >
-           <h4 className="floorLayer_h4"><span className="floorLayer_h4_span"> Annonser för Golvläggare</span></h4>
-        </div>
-
-
-
-        <div className="categoryBtn plumber" onClick={() => {
+        <div className=" plumber" onClick={() => {
 
           get("/plumber").then((response) =>
             setAdds(response.data)
@@ -142,6 +109,35 @@ export default function Adds(props) {
 
 
       </div>
+
+      <div className="searchBox">
+
+
+        <input
+
+
+          type="search"
+          placeholder="Sök"
+          className="searchField"
+          aria-label="Search"
+          onChange={(e) => setSearch(e.target.value)}
+
+
+        />
+        <button className="searchButton" style={{ backgroundColor: "#e3420dee", border: "none", maxWidth: "50px" }} onClick={() => {
+          get(`/search/${search}`).then((response) => setAdds(response.data)
+
+          )
+
+
+
+
+        }} >
+
+        </button>
+
+
+      </div> 
      
 
 
@@ -182,7 +178,7 @@ export default function Adds(props) {
         ) : (
 
 
-          <h2>Kunde inte hitta vad du söker</h2>
+          <h2 className="searchError">Kunde inte hitta vad du söker</h2>
 
 
 
