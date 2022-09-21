@@ -35,23 +35,6 @@ function Header(props) {
 
 
 
-  /*   useEffect(() => {
-     get("/login").then((response) => setLogin(response.data));
-   }, []);  */
-
-
-  // useEffect(() => {
-  //   if (search === "") {
-  //     return;
-  //   }
-  //   if (search === false) {
-  //     return;
-  //   }
-  //   s.products = s.allProducts.filter((x) =>
-  //     x.name.toLowerCase().includes(search.toLowerCase())
-  //   );
-  // }, [searchTerm]);
-
   const handlePopUp = (state) => {
     state(current => !current); //toggle
   }

@@ -110,7 +110,7 @@ export default function MinSida(props) {
 
         <div className='userAddsContainer'>
           {
-            props.authorized ?
+            props.authorized ? (
               useradds.map((add, id) => {
                 return (
 
@@ -135,8 +135,10 @@ export default function MinSida(props) {
 
                   </div>
 
+
                 );
-              }) : null}
+              })) : null}
+
         </div>
 
 
