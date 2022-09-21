@@ -220,7 +220,7 @@ function Header(props) {
                           <Form.Control type="email" placeholder="Ange e-post" onChange={ (e) => setEmail(e.target.value)} />
                           <Form.Label>Upprepa E-post</Form.Label>
                           <Form.Control type="email" placeholder="Upprepa e-post" onChange={ (e) => setEmailConfirm(e.target.value)} />
-                          
+                         
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
@@ -237,6 +237,7 @@ function Header(props) {
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                         </Form.Group>
+                        <Recaptcha />
                         <Button variant="primary"  
                         
                         onClick = {()=>{
