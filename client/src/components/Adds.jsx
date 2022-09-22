@@ -210,7 +210,9 @@ export default function Adds(props) {
             <h1 className="popUp--title">{title}</h1>
             <p className="popUp--description">{description}</p>
             {props.authorized ?
+              (
               <p>{email}</p>
+              )
               : null}
 
             {props.authorized ?
