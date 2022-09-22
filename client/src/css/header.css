@@ -167,12 +167,12 @@ li {
     justify-content: center;
     position: absolute;
     left: 40%;
-    top: 7%;
+    top: 3%;
     z-index: 1;
-    padding: 3%;
+    padding: 4%;
     background-color: rgb(255, 255, 255);
-    width: 22vw;
-    min-height: 40vh;
+    max-width: 27.7vw;
+    min-height: 37vh;
     visibility: visible;
     border-radius: 10px;
 
@@ -206,7 +206,7 @@ li {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 
 }
 

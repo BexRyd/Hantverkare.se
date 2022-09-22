@@ -5,11 +5,11 @@
     margin-left: 15px;
 }
 
-h3 {
+.form_h3 {
     text-align: center;
 }
 
-form {
+.email_form {
     display: flex;
     flex-direction: column;
     width: 300px;

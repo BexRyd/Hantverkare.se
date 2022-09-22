@@ -18,8 +18,8 @@ export const EmailForm = () => {
 
   return (
     <div className="contacts">
-        <form ref={form} onSubmit={sendEmail}>
-          <h3>Skicka meddelande:</h3>
+        <form className='email_form' ref={form} onSubmit={sendEmail}>
+          <h3 className='form_h3'>Skicka meddelande:</h3>
           <label>Namn</label>
           <input type="text" name="sender_name" />
           <label>Epost</label>
