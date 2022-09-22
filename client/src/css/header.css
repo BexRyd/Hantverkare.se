@@ -38,6 +38,7 @@ li {
 .appContainer {
     position: sticky;
     top: 0;
+    z-index: 0;
 }
 
 /* HEADER MAIN STYLES */
@@ -161,7 +162,7 @@ li {
     position: absolute;
     left: 40%;
     top: 7%;
-    z-index: 0;
+    z-index: 1;
     padding: 3%;
     background-color: rgb(255, 255, 255);
     width: 26vw;

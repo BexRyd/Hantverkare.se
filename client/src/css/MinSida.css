@@ -5,18 +5,11 @@
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-bottom: 15%;
-   
-  
-   
 }
 
 .userAddsContainer{
     width: 700px;
-   
     height: auto;
-   
-    
-    
     margin-top: 2%;
     margin-bottom: 2%;
     flex-direction: column;
@@ -31,10 +24,9 @@
 .changeAdd_Container{
     display: flex;
     flex-direction: row;
-    
 }
 .change_img{
-margin-right: 5%;
+    margin-right: 5%;
 }
 
 .userAdds{
@@ -61,38 +53,34 @@ margin-right: 5%;
 }
 
 .Adds--close_form{
-        color: black;
-        position: absolute;
-        top: 1%;
-        left: 93%;
-        font-size: 3rem;
-        text-decoration: none;
-        display: inline-block;
-        line-height: 1;
+    color: black;
+    position: absolute;
+    top: 1%;
+    left: 93%;
+    font-size: 3rem;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1;
 }
 .pageContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-   
-    
-   
-  
-    
+    position: fixed;
+    top: 140px;
+    z-index: -1;
 }
 
 .userOptions{
-   
-    position: relative;
     display: flex;
     align-items: center;
-   margin: 2%;
-   margin-left: 35%;
+    justify-content: center;
+    /* margin: 2%; */
+    /* margin-left: 35%; */
+    top: 150px;
     flex-direction: row;
-    
-  
+    z-index: -1;
 }
 
 
@@ -138,9 +126,7 @@ margin-right: 5%;
     margin-top: 2%;
     background-size: cover;
     background-blend-mode: screen;
-  
     border-radius: 10px;
-
 }
 
 .myAdds_h4,
@@ -154,8 +140,6 @@ margin-right: 5%;
     top: 50px;
     left: 50px;
     width: 75%;
-
-
 }
 
 .myAdds_h4_span,
