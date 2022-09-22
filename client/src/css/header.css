@@ -171,7 +171,7 @@ li {
     z-index: 1;
     padding: 3%;
     background-color: rgb(255, 255, 255);
-    width: 26vw;
+    width: 22vw;
     min-height: 40vh;
     visibility: visible;
     border-radius: 10px;
@@ -211,7 +211,7 @@ li {
 }
 
 .btn_send {
-    margin-top: 15px;
+    margin-top: 25px;
     padding: 10px 11px;
 }
 

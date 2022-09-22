@@ -202,7 +202,7 @@ function Header(props) {
                           <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                           </Form.Group>
-                          <Button variant="primary"
+                          <Button variant="dark"
                             onClick={() => {
                               post("/signUp", {
                                 name: name,

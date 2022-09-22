@@ -5,6 +5,7 @@ import "./../css/Adds.css";
 
 
 import { Button, Col, Row, NavLink, Form, Container } from "react-bootstrap";
+import EmailForm from "./EmailForm";
 
 
 export default function Adds(props) {
@@ -232,8 +233,9 @@ export default function Adds(props) {
               : null
             }
           </div>
-
-
+            
+            <EmailForm />
+        
         </div>
       </div>
     </div >

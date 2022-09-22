@@ -18,13 +18,13 @@ import "./../css/MinSida.css"
 
               <button
                 className="addsBtn"
-                /* id={id}
-                onClick={() => {
-                  showDetail(id);
-                  handlePopUp();
-                  setPopUpAdds(true);
-                  setNewAddPopup(false);
-                }} */
+                // /* id={id}
+                // onClick={() => {
+                //   showDetail(id);
+                //   handlePopUp();
+                //   setPopUpAdds(true);
+                //   setNewAddPopup(false);
+                // }} */
               >
                 mer info
               </button>
