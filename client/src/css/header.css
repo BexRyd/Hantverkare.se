@@ -112,10 +112,37 @@ li {
     font-weight: 700;
 }
 
+<<<<<<< HEAD
 .btn_nav_red:hover {
     background-color: #BFC9CA;
     color: #333;
     transition: 0.5s ease-in-out;
+=======
+.loginBtn{
+background-color: #090401;
+color: white;
+
+border-radius: 10px;
+}
+.signUpBtn{
+background-color: #ffb900;
+border-color:#090401;
+border-radius: 10px;
+border-width: 1px;
+color: #090401;
+}
+.signUpBtn:hover{
+    background-color: #090401;
+   
+    color: white;
+  
+}
+.loginBtn:hover{
+    background-color: #ffb900;
+    border-width: 1px;
+    border-color: #090401;
+    color: #090401;
+>>>>>>> c99c9145bb5e7e5ad3f7fa3b50b8911c5a270269
 }
 
 .navlink {
@@ -161,8 +188,13 @@ li {
     position: absolute;
     left: 40%;
     top: 7%;
+<<<<<<< HEAD
     z-index: 0;
     padding: 3%;
+=======
+    z-index: 1;
+    padding: 4%;
+>>>>>>> c99c9145bb5e7e5ad3f7fa3b50b8911c5a270269
     background-color: rgb(255, 255, 255);
     width: 26vw;
     min-height: 40vh;

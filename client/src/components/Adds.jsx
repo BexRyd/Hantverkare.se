@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { get, erase } from "./../utility/fetchHealper";
 import "./../css/Adds.css";
 
+
 import { Button, Col, Row, NavLink, Form, Container } from "react-bootstrap";
 
 
@@ -49,6 +50,66 @@ export default function Adds(props) {
     <div className="mainContainer">
 
 
+  
+      <div className="mainCategoryContainer">
+
+
+        <div className=" tools" onClick={() => {
+
+          get("/carpenter").then((response) =>
+            setAdds(response.data)
+
+          );
+
+        }} >
+
+                    <h4 className="tools_h4"><span className="tools_h4_span"> Annonser för Snickare</span></h4>
+        </div>
+
+
+
+        <div className=" floorLayer" onClick={() => {
+
+          get("/floorlayer").then((response) =>
+            setAdds(response.data)
+
+          );
+
+        }} >
+           <h4 className="floorLayer_h4"><span className="floorLayer_h4_span"> Annonser för Golvläggare</span></h4>
+        </div>
+
+
+          <div className=" painter" onClick={() => {
+
+          get("/painter").then((response) =>
+            setAdds(response.data)
+
+          );
+
+        }}  >
+         
+         
+          <h4 className="painter_h4"><span className="painter_h4_span"> Annonser för Målare</span></h4>
+          
+        </div>
+
+
+
+        <div className=" plumber" onClick={() => {
+
+          get("/plumber").then((response) =>
+            setAdds(response.data)
+
+          );
+
+        }} >
+           <h4 className="plumber_h4"><span className="plumber_h4_span"> Annonser för Rörmokare</span></h4>
+        </div>
+
+
+      </div>
+
       <div className="searchBox">
 
 
@@ -59,12 +120,11 @@ export default function Adds(props) {
           placeholder="Sök"
           className="searchField"
           aria-label="Search"
-          style={{ width: "200px" }}
           onChange={(e) => setSearch(e.target.value)}
 
 
         />
-        <button className="searchButton" style={{ backgroundColor: "lightgrey", border: "none", maxWidth: "50px" }} onClick={() => {
+        <button className="searchButton" style={{ backgroundColor: "#e3420dee", border: "none", maxWidth: "50px" }} onClick={() => {
           get(`/search/${search}`).then((response) => setAdds(response.data)
 
           )
@@ -77,73 +137,8 @@ export default function Adds(props) {
         </button>
 
 
-      </div>
-
-
-
-
-      <div className="mainCategoryContainer">
-
-
-
-
-
-
-        <button className="categoryBtn" onClick={() => {
-
-          get("/carpenter").then((response) =>
-            setAdds(response.data)
-
-          );
-
-        }} >
-
-          Snickare
-        </button>
-
-
-
-        <button className="categoryBtn" onClick={() => {
-
-          get("/painter").then((response) =>
-            setAdds(response.data)
-
-          );
-
-        }}  >
-          Målare
-        </button>
-
-
-
-        <button className="categoryBtn" onClick={() => {
-
-          get("/floorlayer").then((response) =>
-            setAdds(response.data)
-
-          );
-
-        }} >
-          Golvläggare
-        </button>
-
-
-
-        <button className="categoryBtn" onClick={() => {
-
-          get("/plumber").then((response) =>
-            setAdds(response.data)
-
-          );
-
-        }} >
-          Rörmokare
-        </button>
-
-
-
-
-      </div>
+      </div> 
+     
 
 
       {
@@ -183,7 +178,7 @@ export default function Adds(props) {
         ) : (
 
 
-          <h2>Kunde inte hitta vad du söker</h2>
+          <h2 className="searchError">Kunde inte hitta vad du söker</h2>
 
 
 
@@ -215,7 +210,9 @@ export default function Adds(props) {
             <h1 className="popUp--title">{title}</h1>
             <p className="popUp--description">{description}</p>
             {props.authorized ?
+              (
               <p>{email}</p>
+              )
               : null}
 
             {props.authorized ?

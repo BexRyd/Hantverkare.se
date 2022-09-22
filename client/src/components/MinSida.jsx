@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { post, get, erase } from "../utility/fetchHealper"
+import { post, get, erase, put } from "../utility/fetchHealper"
 import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
@@ -65,6 +65,10 @@ useEffect(()=>{
   }
   
 },[])
+
+useEffect(()=>{
+uploadImage()
+},[img])
 useEffect(()=>{
  
 setChangeTitlePopup(titlePopup)
@@ -145,7 +149,7 @@ useEffect(()=>{
        
         <div className='userOptions'>
          
-         <button className='optionBtn '
+         <div className='optionBox_myAdds '
          onClick={()=>{
           get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
   
@@ -154,22 +158,22 @@ useEffect(()=>{
           setSettings(false);
          }}
        
-         >Mina Annonser</button>
-         <button className='optionBtn '
+         ><h4 className="myAdds_h4"><span className="myAdds_h4_span">Mina Annonser</span></h4></div>
+         <div className='optionBox_settings '
          onClick={()=>{
            get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
           setMyAdds(false);
           setNewAdd(false);
           setSettings(true);
          }}
-         >Inställningar</button>
-         <button className='optionBtn '
+         ><h4 className="settings_h4"><span className="settings_h4_span">Inställningar</span></h4></div>
+         <div className='optionBox_newAdd '
          onClick={()=>{
          setMyAdds(false);
           setNewAdd(true);
           setSettings(false);
          }}
-         >Lägg till annons</button>
+         ><h4 className="newAdd_h4"><span className="newAdd_h4_span"> Lägg till annons</span></h4></div>
         </div>
         {newAdd?(
         <div className='uploadAdd-Container'>
@@ -255,7 +259,7 @@ useEffect(()=>{
           style={{
             opacity: popUp ? '1' : '0',
             visibility: popUp ? 'visible' : 'hidden',
-            zIndex: popUp ? '2' : '-2',
+            zIndex: popUp ? '5' : '-5',
 
           }}
 
@@ -312,12 +316,15 @@ useEffect(()=>{
               &times;{" "}
             </p>
               <div className='update-box'>
-            <img className="popUp--img" src={imgPopup}></img>
+            
             {changeAdds?(
-              <div>
+              <div className='changeAdd_Container'>
+                <img className="popUp--img change_img" src={imageUrl}></img>
+                <div>
             <h3 className="popUp--title">{changeTitlePopup}</h3>
              <p className="popUp--description">{changeDescriptionPopup}</p>
              <p>{emailPopup}</p>  
+             </div>
         
             
             </div>
@@ -329,8 +336,12 @@ useEffect(()=>{
           
             {changeAdds?(
               <div className='change-box'>
+                 <input className="img_input" id="addImg_input"  type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
            
-            <input type="text"  placeholder="Rubrik" onChange={(e)=>setChangeTitlePopup(e.target.value)} />
+            <input type="text"  placeholder="Rubrik" onChange={(e)=>{setChangeTitlePopup(e.target.value)
+             
+           }}/>
+            
             
                 <textarea
                 placeholder="Beskrivning" onChange={(e) => setChangeDescriptionPopup(e.target.value)} ></textarea>
@@ -341,6 +352,7 @@ useEffect(()=>{
             ):
 
             (<div>
+              <img className="popUp--img" src={imgPopup}></img>
             <h1 className="popUp--title">{titlePopup}</h1>
              <p className="popUp--description">{descriptionPopup}</p>
              <p>{emailPopup}</p>  
@@ -374,7 +386,20 @@ useEffect(()=>{
               >ändra annons</button>
               </div>
            ):
-           <button>Spara</button>
+           <button
+          onClick={()=>{
+            put(`myPage/${AddsIdPopup}`,{
+             
+                  img: imageUrl,
+                  heading: changeTitlePopup,
+                  description: changeDescriptionPopup,
+                  category: category,
+                  email: userEmail
+
+            })
+               
+          }}
+           >Spara</button>
 
             }
             

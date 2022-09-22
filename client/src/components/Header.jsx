@@ -164,7 +164,7 @@ function Header(props) {
 
                 }}
               > 
-              {login?(
+              {registrera?(
               <div className='popup_form'>
                   <div>
                     <p className="popUp--close_form" onClick={() => {
