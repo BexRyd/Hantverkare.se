@@ -1,10 +1,12 @@
 import React from 'react'
-import { useState, useEffect} from 'react'
-import { erase, post, put, get } from "../utility/fetchHealper"
+import { useState, useEffect } from 'react'
+import { post, get, erase, put } from "../utility/fetchHealper"
 import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
 import {Image} from "cloudinary-react"
+/* import UserAdds from './userAdds' */
+
 
 
 
@@ -16,7 +18,7 @@ export default function MinSida(props) {
   const [loading, setLoading] = useState(false);
   const [counter, setCounter] = useState(0)
   const [popUp, setPopUp] = useState(false)
-  const [imageUrl, setImageUrl] =useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [useradds, setUserAdds] = useState([]);
   const [myAdds, setMyAdds] = useState(false);
@@ -31,7 +33,11 @@ export default function MinSida(props) {
   const [imgPopup, setImgPopup] = useState("");
   const [popUpAdds, setPopUpAdds] = useState(false);
 
-  const [changeImgAdds, setChangeImgAdds] = useState(false);
+  //usestate for changing add
+
+  const [changeAdds, setChangeAdds] = useState(false);
+  const [changeTitlePopup, setChangeTitlePopup]= useState(titlePopup)
+  const [changeDescriptionPopup, setChangeDescriptionPopup]= useState(descriptionPopup)
 
   
 
@@ -60,45 +66,81 @@ useEffect(()=>{
   
 },[])
 
- useEffect(() => {
+useEffect(()=>{
+uploadImage()
+},[img])
+useEffect(()=>{
+ 
+setChangeTitlePopup(titlePopup)
+  
+},[titlePopup])
+useEffect(()=>{
+ 
+setChangeDescriptionPopup(descriptionPopup)
+  
+},[descriptionPopup])
+
+useEffect(()=>{
+ 
+  if(props.authorized){
+    
+  get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
+ 
+  }
+  
+},[popUpAdds])
+  const [category, setCategory] = useState("")
+
+
+  useEffect(() => {
+
+    if (props.authorized) {
+
+      get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
+      console.log(useradds)
+    }
+
+  }, [props.authorized])
+
+  useEffect(() => {
     setEmail()
     setUserAdds([])
-  
+
   }, [props.authorized]);
 
-//"https://api.cloudinary.com/v1_1/bexryd/image/upload"
-const setEmail = ()=>{
-  if(props.authorized){
-setUserEmail(props.authorized.user.email)
-  console.log(props.authorized.user.email)
-  }
-};
+  //"https://api.cloudinary.com/v1_1/bexryd/image/upload"
+  const setEmail = () => {
+    if (props.authorized) {
+      setUserEmail(props.authorized.user.email)
+      console.log(props.authorized.user.email)
+    }
+  };
   const handlePopUp = () => {
     setPopUp(current => !current); //toggle
   }
 
-const uploadImage = async () => {
+  const uploadImage = async () => {
     const formData = new FormData();
     formData.append('file', img);
     formData.append('upload_preset', "Hantverkare");
     try {
       setLoading(true);
       const res = await Axios.post('https://api.cloudinary.com/v1_1/bexryd/image/upload', formData);
-       setImageUrl( res.data.secure_url);
-    
+      setImageUrl(res.data.secure_url);
+
       setLoading(false);
-     
+
     } catch (err) {
       console.error(err);
     }
   };
 
-/* const uploadImage = (files)=>{
-  const formData = new formData();
-  formData.append("file", files[0])
-  formData.append("upload_preset", "Hantverkare")
- Axios.post("https://api.cloudinary.com/v1_1/bexryd/image/upload",formData).then((response)=>console.log(response))
-} */
+  /* const uploadImage = (files)=>{
+    const formData = new formData();
+    formData.append("file", files[0])
+    formData.append("upload_preset", "Hantverkare")
+   Axios.post("https://api.cloudinary.com/v1_1/bexryd/image/upload",formData).then((response)=>console.log(response))
+  } */
   return (
 
     <div>
@@ -107,7 +149,7 @@ const uploadImage = async () => {
        
         <div className='userOptions'>
          
-         <button className='optionBtn '
+         <div className='optionBox_myAdds '
          onClick={()=>{
           get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
   
@@ -116,21 +158,22 @@ const uploadImage = async () => {
           setSettings(false);
          }}
        
-         >Mina Annonser</button>
-         <button className='optionBtn '
+         ><h4 className="myAdds_h4"><span className="myAdds_h4_span">Mina Annonser</span></h4></div>
+         <div className='optionBox_settings '
          onClick={()=>{
+           get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
           setMyAdds(false);
           setNewAdd(false);
           setSettings(true);
          }}
-         >Inställningar</button>
-         <button className='optionBtn '
+         ><h4 className="settings_h4"><span className="settings_h4_span">Inställningar</span></h4></div>
+         <div className='optionBox_newAdd '
          onClick={()=>{
          setMyAdds(false);
           setNewAdd(true);
           setSettings(false);
          }}
-         >Lägg till annons</button>
+         ><h4 className="newAdd_h4"><span className="newAdd_h4_span"> Lägg till annons</span></h4></div>
         </div>
         {newAdd?(
         <div className='uploadAdd-Container'>
@@ -145,6 +188,15 @@ const uploadImage = async () => {
        
         {loading? (<h3>Loading...</h3>):null}
        {/*  <Image style={{width:"300px"}} cloudName="bexryd" publicId="v1661432762/Hantverkare/osttz434t7pbelwvupqc.jpg"/> */}
+                 <select value={category} onChange={(e) => setCategory(e.target.value)}
+          >
+
+            <option value="Målare">Målare</option>
+            <option value="Snickare">Snickare</option>
+            <option value="Rörmokare">Rörmokare</option>
+            <option value="Golvläggare">Golvläggare</option>
+          </select>
+
         <input   value={heading} placeholder="Rubrik" onChange={(e) => setHeading(e.target.value)}></input>
         <textarea value={description} placeholder="Beskrivning" onChange={(e) => setDescription(e.target.value)} ></textarea>
 
@@ -164,18 +216,20 @@ const uploadImage = async () => {
                       setMyAdds(false);
                     }}
                     >&times; </p>
-      {
-      props.authorized?
+      { props.authorized?(
       useradds.map((add, id) => {
         return (
          
-            <div className="userAdds" key={id}>
-              <img className="addsImg" src={add.img}></img>
+           <div className="userAdds" key={id}>
+               <img className="addsImg" src={add.img}></img>
+                <div className="textBox">
+                  <h3 className="addsHeading">{add.heading}</h3>
+                  <p className="addsDescription">{add.description}</p>
+                </div>
 
-              <div className="textBox">
-                <h3 className="addsHeading">{add.heading}</h3>
-                <p className="addsDescription">{add.description}</p>
-              </div>
+                   
+                 
+    
 
               <button
                 className="addsBtn"
@@ -191,12 +245,13 @@ const uploadImage = async () => {
               </button>
              
             </div>
+            
           
         );
-      }):null}
+      })):null}
+      {/* <UserAdds useradds={useradds} authorized={props.authorized}/> */}
       </div>
-):null}
-      
+     ):null}
 
 
 
@@ -204,7 +259,7 @@ const uploadImage = async () => {
           style={{
             opacity: popUp ? '1' : '0',
             visibility: popUp ? 'visible' : 'hidden',
-            zIndex: popUp ? '2' : '-2',
+            zIndex: popUp ? '5' : '-5',
 
           }}
 
@@ -225,8 +280,9 @@ const uploadImage = async () => {
                   img: imageUrl,
                   heading: heading,
                   description: description,
-                  
-                  email:userEmail
+                  category: category,
+
+                  email: userEmail
 
 
                 })
@@ -238,7 +294,7 @@ const uploadImage = async () => {
               >Publicera Annons</button>
             </div>
 
-           
+
           </div>
           ):null}
 
@@ -250,38 +306,102 @@ const uploadImage = async () => {
             <p className="popUp--close" onClick={()=>{
               handlePopUp();
               setPopUpAdds(false);
-               setPopUpAdds(false);
+              setChangeAdds(false);
+              setChangeTitlePopup(titlePopup);
+              setChangeDescriptionPopup(descriptionPopup);
+               
             
             }}
               >
               &times;{" "}
             </p>
-           
-            <img className="popUp--img" src={imgPopup}></img>
-           
-           
+              <div className='update-box'>
             
-            <input className="img_input" id="addImg_input"  type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
-            <button
-            onClick={()=>{
-             uploadImage();
-            }}
+            {changeAdds?(
+              <div className='changeAdd_Container'>
+                <img className="popUp--img change_img" src={imageUrl}></img>
+                <div>
+            <h3 className="popUp--title">{changeTitlePopup}</h3>
+             <p className="popUp--description">{changeDescriptionPopup}</p>
+             <p>{emailPopup}</p>  
+             </div>
+        
+            
+            </div>
+            
+            )
+          :null}
+          </div>
            
-            >Ändra</button>
+          
+            {changeAdds?(
+              <div className='change-box'>
+                 <input className="img_input" id="addImg_input"  type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
+           
+            <input type="text"  placeholder="Rubrik" onChange={(e)=>{setChangeTitlePopup(e.target.value)
+             
+           }}/>
+            
+            
+                <textarea
+                placeholder="Beskrivning" onChange={(e) => setChangeDescriptionPopup(e.target.value)} ></textarea>
+                
+             
+            </div>
+              
+            ):
+
+            (<div>
+              <img className="popUp--img" src={imgPopup}></img>
             <h1 className="popUp--title">{titlePopup}</h1>
-            <p className="popUp--description">{descriptionPopup}</p>
+             <p className="popUp--description">{descriptionPopup}</p>
              <p>{emailPopup}</p>  
         
-
+             </div>
+            )
+             }
+          
              
+           {!changeAdds?(
+             <div>
               <button
               className="addsBtn"
+
+              onClick={()=>{
+                 
+                erase(`/myAdd/${AddsIdPopup}`)
+  
+                handlePopUp();
+                setPopUpAdds(false);
+               
+                
+                
+              }}
               
               >ta bort annons</button>
               <button
               className="addsBtn"
+              onClick={()=>setChangeAdds(true)}
               
               >ändra annons</button>
+              </div>
+           ):
+           <button
+          onClick={()=>{
+            put(`myPage/${AddsIdPopup}`,{
+             
+                  img: imageUrl,
+                  heading: changeTitlePopup,
+                  description: changeDescriptionPopup,
+                  category: category,
+                  email: userEmail
+
+            })
+               
+          }}
+           >Spara</button>
+
+            }
             
           </div>
 
@@ -293,7 +413,7 @@ const uploadImage = async () => {
 
 
 
-
+      
       </div>
     </div >
   )

@@ -5,6 +5,9 @@
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-bottom: 15%;
+   
+  
+   
 }
 
 .userAddsContainer{
@@ -12,8 +15,8 @@
    
     height: auto;
    
-   
-  
+    
+    
     margin-top: 2%;
     margin-bottom: 2%;
     flex-direction: column;
@@ -25,17 +28,24 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
    
 }
+.changeAdd_Container{
+    display: flex;
+    flex-direction: row;
+    
+}
+.change_img{
+margin-right: 5%;
+}
 
 .userAdds{
     display: flex;
     flex-direction: row;
-    
     width: 70%;
     margin: 1%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .newAdd--close_form{
-color: black;
+    color: black;
     position: absolute;
     top: 1%;
     left: 44%;
@@ -62,25 +72,33 @@ color: black;
 }
 .pageContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+
+   
+    
    
   
     
 }
-.userOptions{
-    width: 500px;
-    position: fixed;
-    top: 20%;
-    left: 5%;
 
+.userOptions{
+   
+    position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+   margin: 2%;
+   margin-left: 35%;
+    flex-direction: row;
+    
+  
 }
 
 
 .ErrorPopup{
     width: 300px;
+    padding: 5%;
     height: auto;
     background-color: white;
     display: flex;
@@ -90,6 +108,13 @@ color: black;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     top: 100px;
     text-align: center;
+    border-radius: 8px;
+}
+
+.error_h3 {
+    font-weight: 700;
+    font-size: 20px;
+    color: #da4b44;
 }
 
 .addsBtn, .optionBtn  {
@@ -97,6 +122,73 @@ color: black;
     height: 40px;
     margin-bottom: 4%;
     border-radius: 10px;
-    color: #f8d815;
-    background-color: black;
+    color: white;
+    border: none;
+    background-color: #e3420dee;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.optionBox_myAdds,
+.optionBox_newAdd,
+.optionBox_settings{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+    width: 300px;
+    height: 199px;
+    margin-top: 2%;
+    background-size: cover;
+    background-blend-mode: screen;
+  
+    border-radius: 10px;
+
+}
+
+.myAdds_h4,
+.newAdd_h4,
+.settings_h4 {
+    color: white;
+    padding: 1rem 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 75%;
+
+
+}
+
+.myAdds_h4_span,
+.newAdd_h4_span,
+.settings_h4_span {
+
+    padding: 5px 5px;
+    margin-top: 2px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+.optionBox_myAdds {
+    margin-right: 2%;
+    background-image: linear-gradient(to right, #f0632cd9, #f0632cd9), url(../img/cup-of-coffee-g0316968e5_300.jpg);
+}
+
+.optionBox_settings {
+    background-image: linear-gradient(to right, #eb4040, #eb4040), url(../img/macro-gd8da06a13_300.jpg);
+    margin-right: 2%;
+}
+
+.optionBox_newAdd {
+    margin-right: 2%;
+    background-image: linear-gradient(to right, #f0632cd9, #f0632cd9), url(../img/meeting-g25588f35e_300.jpg);
+}
+.myAdds_h4_span {
+    background-image: linear-gradient(to right, #c74715dd, #c74715dd);
+
+}
+.settings_h4_span {
+    background-image: linear-gradient(to right, #eb4040, #eb4040);
+
+}
+.newAdd_h4_span {
+    background-image: linear-gradient(to right, #f0632cd2, #f0632ce6);
 }
