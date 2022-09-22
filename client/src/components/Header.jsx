@@ -47,7 +47,7 @@ function Header(props) {
     <div className="appContainer">
       <div className="header">
         <div className="logo">
-          <span>hantverkare.se</span>
+          <NavLink className="span" to = "/">hantverkare.se</NavLink>
         </div>
         <div className="menu_buttons_container">
           <NavLink to="/" className='menu_link'>Hem</NavLink>
