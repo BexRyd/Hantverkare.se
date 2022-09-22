@@ -51,7 +51,7 @@ function Header(props) {
         </div>
         <div className="menu_buttons_container">
           <NavLink to="/" className='menu_link'>Hem</NavLink>
-          <NavLink to="/MinSida" className='menu_link'>Annonser</NavLink>
+          <NavLink to="/Adds" className='menu_link'>Annonser</NavLink>
           <div className='buttons'>
               {autorized ? (<button className='btn_nav_red' onClick={() => {
                 props.setLogginPage("");
