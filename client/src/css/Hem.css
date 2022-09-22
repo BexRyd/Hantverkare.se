@@ -17,8 +17,6 @@ body {
 
 .Home {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
@@ -27,6 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 350px;
+    padding: 30px 0 0 0;
+    margin-top: 50px;
 }
 
 .main_images {
@@ -43,31 +43,25 @@ body {
 }
 
 .main_h1 {
-    padding: 30px 0 0 0;
     font-size: 2.5rem;
     font-weight: 700;
-
 }
-
 
 .main_h3 {
     display: flex;
     width: 70%;
-    padding: 30px 0;
     letter-spacing: 1.5px;
     font-weight: 200;
     font-size: 24px;
     margin-left: 0;
+    margin-top: 20px;
 }
 
 .navlink {
     letter-spacing: 1px;
     text-align: center;
     text-decoration: none;
-
     color: black;
-
-
 
 }
 
@@ -96,16 +90,31 @@ body {
     width: 160px;
     height: 60px;
     border-radius: 3px;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     margin-bottom: 25%;
-
     border: none;
+    margin-top: 20px;
 }
 
 .main_btn:hover {
-    background-color: #fff4ab;
-    color: #000000;
-    border: #000000 2px solid;
-    font-weight: 700;
+    font-weight: 900;
+    transition: 0.5s ease-in-out;
+}
+
+/* MEDIA QUERIES STYLES */
+
+@media screen and (max-width:1050px){
+
+    .Home {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main_information {
+        padding: 0 20px;
+    }
+
 }

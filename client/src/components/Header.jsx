@@ -13,9 +13,6 @@ import LoginError from './LoginError'
 import Recaptcha from './ReCAPTCHA'
 
 
- 
-
-
 
 function Header(props) {
 
@@ -36,75 +33,37 @@ function Header(props) {
   const [autorized, setAutorized] = useState(false);
   
 
-
-
   /*   useEffect(() => {
      get("/login").then((response) => setLogin(response.data));
    }, []);  */
-
-
-  
 
   const handlePopUp = (state) => {
     state(current => !current); //toggle
   }
 
+// HEADER CONTAINER
 
   return (
     <div className="appContainer">
-      <Navbar expand="lg">
-        <Container fluid>
-          <Navbar.Brand className="logo" href="/">hantverkare.se</Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <ul>
-              <li>
-                <NavLink className='navlink' to="/"
-                  style={({ isActive }) =>
-                    isActive ? { color: "grey" } : { color: "black" }
-                  }>Hem
-                </NavLink>
-              </li>
-              {autorized ? (
-                <li>
-                  <NavLink className='navlink' to="/MinSida"
-                    style={({ isActive }) =>
-                      isActive ? { color: "grey" } : { color: "black" }
-                    }
-                  >Min sida
-
-                  </NavLink>
-                </li>
-              ) : null}
-              <li>
-                <NavLink className='navlink' to="/Adds"
-                  style={({ isActive }) =>
-                    isActive ? { color: "grey" } : { color: "black" }
-                  }
-                >Annonser
-
-                </NavLink>
-              </li>
-            </ul>
-
-
-
-
-
-            <Container className='Buttons_container'>
-              {autorized ? (<Button className='btn_register' size="sm" variant="dark" onClick={() => {
+      <div className="header">
+        <div className="logo">
+          <span>hantverkare.se</span>
+        </div>
+        <div className="menu_buttons_container">
+          <NavLink to="/" className='menu_link'>Hem</NavLink>
+          <NavLink to="/MinSida" className='menu_link'>Annonser</NavLink>
+          <div className='buttons'>
+              {autorized ? (<button className='btn_nav_red' onClick={() => {
                 props.setLogginPage("");
                 setAutorized("");
                 get("/logout")
-              }}>Logga ut</Button>)
+              }}>Logga ut</button>)
 
-                : (<Button className='btn_register' size="sm" variant="dark" onClick={() => {
+                : (<button className='btn_nav_red' onClick={() => {
 
                   handlePopUp(setLogin);
 
-                }}>Logga in</Button>)}
-
-
+                }}>Logga in</button>)}
 
 
               <div className='blurr'
@@ -142,7 +101,7 @@ function Header(props) {
                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                         </Form.Group>
                         <Recaptcha />
-                        <Button variant="primary" 
+                        <Button className='btn_send' variant="dark" pt-2
                         
                           onClick = {()=>{
                             post("/login",{
@@ -192,9 +151,9 @@ function Header(props) {
               </div>
 
 
-              <Button size="sm" variant="outline-secondary" onClick={() => {
+              <button className='btn_nav' onClick={() => {
                 handlePopUp(setRegistrera);
-              }} >Registrera</Button>
+              }} >Registrera</button>
 
 
               <div className='blurr'
@@ -227,7 +186,6 @@ function Header(props) {
                             We'll never share your email with anyone else.
                           </Form.Text> */}
                           </Form.Group>
-
                           <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Lösenord</Form.Label>
                             <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
@@ -240,21 +198,15 @@ function Header(props) {
                             {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                           </Form.Group>
                           <Button variant="primary"
-
                             onClick={() => {
                               post("/signUp", {
                                 name: name,
                                 email: email,
                                 password: password,
                                 passwordConfirm: passwordConfirm
-
-
                               })
                             }}
                           >
-
-
-
                             Registrera dig
                           </Button>
                         </Form>
@@ -263,11 +215,9 @@ function Header(props) {
                   </div>
                   ) : null}
               </div>
-
-            </Container>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+            </div>
+          </div>
+        </div>
     </div>
   );
 }
