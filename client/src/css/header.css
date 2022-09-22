@@ -116,6 +116,35 @@ li {
     background-color: #BFC9CA;
     color: #333;
     transition: 0.5s ease-in-out;
+<<<<<<< HEAD
+=======
+
+}
+.loginBtn{
+background-color: #090401;
+color: white;
+
+border-radius: 10px;
+}
+.signUpBtn{
+background-color: #ffb900;
+border-color:#090401;
+border-radius: 10px;
+border-width: 1px;
+color: #090401;
+}
+.signUpBtn:hover{
+    background-color: #090401;
+   
+    color: white;
+  
+}
+.loginBtn:hover{
+    background-color: #ffb900;
+    border-width: 1px;
+    border-color: #090401;
+    color: #090401;
+>>>>>>> ecbe7ca9530d70ec9c4aeb03bc192124fe8d2859
 }
 
 .navlink {
