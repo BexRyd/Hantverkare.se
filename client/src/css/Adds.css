@@ -19,14 +19,7 @@ body {
   cursor: pointer;
 }
 
-.categoryImg {
-  height: 10rem;
-  width: 10rem;
-}
 
-.cat-btn {
-  width: 10rem;
-}
 
 .textBox {
 
@@ -56,15 +49,16 @@ body {
   width: 200px;
   height: 150px;
   border-radius: 5px;
+
 }
 
 .mainContainer {
   display: flex;
   flex-direction: column;
- 
+  z-index: -5;
   margin-bottom: 7%;
   scroll-behavior: smooth;
-;
+  ;
 
 }
 
@@ -74,8 +68,8 @@ body {
   margin-top: 5%;
   margin-right: 2%;
   border-radius: 10px;
-  color: #f8d815;
-  background-color: orange;
+  color: #010100;
+  background-color: #ff7730;
 }
 
 .addsBtn:hover {
@@ -141,10 +135,10 @@ body {
   color: rgba(0, 0, 0, 0.521);
 }
 
-.popUp--img{
+.popUp--img {
   max-width: 300px;
   max-height: 250px;
-  
+
 }
 
 .popUp--title {
@@ -199,23 +193,24 @@ body {
   color: #f8d815;
 }
 
-.changeTitle-box{
+.changeTitle-box {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
 
-  
-}
-.change-box{
-  display: flex;
-  flex-direction:column;
 
-  
 }
 
-
-.update-box{
+.change-box {
   display: flex;
-    flex-direction: row;
+  flex-direction: column;
+
+
+}
+
+
+.update-box {
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -230,21 +225,28 @@ body {
 } */
 
 .searchField {
-  height: 30px;
-  width: 100px;
+  height: 35px;
+  width: 400px;
   margin-bottom: 30px;
   border: none;
+  margin-left: 30%;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.14) 0px 5px 10px;
+}
+
+.searchBox {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
 }
 
 .searchButton {
 
   margin-left: 1%;
   background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
-  
+
   border-radius: 5px;
-  height: 30px;
+  height: 35px;
 }
 
 .backButton {
@@ -253,7 +255,7 @@ body {
   justify-content: flex-end;
   width: 90px;
   height: 40px;
-  padding-top: 20px;
+
 }
 
 .mainCategoryContainer {
@@ -261,59 +263,67 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
- padding: 2%;
- 
+  padding: 2%;
+  z-index: -1;
+
+
 
 }
 
-.searchBox {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  max-width: 100%;
-  z-index: -5;
-  top: 100px;
-  left: 50px;
-  padding: 4%;
-
+.searchError {
+  text-align: center;
+  color: #eb4040;
 }
 
 
-.categoryBtn {
-  width: 200px;
 
-}
-.tools,.painter, .floorLayer, .plumber{
+
+.tools,
+.painter,
+.floorLayer,
+.plumber {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    position: relative;
-    width: 250px;
-    height: 166px;
-    background-size: cover;
-    background-blend-mode: screen;
-    border-radius: 10px;
-   
+  position: relative;
+  width: 250px;
+  height: 166px;
+  background-size: cover;
+  background-blend-mode: screen;
+  border-radius: 10px;
+
 }
+
 .tools {
   background-image: linear-gradient(to right, #eb4040, #eb4040), url(../img/tools-ga351a9cd6_250.jpg);
-margin-right: 2%;
+  margin-right: 2%;
 }
+
 .plumber {
-  background-image: linear-gradient(to right, #ed5407dc, #ed5407dc), url(../img/plumbing-gc34751c1c_250.jpg);
+  background-image: linear-gradient(to right, #ed6f07dc, #ed6f07dc), url(../img/plumbing-gc34751c1c_250.jpg);
 }
-.painter{
+
+.painter {
   margin-right: 2%;
-  background-image: linear-gradient(to right, #f0632cd9,#f0632cd9), url(../img/paint-brush-g5165d4524_250.jpg);  
+  background-image: linear-gradient(to right, #f0632cd9, #f0632cd9), url(../img/paint-brush-g5165d4524_250.jpg);
 }
-.floorLayer{
+
+.floorLayer {
   margin-right: 2%;
-  background-image: linear-gradient(to right, #fee907ac,#f3b408da), url(../img/tiler-g13aaf9b5e_250.jpg);  
+  background-image: linear-gradient(to right, #f0632cd9, #f0632cd9), url(../img/tiler-g13aaf9b5e_250.jpg);
 }
-.painter:hover, .tools:hover, .floorLayer:hover, .plumber:hover{
- cursor: pointer;
+
+.painter:hover,
+.tools:hover,
+.floorLayer:hover,
+.plumber:hover {
+  cursor: pointer;
 
 }
-.painter_h4, .tools_h4, .floorLayer_h4, .plumber_h4{
-color: white;
+
+.painter_h4,
+.tools_h4,
+.floorLayer_h4,
+.plumber_h4 {
+  color: white;
   padding: 1rem 1.5rem;
   font-weight: 300;
   text-transform: uppercase;
@@ -321,30 +331,35 @@ color: white;
   top: 50px;
   left: 50px;
   width: 75%;
-  
+
 
 }
 
-.painter_h4_span, .tools_h4_span, .floorLayer_h4_span, .plumber_h4_span{
+.painter_h4_span,
+.tools_h4_span,
+.floorLayer_h4_span,
+.plumber_h4_span {
 
-padding: 5px 5px;
-margin-top: 2px;
--webkit-box-decoration-break: clone;
+  padding: 5px 5px;
+  margin-top: 2px;
+  -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
 
-.painter_h4_span{
-background-image: linear-gradient(to right, #f0632cd2, #f0632ce6);
+.painter_h4_span {
+  background-image: linear-gradient(to right, #f0632cd2, #f0632ce6);
 }
-.plumber_h4_span{
-background-image: linear-gradient(to right, #ed5407dc, #ed5407dc);
-}
-.tools_h4_span{
-background-image: linear-gradient(to right, #eb4040, #eb4040);
 
+.plumber_h4_span {
+  background-image: linear-gradient(to right, #ed6f07dc, #ed6f07dc);
 }
-.floorLayer_h4_span{
-background-image: linear-gradient(to right, #f3b408da, #f3b408da);
+
+.tools_h4_span {
+  background-image: linear-gradient(to right, #eb4040, #eb4040);
 
 }
 
+.floorLayer_h4_span {
+  background-image: linear-gradient(to right, #c74715dd, #c74715dd);
+
+}
