@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,51 +10,114 @@ body {
     font-family: 'Karla', sans-serif;
 }
 
+
+.logo {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+
 ul {
     width: 300%;
     margin-left: -30%;
-
 }
 
 li {
     display: inline;
     list-style-type: none;
-
     margin-left: 10%;
     font-size: 105%;
     padding-top: 10px;
-
     font-family: "Lora", serif;
 }
+
+/* MAIN CONTAINER STYLE */
 
 .appContainer {
     position: sticky;
     top: 0;
 }
 
-.navbar {
- 
+/* HEADER MAIN STYLES */
+
+.header {
     display: flex;
-    position: fixed;
+    flex-direction: row;
+    align-items: center;
     height: 100px;
-    background-image: linear-gradient(to left, #ffb900, #ffb900, #ff7730);
+    width: 100%;
+    background: linear-gradient(to left, #ffb900, #ffb900, #ff7730);
+}
 
+.menu_buttons_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
 
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 45px;
+    margin-left: 20px;
+    width: 250px;
 }
 
 .logo {
-    margin-left: 11%;
-    text-transform: uppercase;
+    margin-left: 120px;
+}
+
+.menu_link {
+    text-decoration: none;
+    color: #333;
+    text-align: right;
+    width: 60px;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.menu_link:hover {
+    font-weight: 600;
+    color: #333;
+}
+
+.btn_nav {
+    width: 120px;
+    color: #333;
+    padding: 7px 11px;
+    border-radius: 8px;
+    border: none;
     font-weight: 700;
-    font-size: 48px;
 }
 
-.btn_main {
-    display: flex;
-    padding-right: 3%;
-    margin: 0 25px;
+.btn_nav:hover {
+    background-color: #fff;
+    color: #DA4B44;
+    transition: 0.5s ease-in-out;
 }
 
+.btn_nav_red {
+    width: 120px;
+    background-color: #DA4B44;
+    color: #fff;
+    padding: 7px 11px;
+    margin: 0 20px 0 0;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+}
+
+<<<<<<< HEAD
+.btn_nav_red:hover {
+    background-color: #BFC9CA;
+    color: #333;
+    transition: 0.5s ease-in-out;
+=======
 .loginBtn{
 background-color: #090401;
 color: white;
@@ -80,17 +142,14 @@ color: #090401;
     border-width: 1px;
     border-color: #090401;
     color: #090401;
+>>>>>>> c99c9145bb5e7e5ad3f7fa3b50b8911c5a270269
 }
 
 .navlink {
     letter-spacing: 1px;
     text-align: center;
     text-decoration: none;
-
     color: black;
-
-
-
 }
 
 .form {
@@ -125,13 +184,19 @@ color: #090401;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: absolute;
     left: 40%;
     top: 7%;
+<<<<<<< HEAD
+    z-index: 0;
+    padding: 3%;
+=======
     z-index: 1;
     padding: 4%;
+>>>>>>> c99c9145bb5e7e5ad3f7fa3b50b8911c5a270269
     background-color: rgb(255, 255, 255);
-    width: 50vh;
+    width: 26vw;
     min-height: 40vh;
     visibility: visible;
     border-radius: 10px;
@@ -170,18 +235,61 @@ color: #090401;
 
 }
 
-/* MEDIA QUERIES To Do */
+.btn_send {
+    margin-top: 15px;
+    padding: 10px 11px;
+}
 
-/* .navbar-toggler {
+/* MEDIA QUERIES STYLES */
+
+@media screen and (max-width:765px){
+  .header {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-}
+    margin-left: 0;
+    margin-top: 25px;
+  }
 
-.navbar-collapse {
-    width: 100%;
-    background-color:#f8d815;
-    padding: 50px;
-    margin-top: 12px;
-} */
+  span {
+    text-align: center;
+  }
+
+  .menu_buttons_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+  }
+
+  .menu_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 5px 0;
+  }
+
+  .btn_nav_red {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .popup_form {
+    width: 80vw;
+    left: 10%;
+  }
+}

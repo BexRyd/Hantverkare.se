@@ -98,6 +98,7 @@ margin-right: 5%;
 
 .ErrorPopup{
     width: 300px;
+    padding: 5%;
     height: auto;
     background-color: white;
     display: flex;
@@ -107,6 +108,13 @@ margin-right: 5%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     top: 100px;
     text-align: center;
+    border-radius: 8px;
+}
+
+.error_h3 {
+    font-weight: 700;
+    font-size: 20px;
+    color: #da4b44;
 }
 
 .addsBtn, .optionBtn  {
