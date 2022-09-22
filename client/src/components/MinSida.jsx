@@ -25,11 +25,14 @@ export default function MinSida(props) {
   const [newAdd, setNewAdd] = useState(false);
   const [settings, setSettings] = useState(false);
   const [newAddPopup, setNewAddPopup] = useState(false);
+  const [userInfo, setUserInfo] = useState([])
+  const [toggle, setToggle] = useState(false)
 
   const [AddsIdPopup, setAddsIdPopup] = useState("");
   const [titlePopup, setTitlePopup] = useState("");
   const [descriptionPopup, setDescriptionPopup] = useState("");
   const [emailPopup, setEmailPopup] = useState("");
+  const [showEmail, setShowEmail] = useState("");
   const [imgPopup, setImgPopup] = useState("");
   const [popUpAdds, setPopUpAdds] = useState(false);
 
@@ -53,6 +56,14 @@ export default function MinSida(props) {
 
 
     }
+  }
+
+  function showInfo(id) {
+    const index = useradds[id];
+    if (index == useradds[id]) {
+      setShowEmail(useradds[id].email);
+    }
+
   }
 
 
@@ -156,21 +167,33 @@ export default function MinSida(props) {
 
           >Mina Annonser</button>
           <button className='optionBtn '
+
             onClick={() => {
-              get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
               setMyAdds(false);
               setNewAdd(false);
               setSettings(true);
+
+
+
+
             }}
           >Inställningar</button>
           <button className='optionBtn '
             onClick={() => {
+              get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
               setMyAdds(false);
               setNewAdd(true);
               setSettings(false);
             }}
           >Lägg till annons</button>
         </div>
+
+
+
+
+
+
+
         {newAdd ? (
           <div className='uploadAdd-Container'>
             <p className="newAdd--close_form" onClick={() => {
@@ -249,6 +272,36 @@ export default function MinSida(props) {
           </div>
         ) : null}
 
+        {settings ? (
+
+
+
+          <div className='test'>
+            <h2>Ändra Namn och Email</h2>
+            <p className="newInfo--close_form" onClick={() => {
+              setSettings(false)
+            }}
+            >&times; </p>
+
+
+            <p >{props.authorized.user.name}</p>
+            <p >{props.authorized.user.email}</p>
+
+            <input className='nameInput' placeholder='Ange nytt namn'></input>
+            <input className='emailInput' placeholder='Ange ny email-adress'></input>
+            <button className='changeBtn'>
+              Ändra
+            </button>
+
+
+
+          </div>
+
+
+        ) : null}
+
+
+
 
 
         <div className='blurr'
@@ -293,6 +346,8 @@ export default function MinSida(props) {
 
             </div>
           ) : null}
+
+
 
 
 
