@@ -83,16 +83,13 @@ margin-right: 5%;
     
 }
 
-.userOptions{
-   
-    position: relative;
+.userOptions {
     display: flex;
     align-items: center;
-   margin: 2%;
-   margin-left: 35%;
+    margin: 2%;
+    margin-left: 35%;
     flex-direction: row;
-    
-  
+   
 }
 
 
