@@ -49,17 +49,17 @@ router.patch("/resetPassword/:token", authController.resetPassword, (request, re
 
 
 
-router.patch("/updateMe", authController.protect, userController.updateMe, (request,response)=>{
+router.patch("/updateMe", authController.protect, userController.updateMe, (request, response) => {
 
   response.json({
-    status:"success",
+    status: "success",
     method: request.method
   })
 })
-router.patch("/updateMyPassword", authController.protect, authController.updatePassword, (request,response)=>{
+router.patch("/updateMyPassword", authController.protect, authController.updatePassword, (request, response) => {
 
   response.json({
-    status:"success",
+    status: "success",
     method: request.method
   })
 })
@@ -72,9 +72,9 @@ router.get("/users", authController.protect, userController.getAllUsers, (reques
   })
 });
 
-router.delete("/delete/:userId",authController.protect,  authController.restrictTo("admin"), userController.deleteUser, (request, response)=>{
+router.delete("/delete/:userId", authController.protect, authController.restrictTo("admin"), userController.deleteUser, (request, response) => {
   response.json({
-    status:"success",
+    status: "success",
     method: request.method
   })
 })

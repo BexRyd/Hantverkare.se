@@ -4,7 +4,7 @@ const fetchUtility = (url, method, body) => {
 
   }
 
-  if (method === 'POST' || method === 'PUT') {
+  if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
     options.headers = {
       "Content-Type": "application/json",
 
@@ -30,6 +30,8 @@ const post = (url, body) => fetchUtility(url, "POST", body);
 
 const put = (url, body) => fetchUtility(url, "PUT", body);
 
+const patch = (url, body) => fetchUtility(url, "PATCH", body);
+
 const erase = (url) => fetchUtility(url, "DELETE");
 
-export { get, post, put, erase };
+export { get, post, put, erase, patch };
