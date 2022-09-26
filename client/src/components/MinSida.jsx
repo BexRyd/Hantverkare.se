@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { post, get, erase } from "../utility/fetchHealper"
+import { post, get, erase, patch, put } from "../utility/fetchHealper"
 import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
@@ -35,6 +35,8 @@ export default function MinSida(props) {
   const [showEmail, setShowEmail] = useState("");
   const [imgPopup, setImgPopup] = useState("");
   const [popUpAdds, setPopUpAdds] = useState(false);
+  const [newName, setNewName] = useState("")
+  const [newEmail, setNewEmail] = useState("")
 
   //usestate for changing add
 
@@ -86,6 +88,14 @@ export default function MinSida(props) {
     setChangeDescriptionPopup(descriptionPopup)
 
   }, [descriptionPopup])
+
+  useEffect(() => {
+    setNewEmail(newEmail)
+  }, [newEmail])
+
+  useEffect(() => {
+    setNewName(newName)
+  }, [newName])
 
   useEffect(() => {
 
@@ -284,13 +294,25 @@ export default function MinSida(props) {
             >&times; </p>
 
 
-            <p >{props.authorized.user.name}</p>
-            <p >{props.authorized.user.email}</p>
+            <p >Aktuellt namn : {props.authorized.user.name}</p>
+            <p >Aktuell email : {props.authorized.user.email}</p>
 
-            <input className='nameInput' placeholder='Ange nytt namn'></input>
-            <input className='emailInput' placeholder='Ange ny email-adress'></input>
-            <button className='changeBtn'>
-              Ändra
+
+            <input className='nameInput' placeholder='Ange nytt namn' onChange={(e) => setNewName(e.target.value)} ></input>
+            <input className='emailInput' placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)} ></input>
+
+
+            <button className='changeBtn' onClick={() => {
+              patch("/updateMe", {
+                name: newName,
+                email: newEmail
+              })
+              props.authorized.user.name = newName
+              props.authorized.user.email = newEmail
+              setSettings(false)
+
+            }}>
+              Spara
             </button>
 
 
