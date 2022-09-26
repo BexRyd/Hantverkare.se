@@ -56,15 +56,17 @@ export default function MinSida(props) {
   }
    
 
-useEffect(()=>{
+/* useEffect(()=>{
  
-  if(props.authorized){
+  if(props.authorized && useradds){
     
   get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
   console.log(useradds)
   }
+
+
   
-},[])
+},[]) */
 
 useEffect(()=>{
 uploadImage()
@@ -161,6 +163,7 @@ useEffect(()=>{
          ><h4 className="myAdds_h4"><span className="myAdds_h4_span">Mina Annonser</span></h4></div>
          <div className='optionBox_settings '
          onClick={()=>{
+
            get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data))
           setMyAdds(false);
           setNewAdd(false);
@@ -216,7 +219,7 @@ useEffect(()=>{
                       setMyAdds(false);
                     }}
                     >&times; </p>
-      { props.authorized?(
+      { props.authorized && useradds?(
       useradds.map((add, id) => {
         return (
          
@@ -248,7 +251,7 @@ useEffect(()=>{
             
           
         );
-      })):null}
+      })): <p>Du har inga annonser</p>}
       {/* <UserAdds useradds={useradds} authorized={props.authorized}/> */}
       </div>
      ):null}
