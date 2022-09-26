@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { post, get, erase, put } from "../utility/fetchHealper"
+import { post, get, erase, put, patch } from "../utility/fetchHealper"
 import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
@@ -384,23 +384,39 @@ useEffect(()=>{
               >ta bort annons</button>
               <button
               className="addsBtn"
-              onClick={()=>setChangeAdds(true)}
+              onClick={()=>{setChangeAdds(true)
+              setImageUrl(imgPopup) 
+              }}
+             
               
               >ändra annons</button>
               </div>
            ):
            <button
           onClick={()=>{
-            put(`myPage/${AddsIdPopup}`,{
-             
+            if(imageUrl!==""){
+            put(`/updateMyAdd/${AddsIdPopup}`,{
+                 
+              
                   img: imageUrl,
                   heading: changeTitlePopup,
                   description: changeDescriptionPopup,
                   category: category,
                   email: userEmail
 
-            })
-               
+            }).then( get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data)))}
+            else{
+               put(`/updateMyAdd/${AddsIdPopup}`,{
+                
+                  heading: changeTitlePopup,
+                  description: changeDescriptionPopup,
+                  category: category,
+                  email: userEmail
+
+            }).then( get(`/myPage/${props.authorized.user.email}`).then((response)=> setUserAdds(response.data)))
+            }
+              handlePopUp();
+              
           }}
            >Spara</button>
 

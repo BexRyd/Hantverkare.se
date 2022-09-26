@@ -95,7 +95,7 @@ router.delete("/myAdd/:AddsId",authController.protect, addsController.deleteAdds
     
   });
 })
-router.patch("/updateMyAdd/:AddsId",authController.protect, addsController.updateOneAdd, (request, response) => {
+router.put("/updateMyAdd/:AddsId",authController.protect, addsController.updateOneAdd, (request, response) => {
   
 
   response.json({

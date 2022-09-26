@@ -128,11 +128,14 @@ createAdds = (req, res) => {
 
 updateOneAdd = async(req,res)=>{
 
-    const body= req.body;
+   const body = req.body
 
-    if(!body){
-      return res.status(400).json({ success:false, message:"error"})
-    }
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: 'cant find an add to update',
+    })
+  }
     await Adds.findOneAndUpdate({_id:req.params.AddsId},{
       $set:{
          
@@ -141,16 +144,57 @@ updateOneAdd = async(req,res)=>{
   img: req.body.img,
   category: req.body.category
       }
-     }, (err, add)=>{
-      if(err){ return res.status(400).json({err:err, message:"error"})}
-      return res.status(200).json({
+     }, (err, add) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: 'add not found!',
+      })
+
+    }
+    return res.status(200).json({
       success: true,
       id: add._id,
       message: 'add updated!',
+    })
+
+     }).clone().catch(err => console.log(err))
+  
+}
+
+
+
+updateAdds = async (req, res) => {
+  const body = req.body
+
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: 'cant find an add to update',
+    })
+  }
+
+
+  await Adds.updateMany({ email: req.params.email }, {
+    $set: {
+      email: req.body.email,
+
+    }
+  }, (err, add) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: 'Education not found!',
       })
 
-     }).clone()
-  
+    }
+    return res.status(200).json({
+      success: true,
+      id: add._id,
+      message: 'add updated!',
+    })
+
+  }).clone().catch(err => console.log(err))
 }
 
 
