@@ -29,26 +29,19 @@
 
 }
 
-.test {
-    width: 400px;
-    height: auto;
-    margin-top: 2%;
-    margin-bottom: 10%;
-    flex-direction: column;
+.changeAdd_Container {
     display: flex;
-    align-items: center;
-    position: relative;
-    padding-top: 2%;
-    padding-left: 2%;
-    padding-bottom: 2%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    flex-direction: row;
 
+}
+
+.change_img {
+    margin-right: 5%;
 }
 
 .userAdds {
     display: flex;
     flex-direction: row;
-
     width: 70%;
     margin: 1%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -65,20 +58,6 @@
     line-height: 1;
 }
 
-
-.newInfo--close_form {
-    color: black;
-    position: absolute;
-    top: 1%;
-    left: 90%;
-    font-size: 3rem;
-    text-decoration: none;
-
-    line-height: 1;
-
-}
-
-.newInfo--close_form:hover,
 .newAdd--close_form:hover,
 .Adds--close_form:hover {
     cursor: pointer;
@@ -100,16 +79,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
 
 
-}
 
-.userOptions {
-    width: 500px;
-    position: fixed;
-    top: 20%;
-    left: 5%;
+
+
 }
 
 .userOptions {
@@ -170,33 +146,6 @@
 
 }
 
-.emailInput,
-.nameInput {
-    width: 300px;
-    border: solid;
-    border-radius: 2px;
-
-}
-
-.test {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    gap: 5px;
-    width: 500px;
-
-}
-
-.changeBtn {
-    width: 60px;
-    border-radius: 5px;
-    color: #f8d815;
-    background-color: black;
-
-
-}
-
 .myAdds_h4,
 .newAdd_h4,
 .settings_h4 {
@@ -249,4 +198,47 @@
 
 .newAdd_h4_span {
     background-image: linear-gradient(to right, #f0632cd2, #f0632ce6);
+}
+
+.test {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 5px;
+    width: 500px;
+
+}
+
+.test {
+    width: 400px;
+    height: auto;
+    margin-top: 2%;
+    margin-bottom: 10%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.emailInput,
+.nameInput {
+    width: 300px;
+    border: solid;
+    border-radius: 2px;
+
+}
+
+changeBtn {
+    width: 60px;
+    border-radius: 5px;
+    color: #f8d815;
+    background-color: black;
+
+
 }

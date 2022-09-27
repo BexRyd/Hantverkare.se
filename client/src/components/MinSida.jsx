@@ -74,7 +74,7 @@ export default function MinSida(props) {
     if (props.authorized) {
 
       get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
-      console.log(useradds)
+
     }
 
   }, [])
@@ -302,6 +302,12 @@ export default function MinSida(props) {
 
 
             <button className='changeBtn' onClick={() => {
+              console.log(props.authorized.user.email)
+
+              patch(`/myPage/${props.authorized.user.email}`, {
+                email: newEmail
+              })
+
               patch("/updateMe", {
                 name: newName,
                 email: newEmail
@@ -309,6 +315,8 @@ export default function MinSida(props) {
               props.authorized.user.name = newName
               props.authorized.user.email = newEmail
               setSettings(false)
+
+
 
             }}>
               Spara
