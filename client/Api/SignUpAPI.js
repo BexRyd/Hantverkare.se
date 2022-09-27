@@ -72,7 +72,7 @@ router.get("/users", authController.protect, userController.getAllUsers, (reques
   })
 });
 
-router.delete("/delete/:userId",authController.protect,  authController.restrictTo("admin"), userController.deleteUser, (request, response)=>{
+router.delete("/delete/:userId",authController.protect, userController.deleteUser, (request, response)=>{
   response.json({
     status:"success",
     method: request.method

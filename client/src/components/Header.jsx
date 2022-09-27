@@ -52,23 +52,32 @@ function Header(props) {
         <div className="menu_buttons_container">
           <NavLink to="/" className='menu_link'>Hem</NavLink>
           <NavLink to="/Adds" className='menu_link'>Annonser</NavLink>
-          {autorized?(
+          {props.login?(
           <NavLink to="/MinSida" className='menu_link'>Minsida</NavLink>
           )
           :null
             }
           <div className='buttons'>
-              {autorized ? (<button className='btn_nav_red' onClick={() => {
+            {console.log(props.login)}
+              {!props.login? (
+              
+              (<button className='btn_nav_red' onClick={() => {
+
+                  handlePopUp(setLogin);
+                  
+                }}>Logga in</button>) )
+
+                : ( <button className='btn_nav_red' onClick={() => {
+                props.setLogginPage("");
+                
+                get("/logout")
+              }}>Logga ut</button> ) }
+
+               {/* { props.authorized!==""?( <button className='btn_nav_red' onClick={() => {
                 props.setLogginPage("");
                 setAutorized("");
                 get("/logout")
-              }}>Logga ut</button>)
-
-                : (<button className='btn_nav_red' onClick={() => {
-
-                  handlePopUp(setLogin);
-
-                }}>Logga in</button>)}
+              }}>Logga ut</button> ): null} */}
 
 
               <div className='blurr'
@@ -92,7 +101,7 @@ function Header(props) {
                       <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={e=> setLoginEmail(e.target.value)}/>
+                          <Form.Control  type="email" placeholder="Ange e-post" onChange={e=> setLoginEmail(e.target.value)}/>
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
@@ -100,7 +109,7 @@ function Header(props) {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Lösenord</Form.Label>
-                          <Form.Control type="password" placeholder="Ange lösenord" onChange={ e=> setLoginPassword(e.target.value)}/>
+                          <Form.Control   type="password" placeholder="Ange lösenord" onChange={ e=> setLoginPassword(e.target.value)}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
@@ -118,12 +127,15 @@ function Header(props) {
 
   
                         }).then((response) =>{ 
-                          props.setLogginPage(response.data)
+                         
                          // props.setUser(response.data)
-                          setAutorized(true)
+                         
                           
                          if (response.data) {
+                           props.setLogginPage(response.data)
                        handlePopUp(setLogin);
+                        setLoginEmail("");
+                        setLoginPassword("");
                     }
                     else{
                       handlePopUp(setErrorLogin);
@@ -202,19 +214,25 @@ function Header(props) {
                           <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                           </Form.Group>
-                          <Button variant="primary"
+                        </Form>
+                        <button variant="primary"
                             onClick={() => {
                               post("/signUp", {
                                 name: name,
                                 email: email,
                                 password: password,
                                 passwordConfirm: passwordConfirm
+                              }).then((response)=>{
+                                   if (response.data) {
+                       handlePopUp(setRegistrera);
+                            }
                               })
-                            }}
+
+
+                             }}
                           >
                             Registrera dig
-                          </Button>
-                        </Form>
+                          </button>
                       </div>
                     </div>
                   </div>

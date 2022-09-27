@@ -32,6 +32,9 @@ export default function MinSida(props) {
   const [emailPopup, setEmailPopup] = useState("");
   const [imgPopup, setImgPopup] = useState("");
   const [popUpAdds, setPopUpAdds] = useState(false);
+  const [categoryPopup,setCategoryPopup] = useState("")
+
+  const [deleteUser, setDeleteUser] = useState(false);
 
   //usestate for changing add
 
@@ -50,6 +53,7 @@ export default function MinSida(props) {
       setImgPopup(useradds[id].img);
       setEmailPopup(useradds[id].email);
       setAddsIdPopup(useradds[id]._id);
+      setCategoryPopup(useradds[id].category);
 
     
     }
@@ -178,6 +182,15 @@ useEffect(()=>{
          }}
          ><h4 className="newAdd_h4"><span className="newAdd_h4_span"> Lägg till annons</span></h4></div>
         </div>
+
+
+  
+
+          
+
+          
+
+
         {newAdd?(
         <div className='uploadAdd-Container'>
             <p className="newAdd--close_form" onClick={() => {
@@ -324,9 +337,11 @@ useEffect(()=>{
               <div className='changeAdd_Container'>
                 <img className="popUp--img change_img" src={imageUrl}></img>
                 <div>
+                   <p>{category}</p>
             <h3 className="popUp--title">{changeTitlePopup}</h3>
              <p className="popUp--description">{changeDescriptionPopup}</p>
              <p>{emailPopup}</p>  
+
              </div>
         
             
@@ -340,6 +355,14 @@ useEffect(()=>{
             {changeAdds?(
               <div className='change-box'>
                  <input className="img_input" id="addImg_input"  type="file" name='file'  placeholder="Ladda upp en bild" onChange={(e)=>{setImg(e.target.files[0])}}></input>
+                  <select value={category} onChange={(e) => setCategory(e.target.value)}
+          >
+
+            <option value="Målare">Målare</option>
+            <option value="Snickare">Snickare</option>
+            <option value="Rörmokare">Rörmokare</option>
+            <option value="Golvläggare">Golvläggare</option>
+          </select>
            
             <input type="text"  placeholder="Rubrik" onChange={(e)=>{setChangeTitlePopup(e.target.value)
              
@@ -356,6 +379,7 @@ useEffect(()=>{
 
             (<div>
               <img className="popUp--img" src={imgPopup}></img>
+              <p>{categoryPopup}</p>
             <h1 className="popUp--title">{titlePopup}</h1>
              <p className="popUp--description">{descriptionPopup}</p>
              <p>{emailPopup}</p>  
@@ -386,6 +410,7 @@ useEffect(()=>{
               className="addsBtn"
               onClick={()=>{setChangeAdds(true)
               setImageUrl(imgPopup) 
+              setCategory(categoryPopup)
               }}
              
               

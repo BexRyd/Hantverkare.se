@@ -189,3 +189,9 @@ margin-right: 5%;
 .newAdd_h4_span {
     background-image: linear-gradient(to right, #f0632cd2, #f0632ce6);
 }
+
+.deleteUser{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
