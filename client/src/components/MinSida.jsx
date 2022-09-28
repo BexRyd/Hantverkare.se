@@ -386,13 +386,18 @@ export default function MinSida(props) {
 
         ) : null}
 
-        <div className='test'>
+
+        {settings ? (
+
+
 
           <button className='deleteBtn' onClick={() => {
             erase(`/deleteMe/${props.authorized.user._id}`)
           }}>Ta bort ditt konto</button>
 
-        </div>
+
+
+        ) : null}
 
 
 

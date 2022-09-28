@@ -234,11 +234,20 @@
 
 }
 
-changeBtn {
+.changeBtn {
     width: 60px;
     border-radius: 5px;
-    color: #f8d815;
-    background-color: black;
+
+
+
+
+}
+
+.deleteBtn {
+    width: 150px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
 
 
 }
