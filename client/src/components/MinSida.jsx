@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { post, get, erase, put, patch } from "../utility/fetchHealper"
-import "./../css/Adds.css"
+/* import "./../css/Adds.css" */
 import "./../css/MinSida.css"
 import Axios from "axios"
 import {Image} from "cloudinary-react"
@@ -149,7 +149,7 @@ useEffect(()=>{
   } */
   return (
 
-    <div>
+  
       
       <div className='pageContainer'>
        
@@ -459,6 +459,6 @@ useEffect(()=>{
 
       
       </div>
-    </div >
+    
   )
 }
