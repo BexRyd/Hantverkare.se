@@ -52,14 +52,14 @@ function Header(props) {
         <div className="menu_buttons_container">
           <NavLink to="/" className='menu_link'>Hem</NavLink>
           <NavLink to="/Adds" className='menu_link'>Annonser</NavLink>
-          {props.login?(
+          {!props.login?(
           <NavLink to="/MinSida" className='menu_link'>Minsida</NavLink>
           )
           :null
             }
           <div className='buttons'>
             {console.log(props.login)}
-              {!props.login? (
+              {props.login? (
               
               (<button className='btn_nav_red' onClick={() => {
 
