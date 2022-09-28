@@ -47,33 +47,24 @@ updateAdds = async (req, res) => {
   const body = req.body
 
   if (!body) {
-    return res.status(400).json({
-      success: false,
-      error: 'cant find an add to update',
-    })
+    return res.send({ reason: ' error' });
   }
 
 
-  await Adds.updateMany({ email: req.params.email }, {
-    $set: {
-      email: req.body.email,
+  await Adds.updateMany({ email: req.params.email }, { $set: { email: body.email, } }, {
+    upsert: true, returnNewDocument: true
+  },
 
-    }
-  }, (err, add) => {
-    if (err) {
-      return res.status(404).json({
-        err,
-        message: 'Education not found!',
-      })
 
-    }
-    return res.status(200).json({
-      success: true,
-      id: add._id,
-      message: 'add updated!',
-    })
 
-  }).clone().catch(err => console.log(err))
+    (err, add) => {
+      if (err) {
+        return res.status(404).json({ message: 'not found!', })
+      }
+      return res.status(200).json({ success: true, data: add, })
+
+
+    }).clone().catch(err => console.log(err))
 }
 
 
