@@ -95,6 +95,15 @@ router.delete("/myAdd/:AddsId", authController.protect, addsController.deleteAdd
 
   });
 })
+router.put("/updateMyAdd/:AddsId",authController.protect, addsController.updateOneAdd, (request, response) => {
+  
+
+  response.json({
+    status: "success",
+    method: request.method,
+    
+  });
+})
 
 router.put("/myage/:serviceid", (request, response) => {
 

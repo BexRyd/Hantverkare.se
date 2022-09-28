@@ -158,6 +158,79 @@ createAdds = (req, res) => {
 
 }
 
+updateOneAdd = async(req,res)=>{
+
+   const body = req.body
+
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: 'cant find an add to update',
+    })
+  }
+    await Adds.findOneAndUpdate({_id:req.params.AddsId},{
+      $set:{
+         
+  heading: req.body.heading,
+  description: req.body.description,
+  img: req.body.img,
+  category: req.body.category
+      }
+     }, (err, add) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: 'add not found!',
+      })
+
+    }
+    return res.status(200).json({
+      success: true,
+      id: add._id,
+      message: 'add updated!',
+    })
+
+     }).clone().catch(err => console.log(err))
+  
+}
+
+
+
+updateAdds = async (req, res) => {
+  const body = req.body
+
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: 'cant find an add to update',
+    })
+  }
+
+
+  await Adds.updateMany({ email: req.params.email }, {
+    $set: {
+      email: req.body.email,
+
+    }
+  }, (err, add) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: 'Education not found!',
+      })
+
+    }
+    return res.status(200).json({
+      success: true,
+      id: add._id,
+      message: 'add updated!',
+    })
+
+  }).clone().catch(err => console.log(err))
+}
+
+
+
 deleteAdds = async (req, res) => {
   try {
     await Adds.findOneAndDelete({ _id: req.params.AddsId }, (err, Add) => {
@@ -178,4 +251,4 @@ deleteAdds = async (req, res) => {
 
 
 
-module.exports = { getAdds, createAdds, deleteAdds, getUserAdds, getPainter, getPlumber, getCarpenter, getFloorLayer, searchAdds, updateAdds }
+module.exports = { getAdds, createAdds, deleteAdds, getUserAdds, getPainter, getPlumber, getCarpenter, getFloorLayer, searchAdds, updateOneAdd, updateAdds }
