@@ -37,6 +37,11 @@ export default function MinSida(props) {
   const [popUpAdds, setPopUpAdds] = useState(false);
   const [newName, setNewName] = useState("")
   const [newEmail, setNewEmail] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [currentPassword, setCurrentPassword] = useState("")
+
+
 
   //usestate for changing add
 
@@ -325,6 +330,57 @@ export default function MinSida(props) {
 
 
           </div>
+
+
+
+
+        ) : null}
+        {settings ? (
+
+
+
+          <div className='test'>
+            <h2>Ändra Lösenord</h2>
+            <p className="newInfo--close_form" onClick={() => {
+              setSettings(false)
+            }}
+            >&times; </p>
+
+
+
+
+
+
+            <input className='nameInput' placeholder='Ange ditt lösenord ' onChange={(e) => setCurrentPassword(e.target.value)} ></input>
+            <input className='nameInput' placeholder='Ange ditt nya lösenord ' onChange={(e) => setNewPassword(e.target.value)} ></input>
+            <input className='nameInput' placeholder='bekräfta ditt nya lösenord ' onChange={(e) => setConfirmPassword(e.target.value)} ></input>
+
+
+
+
+            <button className='changeBtn' onClick={() => {
+
+              patch("/updateMyPassword", {
+                password: newPassword,
+                passwordConfirm: confirmPassword,
+                passwordCurrent: currentPassword
+
+              })
+
+
+              setSettings(false)
+
+
+
+            }}>
+              Spara
+            </button>
+
+
+
+          </div>
+
+
 
 
         ) : null}
