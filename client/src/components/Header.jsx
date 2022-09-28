@@ -14,6 +14,7 @@ import Recaptcha from './ReCAPTCHA'
 
 
 
+
 function Header(props) {
 
   const [registrera, setRegistrera] = useState(false);
@@ -31,16 +32,21 @@ function Header(props) {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   
   const [autorized, setAutorized] = useState(false);
+  //const [checked, setChecked] = useState(false);
+ 
   
 
   /*   useEffect(() => {
      get("/login").then((response) => setLogin(response.data));
    }, []);  */
 
+
   const handlePopUp = (state) => {
     state(current => !current); //toggle
   }
 
+
+   
 // HEADER CONTAINER
 
   return (
@@ -92,7 +98,8 @@ function Header(props) {
                       <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={e=> setLoginEmail(e.target.value)}/>
+                          <Form.Control type="email" placeholder="Ange e-post" onChange={e=> setLoginEmail(e.target.value).this.state.email}/>
+                      
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
@@ -104,17 +111,17 @@ function Header(props) {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
-                        </Form.Group>
+                        </Form.Group >
                         <Recaptcha />
-                        <Button className='btn_send' variant="dark" pt-2
-                        
+                        <Button className='btn_send' type="submit" disabled id="login_btn" variant="dark" pt-2
+                         
                           onClick = {()=>{
                             post("/login",{
                                 
                                   
                                   email:loginEmail,
                                   password: loginPassword,
-                               
+                                  required:true,
 
   
                         }).then((response) =>{ 
@@ -124,6 +131,8 @@ function Header(props) {
                           
                          if (response.data) {
                        handlePopUp(setLogin);
+                     
+                      
                     }
                     else{
                       handlePopUp(setErrorLogin);
@@ -178,7 +187,7 @@ function Header(props) {
                     >&times; </p>
                     <div className="popup_login_form">
                       <h2 className='popUp--title_form'>Bli medlem</h2>
-                      <Form>
+                      <Form >
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>Ange namn</Form.Label>
                           <Form.Control type="text" placeholder="Ange namn" onChange={ (e) => setName(e.target.value)} />
