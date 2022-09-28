@@ -358,6 +358,7 @@ export default function MinSida(props) {
 
 
 
+
             <button className='changeBtn' onClick={() => {
 
               patch("/updateMyPassword", {
@@ -384,6 +385,14 @@ export default function MinSida(props) {
 
 
         ) : null}
+
+        <div className='test'>
+
+          <button className='deleteBtn' onClick={() => {
+            erase(`/deleteMe/${props.authorized.user._id}`)
+          }}>Ta bort ditt konto</button>
+
+        </div>
 
 
 

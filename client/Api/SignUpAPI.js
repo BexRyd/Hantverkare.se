@@ -79,4 +79,12 @@ router.delete("/delete/:userId", authController.protect, authController.restrict
   })
 })
 
+
+router.delete("/deleteMe/:userId", authController.protect, userController.deleteUser, (request, response) => {
+  response.json({
+    status: "success",
+    method: request.method
+  })
+})
+
 module.exports = router;
