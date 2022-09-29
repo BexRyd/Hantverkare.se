@@ -43,6 +43,9 @@ const [newName, setNewName] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [currentPassword, setCurrentPassword] = useState("")
 
+  const [comparePassword, setComparePassword] = useState("")
+  const [message, setMessage] = useState("")
+
  function showDetail(id) {
  const index = useradds[id];
  if (index == useradds[id]) {
@@ -56,15 +59,33 @@ const [newName, setNewName] = useState("")
  }
  }
 
-/* useEffect(()=>{
- if(props.authorized && useradds){
-
- get(`/myPage/${props.authorized.user.email}`).then((response)=>
-setUserAdds(response.data))
- console.log(useradds)
+ const handleSubmit = event =>{
+  event.preventDefault();
  }
 
-},[]) */
+function comparePass() {
+    if (newPassword === confirmPassword && message === "success") {
+      setComparePassword("ditt lösenord är ändrat!")
+
+    } else if (newPassword !== confirmPassword) {
+      setComparePassword("kunde inte hitta dej!")
+
+
+    } else if (newPassword == "" ||  confirmPassword == "" || currentPassword == "")
+      setComparePassword("")
+  }
+
+  useEffect(() => {
+    comparePass()
+
+  }, [message])
+
+
+  useEffect(() => {
+    setMessage("")
+
+  }, [confirmPassword, newPassword, currentPassword])
+
 useEffect(()=>{
 uploadImage()
 },[img])
@@ -244,16 +265,13 @@ upload",formData).then((response)=>console.log(response))
 
 
  {settings ? (
-   <div className='test'>
+   <form className='test'>
    <h2>Ändra Namn och Email</h2>
    <p className="newInfo--close_form" onClick={() =>
    { setSettings(false)}}>&times;
    </p>
-   <p >Aktuellt namn : {props.authorized.user.name}</p>
-   <p >Aktuell email : {props.authorized.user.email}
-   </p>
-   <input className='nameInput' placeholder='Ange nytt namn' onChange={(e) => setNewName(e.target.value)}></input>
-   <input className='emailInput' placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)}></input>
+   <input className='nameInput' required placeholder='Ange nytt namn' onChange={(e) => setNewName(e.target.value)}></input>
+   <input className='emailInput' required type="email"  placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)}></input>
    <button className='changeBtn' 
    onClick={() => {
       console.log(props.authorized.user.email)
@@ -264,30 +282,31 @@ upload",formData).then((response)=>console.log(response))
       setSettings(false)
    }}> Spara
   </button>
-  </div>
+  </form>
  ) : null}
 
 
  {settings ? (
-   <div className='test'>
+   <form onSubmit={handleSubmit} className='test'>
    <h2>Ändra Lösenord</h2>
    <p className="newInfo--close_form" onClick={() =>
    {setSettings(false)}}>&times; 
    </p>
-   <input className='nameInput' placeholder='Ange ditt lösenord ' onChange={(e) =>setCurrentPassword(e.target.value)} ></input>
-   <input className='nameInput' placeholder='Ange ditt nya lösenord ' onChange={(e) => setNewPassword(e.target.value)} ></input>
-   <input className='nameInput' placeholder='bekräfta ditt nya lösenord ' onChange={(e) =>setConfirmPassword(e.target.value)} ></input>
-   <button className='changeBtn' 
+   <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt lösenord ' onChange={(e) =>setCurrentPassword(e.target.value)} ></input>
+   <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt nya lösenord ' onChange={(e) => setNewPassword(e.target.value)} ></input>
+   <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='bekräfta ditt nya lösenord ' onChange={(e) =>setConfirmPassword(e.target.value)} ></input>
+   <button  className='changeBtn' 
    onClick={() => {
      patch("/updateMyPassword", {
      password: newPassword,
      passwordConfirm: confirmPassword,
      passwordCurrent: currentPassword
-    })
-    setSettings(false)
+    }).then((response) => setMessage(response.status))
+    setSettings(true)
    }}> Spara
  </button>
- </div>
+ <p>{comparePassword}</p>
+ </form>
  ) : null}
 
 
