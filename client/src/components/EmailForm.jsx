@@ -20,14 +20,10 @@ export const EmailForm = () => {
     <div className="contacts">
         <form className='email_form' ref={form} onSubmit={sendEmail}>
           <h3 className='form_h3'>Skicka meddelande:</h3>
-          <label>Namn</label>
-          <input type="text" name="sender_name" />
-          <label>Epost</label>
-          <input type="email" name="sender_email" />
-          <label>Telefonnummer</label>
-          <input type="phone" name="sender_phone" />
-          <label>Meddelande</label>
-          <textarea name="message" />
+          <input className='input_email' type="text" name="sender_name" />
+          <input className='input_email' type="email" name="sender_email" />
+          <input className='input_email' type="phone" name="sender_phone" />
+          <textarea className='input_textarea' name="message" />
           <input className='submit' type="submit" value="Send" />
         </form>
     </div>

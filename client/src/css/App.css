@@ -16,3 +16,16 @@ body,html {
     flex-direction: column;
     height: 100vh;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #333;     
+}
+::-webkit-scrollbar-thumb {
+  background-color: orange;    
+  border-radius: 1px;       
+  border: 3px solid orange;
+}
+

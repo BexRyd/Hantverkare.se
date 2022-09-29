@@ -11,7 +11,13 @@ import "./css/App.css";
 function App() {
 
   const [authorized, setAuthorized] = useState("");
-  const [user, setUser] = ([]);
+  const [login, setLogin]= useState(false)
+
+
+ useEffect(()=>{
+ setLogin(current => !current); 
+},[authorized])
+  
   return (
     <div className="appContainer">
       <Header 
@@ -19,15 +25,12 @@ function App() {
           setAuthorized(logginValue);
           
         }}
-       setUser={(logginValue) => {
-          setUser(logginValue);
-         
-        }}
+        login={login}
       />
       <Routes>
-        <Route path="/" element={<Home authorized={authorized} user={user}/>} />
-        <Route path="/Adds" element={<Adds authorized={authorized} user={user} />} />
-        <Route path="/MinSida" element={<MinSida authorized={authorized} user={user} />} />
+        <Route path="/" element={<Home authorized={authorized} />} />
+        <Route path="/Adds" element={<Adds authorized={authorized}  />} />
+        <Route path="/MinSida" element={<MinSida authorized={authorized}  />} />
       </Routes>
       <Footer />
     </div>

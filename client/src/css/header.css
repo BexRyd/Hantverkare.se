@@ -11,17 +11,14 @@ body {
 }
 
 
-.span {
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 1.3px;
+.logo_text_span {
+    font-size: 18px;
+    letter-spacing: 7.3px;
     text-transform: uppercase;
     text-decoration: none;
     color: #333;
-}
-
-.span:hover {
-    color:#333;
+    margin-left: 20px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 
@@ -53,9 +50,14 @@ li {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 100px;
+    height: 110px;
     width: 100%;
     background: linear-gradient(to left, #ffb900, #ffb900, #ff7730);
+}
+
+.logo_img {
+    margin-bottom: 15px;
+    width: 100px;
 }
 
 .menu_buttons_container {
@@ -76,7 +78,11 @@ li {
 }
 
 .logo {
-    margin-left: 120px;
+    margin-left: 80px;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .menu_link {
@@ -97,7 +103,7 @@ li {
     width: 120px;
     color: #333;
     padding: 7px 11px;
-    border-radius: 8px;
+    border-radius: 5px;
     border: none;
     font-weight: 700;
 }
@@ -114,7 +120,7 @@ li {
     color: #fff;
     padding: 7px 11px;
     margin: 0 20px 0 0;
-    border-radius: 8px;
+    border-radius: 5px;
     border: none;
     font-weight: 700;
 }
@@ -167,7 +173,7 @@ li {
     justify-content: center;
     position: absolute;
     left: 40%;
-    top: 3%;
+    top: 12%;
     z-index: 1;
     padding: 4%;
     background-color: rgb(255, 255, 255);
@@ -215,9 +221,36 @@ li {
     padding: 10px 11px;
 }
 
+/* FORM STYLES */
+
+.setForm_submit {
+    border: none;
+    border-radius: 7px;
+    padding: 10px 15px;
+    margin-top: 25px;
+    background-color: #333;
+    color: #fff;
+}
+
+button:disabled,
+button[disabled]{
+    cursor:not-allowed;
+}
+
+.form_login_input {
+    border: none;
+    padding: 5px 25px;
+    background-color: #ebeeee;
+    margin: 15px 0;
+    border-radius: 7px;
+}
+
+
+
 /* MEDIA QUERIES STYLES */
 
 @media screen and (max-width:765px){
+
   .header {
     flex-wrap: wrap;
     align-items: center;
@@ -234,6 +267,7 @@ li {
 
   span {
     text-align: center;
+    margin-bottom: 15px;
   }
 
   .menu_buttons_container {
@@ -241,6 +275,15 @@ li {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    padding: 20px 0;
+    background-color: rgb(51, 51, 51, 0.8);
+  }
+
+  .menu_link {
+    color: #fff;
   }
 
   .buttons {
@@ -264,7 +307,10 @@ li {
   }
 
   .popup_form {
-    width: 80vw;
-    left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 20px;
   }
 }

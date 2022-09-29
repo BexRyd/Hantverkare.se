@@ -203,7 +203,7 @@ export default function Adds(props) {
         }}
       >
         <div className="popUp">
-          <div>
+          <div className="popUp_content">
             <p className="popUp--close" onClick={handlePopUp}>
               &times;{" "}
             </p>
