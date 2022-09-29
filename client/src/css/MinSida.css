@@ -80,13 +80,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
-
-
-
-
+    position: relative;
+    z-index: -5;
+   
+    
 }
+
+
+
+
 
 .userOptions {
     display: flex;
@@ -94,7 +96,8 @@
     margin: 2%;
     margin-left: 35%;
     flex-direction: row;
-
+    z-index: -1;
+   
 }
 
 
