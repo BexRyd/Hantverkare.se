@@ -5,6 +5,7 @@ import "./../css/Adds.css"
 import "./../css/MinSida.css"
 import Axios from "axios"
 import { Image } from "cloudinary-react"
+
 /* import UserAdds from './userAdds' */
 
 
@@ -40,6 +41,8 @@ export default function MinSida(props) {
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [currentPassword, setCurrentPassword] = useState("")
+  const [comparePassword, setComparePassword] = useState("")
+  const [message, setMessage] = useState("")
 
 
 
@@ -65,13 +68,34 @@ export default function MinSida(props) {
     }
   }
 
-  function showInfo(id) {
-    const index = useradds[id];
-    if (index == useradds[id]) {
-      setShowEmail(useradds[id].email);
-    }
 
+
+  function comparePass() {
+    if (newPassword === confirmPassword && message === "success") {
+      setComparePassword("ditt lösenord är ändrat!")
+
+    } else if (newPassword !== confirmPassword) {
+      setComparePassword("kunde inte hitta dej!")
+
+
+    } else if (newPassword == "" || confirmPassword == "" || currentPassword == "")
+      setComparePassword("bananer i take gorillor i vassen")
   }
+
+
+  useEffect(() => {
+    comparePass()
+
+  }, [message])
+
+
+  useEffect(() => {
+    setMessage("")
+
+  }, [confirmPassword, newPassword, currentPassword])
+
+
+
 
 
   useEffect(() => {
@@ -106,6 +130,8 @@ export default function MinSida(props) {
     setNewName(newName)
   }, [newName])
 
+
+
   useEffect(() => {
 
     if (props.authorized) {
@@ -123,7 +149,7 @@ export default function MinSida(props) {
     if (props.authorized) {
 
       get(`/myPage/${props.authorized.user.email}`).then((response) => setUserAdds(response.data))
-      console.log(useradds)
+
     }
 
   }, [props.authorized])
@@ -290,7 +316,7 @@ export default function MinSida(props) {
 
 
 
-          <div className='test'>
+          <form className='test'>
             <h2>Ändra Namn och Email</h2>
             <p className="newInfo--close_form" onClick={() => {
               setSettings(false)
@@ -298,16 +324,15 @@ export default function MinSida(props) {
             >&times; </p>
 
 
-            <p >Aktuellt namn : {props.authorized.user.name}</p>
-            <p >Aktuell email : {props.authorized.user.email}</p>
 
 
-            <input className='nameInput' placeholder='Ange nytt namn' onChange={(e) => setNewName(e.target.value)} ></input>
-            <input className='emailInput' placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)} ></input>
+
+            <input className='nameInput' required placeholder='Ange nytt namn' onChange={(e) => setNewName(e.target.value)} ></input>
+            <input className='emailInput' required type="email" name="email" placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)} ></input>
 
 
-            <button className='changeBtn' onClick={() => {
-              console.log(props.authorized.user.email)
+            <button type='submit' className='changeBtn' onClick={() => {
+
 
               patch(`/myPage/${props.authorized.user.email}`, {
                 email: newEmail
@@ -319,17 +344,18 @@ export default function MinSida(props) {
               })
               props.authorized.user.name = newName
               props.authorized.user.email = newEmail
-              setSettings(false)
+              setSettings(true)
 
 
 
             }}>
+
               Spara
             </button>
 
 
 
-          </div>
+          </form>
 
 
 
@@ -361,21 +387,32 @@ export default function MinSida(props) {
 
             <button className='changeBtn' onClick={() => {
 
+
+
+
+
               patch("/updateMyPassword", {
                 password: newPassword,
                 passwordConfirm: confirmPassword,
                 passwordCurrent: currentPassword
 
-              })
+              }).then((response) => setMessage(response.status))
 
 
-              setSettings(false)
+
+
+
+              setSettings(true)
 
 
 
             }}>
               Spara
             </button>
+
+            <p>{comparePassword}</p>
+
+
 
 
 
@@ -576,3 +613,4 @@ export default function MinSida(props) {
     </div >
   )
 }
+
