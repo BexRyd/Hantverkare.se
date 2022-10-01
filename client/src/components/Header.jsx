@@ -169,7 +169,7 @@ function Header(props) {
 
                         <Recaptcha className='recaptcha_container'/>
 
-                        <button disabled={!formIsValid} className="setForm_submit" type="submit"  disabled id="login_btn"
+                        <button disabled={!formIsValid} className="setForm_submit" type="submit"  id="login_btn"
                         
                           onClick = {()=>{
                             post("/login",{

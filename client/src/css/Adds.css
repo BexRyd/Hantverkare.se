@@ -54,7 +54,7 @@ body {
   width: 200px;
   height: 150px;
   border-radius: 5px;
-  
+
 }
 
 .mainContainer {
@@ -63,7 +63,7 @@ body {
   z-index: -5;
   margin-bottom: 7%;
   scroll-behavior: smooth;
-;
+  ;
 
 }
 
@@ -140,10 +140,10 @@ body {
   color: rgba(0, 0, 0, 0.521);
 }
 
-.popUp--img{
+.popUp--img {
   max-width: 300px;
   max-height: 250px;
-  
+
 }
 
 .popUp--title {
@@ -198,21 +198,22 @@ body {
   color: #f8d815;
 }
 
-.changeTitle-box{
+.changeTitle-box {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
 
-  
-}
-.change-box{
-  display: flex;
-  flex-direction:column;
 
-  
 }
 
+.change-box {
+  display: flex;
+  flex-direction: column;
 
-.update-box{
+
+}
+
+
+.update-box {
   display: flex;
   flex-direction: row;
 }
@@ -263,7 +264,7 @@ body {
   justify-content: flex-end;
   width: 90px;
   height: 40px;
-  
+
 }
 
 .mainCategoryContainer {
@@ -277,7 +278,7 @@ body {
   z-index: -1;
 }
 
-.searchError{
+.searchError {
   text-align: center;
   color: #eb4040;
 }
@@ -296,20 +297,24 @@ body {
   border-radius: 10px;
    
 }
+
 .tools {
   background-image: linear-gradient(to right, #eb4040, #eb4040), url(../img/tools-ga351a9cd6_250.jpg);
-margin-right: 2%;
+  margin-right: 2%;
 }
+
 .plumber {
   background-image: linear-gradient(to right, #ed6f07dc, #ed6f07dc), url(../img/plumbing-gc34751c1c_250.jpg);
 }
-.painter{
+
+.painter {
   margin-right: 2%;
-  background-image: linear-gradient(to right, #f0632cd9,#f0632cd9), url(../img/paint-brush-g5165d4524_250.jpg);  
+  background-image: linear-gradient(to right, #f0632cd9, #f0632cd9), url(../img/paint-brush-g5165d4524_250.jpg);
 }
-.floorLayer{
+
+.floorLayer {
   margin-right: 2%;
-  background-image: linear-gradient(to right, #f0632cd9, #f0632cd9), url(../img/tiler-g13aaf9b5e_250.jpg);  
+  background-image: linear-gradient(to right, #f0632cd9, #f0632cd9), url(../img/tiler-g13aaf9b5e_250.jpg);
 }
 .painter:hover, .tools:hover, .floorLayer:hover, .plumber:hover{
  cursor: pointer;
@@ -323,7 +328,7 @@ margin-right: 2%;
   top: 35px;
   left: 35px;
   width: 75%;
-  
+
 
 }
 
@@ -335,18 +340,16 @@ margin-top: 2px;
   box-decoration-break: clone;
 }
 
-.painter_h4_span{
-background-image: linear-gradient(to right, #f0632cd2, #f0632ce6);
+.painter_h4_span {
+  background-image: linear-gradient(to right, #f0632cd2, #f0632ce6);
 }
-.plumber_h4_span{
-background-image: linear-gradient(to right, #ed6f07dc, #ed6f07dc);
-}
-.tools_h4_span{
-background-image: linear-gradient(to right, #eb4040, #eb4040);
 
+.plumber_h4_span {
+  background-image: linear-gradient(to right, #ed6f07dc, #ed6f07dc);
 }
-.floorLayer_h4_span{
-background-image: linear-gradient(to right, #c74715dd, #c74715dd);
+
+.tools_h4_span {
+  background-image: linear-gradient(to right, #eb4040, #eb4040);
 
 }
 
