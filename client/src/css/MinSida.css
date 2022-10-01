@@ -82,7 +82,7 @@
 
 
 
-.userOptions {
+/* .userOptions {
     display: flex;
     align-items: center;
     margin: 2%;
@@ -90,18 +90,15 @@
     flex-direction: row;
     z-index: -1;
 
-    position: fixed;
+    position: relative;
     top: 140px;
     z-index: -1;
-}
+} */
 
 .userOptions {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin: 2%; */
-    /* margin-left: 35%; */
-    top: 150px;
     flex-direction: row;
     z-index: -1;
 }
