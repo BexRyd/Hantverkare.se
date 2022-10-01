@@ -67,7 +67,7 @@ export default function MinSida(props) {
     if (newPassword === confirmPassword && message === "success") {
       setComparePassword("ditt lösenord är ändrat!")
 
-    } else if (newPassword !== confirmPassword) {
+    } else if (confirmPassword !== newPassword && confirmPassword !== "" && newPassword !== "") {
       setComparePassword("kunde inte hitta dej!")
 
 
@@ -162,6 +162,7 @@ export default function MinSida(props) {
             setMyAdds(true);
             setNewAdd(false);
             setSettings(false);
+            setComparePassword("")
           }}
 
         ><h4 className="myAdds_h4"><span className="myAdds_h4_span">Mina Annonser</span></h4></div>
@@ -179,6 +180,7 @@ export default function MinSida(props) {
             setMyAdds(false);
             setNewAdd(true);
             setSettings(false);
+            setComparePassword("")
           }}
         ><h4 className="newAdd_h4"><span className="newAdd_h4_span"> Lägg till annons</span></h4></div>
       </div>
@@ -263,54 +265,69 @@ export default function MinSida(props) {
 
 
 
+
+
       {settings ? (
-        <form className='test'>
-          <h2>Ändra Namn och Email</h2>
-          <p className="newInfo--close_form" onClick={() => { setSettings(false) }}>&times;
+        <div className='settingsBox'>
+          <p className="Adds--close_form" onClick={() => {
+            setSettings(false)
+            setComparePassword("")
+          }}>&times;
           </p>
-          <input className='nameInput' required placeholder='Ange nytt namn' onChange={(e) => setNewName(e.target.value)}></input>
-          <input className='emailInput' required type="email" placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)}></input>
-          <button className='changeBtn'
-            onClick={() => {
-              console.log(props.authorized.user.email)
-              patch(`/myPage/${props.authorized.user.email}`, { email: newEmail })
-              patch("/updateMe", { name: newName, email: newEmail })
-              props.authorized.user.name = newName
-              props.authorized.user.email = newEmail
-              setSettings(false)
-            }}> Spara
-          </button>
-        </form>
+          <form onSubmit={handleSubmit} className='test'>
+            <h2>Ändra Namn och Email</h2>
+
+            <input className='nameInput' required placeholder='Ange nytt namn' onChange={(e) => setNewName(e.target.value)}></input>
+            <input className='emailInput' required type="email" placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)}></input>
+            <button className="addsBtn"
+              onClick={() => {
+                console.log(props.authorized.user.email)
+                patch(`/myPage/${props.authorized.user.email}`, { email: newEmail })
+                patch("/updateMe", { name: newName, email: newEmail })
+                props.authorized.user.name = newName
+                props.authorized.user.email = newEmail
+
+              }}> Spara
+            </button>
+          </form>
+
+
+
+
+          <form onSubmit={handleSubmit} className='test'>
+            <h2>Ändra Lösenord</h2>
+
+            <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt lösenord ' onChange={(e) => setCurrentPassword(e.target.value)} ></input>
+            <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt nya lösenord ' onChange={(e) => setNewPassword(e.target.value)} ></input>
+            <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='bekräfta ditt nya lösenord ' onChange={(e) => setConfirmPassword(e.target.value)} ></input>
+            <button className="addsBtn"
+              onClick={() => {
+                patch("/updateMyPassword", {
+                  password: newPassword,
+                  passwordConfirm: confirmPassword,
+                  passwordCurrent: currentPassword
+                }).then((response) => setMessage(response.status))
+                setSettings(true)
+              }}> Spara
+            </button>
+            <p className='passwordError' style={{
+              color: comparePassword === "ditt lösenord är ändrat!" ? 'green' : 'green',
+
+            }}>{comparePassword}</p>
+          </form>
+
+
+
+
+
+        </div>
       ) : null}
 
-
       {settings ? (
-        <form onSubmit={handleSubmit} className='test'>
-          <h2>Ändra Lösenord</h2>
-          <p className="newInfo--close_form" onClick={() => { setSettings(false) }}>&times;
-          </p>
-          <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt lösenord ' onChange={(e) => setCurrentPassword(e.target.value)} ></input>
-          <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt nya lösenord ' onChange={(e) => setNewPassword(e.target.value)} ></input>
-          <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='bekräfta ditt nya lösenord ' onChange={(e) => setConfirmPassword(e.target.value)} ></input>
-          <button className='changeBtn'
-            onClick={() => {
-              patch("/updateMyPassword", {
-                password: newPassword,
-                passwordConfirm: confirmPassword,
-                passwordCurrent: currentPassword
-              }).then((response) => setMessage(response.status))
-              setSettings(true)
-            }}> Spara
-          </button>
-          <p>{comparePassword}</p>
-        </form>
-      ) : null}
-
-
-      {settings ? (
-        <button className='deleteBtn' onClick={() => {
+        <button className="addsBtn" onClick={() => {
           erase(`/deleteMe/${props.authorized.user._id}`)
         }}>Ta bort ditt konto</button>
+
       ) : null}
 
 
