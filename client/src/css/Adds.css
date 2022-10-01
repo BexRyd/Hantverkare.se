@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: row;
   margin-left: 15%;
-  margin-top: 2%;
+  margin-top: 3%;
   padding: 40px;
   width: 70%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -15,11 +15,16 @@ body {
 }
 
 .addsContainer:hover {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 9px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 11px;
   cursor: pointer;
 }
 
-
+.tools,
+.floorLayer,
+.painter,
+.plumber {
+  margin: 15px;
+}
 
 .textBox {
 
@@ -104,10 +109,10 @@ body {
   flex-direction: row;
   align-items: center;
   background-color: rgb(255, 255, 255);
-  width: 70vw;
-  height: 80vh;
+  width: 55vw;
+  height: 70vh;
   position: absolute;
-  top: 50%;
+  top: 57%;
   left: 50%;
   padding: 5%;
   border-radius: 15px;
@@ -224,14 +229,23 @@ body {
   margin-top: 10px;
 } */
 
+.searchBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: row;
+}
+
 .searchField {
-  height: 35px;
+  height: 45px;
   width: 400px;
-  margin-bottom: 30px;
   border: none;
-  margin-left: 30%;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.14) 0px 5px 10px;
+  padding-left: 20px;
 }
 
 .searchBox {
@@ -246,7 +260,7 @@ body {
   background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
 
   border-radius: 5px;
-  height: 35px;
+  height: 45px;
 }
 
 .backButton {
@@ -259,15 +273,14 @@ body {
 }
 
 .mainCategoryContainer {
-  margin-top: 100px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  margin-top: 35px;
   padding: 2%;
   z-index: -1;
-
-
-
 }
 
 .searchError {
@@ -278,10 +291,8 @@ body {
 
 
 
-.tools,
-.painter,
-.floorLayer,
-.plumber {
+.tools,.painter, .floorLayer, .plumber{
+  display: flex;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
   width: 250px;
@@ -289,7 +300,6 @@ body {
   background-size: cover;
   background-blend-mode: screen;
   border-radius: 10px;
-
 }
 
 .tools {
@@ -310,39 +320,27 @@ body {
   margin-right: 2%;
   background-image: linear-gradient(to right, #f0632cd9, #f0632cd9), url(../img/tiler-g13aaf9b5e_250.jpg);
 }
-
-.painter:hover,
-.tools:hover,
-.floorLayer:hover,
-.plumber:hover {
-  cursor: pointer;
-
+.painter:hover, .tools:hover, .floorLayer:hover, .plumber:hover{
+ cursor: pointer;
 }
-
-.painter_h4,
-.tools_h4,
-.floorLayer_h4,
-.plumber_h4 {
+.painter_h4, .tools_h4, .floorLayer_h4, .plumber_h4{
   color: white;
   padding: 1rem 1.5rem;
-  font-weight: 300;
+  font-weight: 700;
   text-transform: uppercase;
   position: absolute;
-  top: 50px;
-  left: 50px;
+  top: 35px;
+  left: 35px;
   width: 75%;
 
 
 }
 
-.painter_h4_span,
-.tools_h4_span,
-.floorLayer_h4_span,
-.plumber_h4_span {
-
-  padding: 5px 5px;
-  margin-top: 2px;
-  -webkit-box-decoration-break: clone;
+.painter_h4_span, .tools_h4_span, .floorLayer_h4_span, .plumber_h4_span{
+color: #ffffff;
+padding: 5px 5px;
+margin-top: 2px;
+-webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
 
@@ -359,7 +357,117 @@ body {
 
 }
 
+
+.painter_h4_span:hover, .tools_h4_span:hover, .floorLayer_h4_span:hover, .plumber_h4_span:hover {
+  transition: 0.4s;
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width:1520px){
+  .popUp {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 80vh;
+    padding: 30px 0 40px 0;
+    margin-bottom: 10%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .popUp_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    width: 300px;
+  }
+
+  .popUp--img {
+    max-width:300px;
+  }
+
+  .popUp--title {
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  .popUp--description {
+    width: 280px;
+  }
+
+  .popUp--close {
+    left: 92%;
+  }
+
+  /* popUp scroll style */
+
+  .popUp::-webkit-scrollbar {
+    display: flex;
+    width: 5px;
+  }
+  .popUp::-webkit-scrollbar-track {
+    background: #333;
+    border-top-right-radius: 30px;        
+  }
+  .popUp::-webkit-scrollbar-thumb {
+    background-color: #FFB900;    
+    border-radius: 3px;       
+    border: 3px solid #FFB900; 
+  }
+
+.plumber_h4_span {
+  background-image: linear-gradient(to right, #ed6f07dc, #ed6f07dc);
+}
+
+.tools_h4_span {
+  background-image: linear-gradient(to right, #eb4040, #eb4040);
+
+}
+}
+@media screen and (max-width:880px){
+
+.addsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+}
+
+.tools,.painter, .floorLayer, .plumber{
+  align-items: center;
+  justify-content: center;
+}
+
+.addsHeading {
+  text-align: center;
+  margin: 25px 0;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.painter_h4_span, .tools_h4_span, .floorLayer_h4_span, .plumber_h4_span {
+  font-size: 1.2rem;
+  align-items: center;
+}
+
 .floorLayer_h4_span {
   background-image: linear-gradient(to right, #c74715dd, #c74715dd);
-
+}
 }
