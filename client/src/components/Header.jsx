@@ -187,14 +187,14 @@ function Header(props) {
                     >&times; </p>
                     <div className="popup_login_form">
                       <h2 className='popUp--title_form'>Bli medlem</h2>
-                      <Form>
+                      <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>Ange namn</Form.Label>
-                          <Form.Control type="text" placeholder="Ange namn" onChange={(e) => setName(e.target.value)} />
+                          <Form.Control required type="text" placeholder="Ange namn" onChange={(e) => setName(e.target.value)} />
                           <Form.Label>Ange E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={(e) => setEmail(e.target.value)} />
+                          <Form.Control required type="email" placeholder="Ange e-post" onChange={(e) => setEmail(e.target.value)} />
                           <Form.Label>Upprepa E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Upprepa e-post" onChange={(e) => setEmailConfirm(e.target.value)} />
+                          <Form.Control required type="email" placeholder="Upprepa e-post" onChange={(e) => setEmailConfirm(e.target.value)} />
 
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
@@ -202,34 +202,35 @@ function Header(props) {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Lösenord</Form.Label>
-                          <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
+                          <Form.Control required type="password" pattern="/(?=.{8,}/ " placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Upprepa lösenordet</Form.Label>
-                          <Form.Control type="password" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
+                          <Form.Control required type="password" pattern="/(?=.{8,}/" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                           {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                         </Form.Group>
+
+                        <button variant="primary"
+                          onClick={() => {
+                            post("/signUp", {
+                              name: name,
+                              email: email,
+                              password: password,
+                              passwordConfirm: passwordConfirm
+                            }).then((response) => {
+                              if (response.data) {
+                                handlePopUp(setRegistrera);
+                              }
+                            })
+
+
+                          }}
+                        >
+                          Registrera dig
+                        </button>
                       </Form>
-                      <button variant="primary"
-                        onClick={() => {
-                          post("/signUp", {
-                            name: name,
-                            email: email,
-                            password: password,
-                            passwordConfirm: passwordConfirm
-                          }).then((response) => {
-                            if (response.data) {
-                              handlePopUp(setRegistrera);
-                            }
-                          })
-
-
-                        }}
-                      >
-                        Registrera dig
-                      </button>
                     </div>
                   </div>
                 </div>
