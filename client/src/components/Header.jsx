@@ -103,54 +103,54 @@ function Header(props) {
                         <label for="email">E-post</label>
                         <input className='form_login_input' required type="email" id="email" name="email" placeholder="Ange e-post" onChange={e => setLoginEmail(e.target.value)} />
                         <label for="password">Lösenord</label>
-                        <input className='form_login_input' required id="password" name='password' type="password" pattern=".{8,16}$ " placeholder="Ange password" onChange={e => setLoginPassword(e.target.value)} />
+                        <input className='form_login_input' required id="password" name='password' type="password" pattern=".{8,16}$" title='Lösenordet måste vara minst 8 tecken långt' placeholder="Ange Lösenord" onChange={e => setLoginPassword(e.target.value)} />
 
-                         <Recaptcha className='recaptcha_container' setRecaptchaValue={(value) => {
+                        <Recaptcha className='recaptcha_container' setRecaptchaValue={(value) => {
                           setRecaptchaState(value);
 
-                        }} /> 
+                        }} />
 
-                           {recaptchaState?(
-                        <button className="setForm_submit" id="login_btn"
+                        {recaptchaState ? (
+                          <button className="setForm_submit" id="login_btn"
 
-                          onClick={() => {
-                            post("/login", {
-
-
-                              email: loginEmail,
-                              password: loginPassword,
+                            onClick={() => {
+                              post("/login", {
 
 
-
-                            })
-                              .then((response) => {
-
-                                // props.setUser(response.data)
+                                email: loginEmail,
+                                password: loginPassword,
 
 
-                                if (response.data) {
-                                  props.setLogginPage(response.data)
-                                  handlePopUp(setLogin);
-                                  setLoginEmail("");
-                                  setLoginPassword("");
-                                  setRecaptchaState(false)
-
-                                }
-                                else if (!response.data) {
-                                  handlePopUp(setErrorLogin);
-
-                                }
 
                               })
+                                .then((response) => {
+
+                                  // props.setUser(response.data)
 
 
-                          }}
+                                  if (response.data) {
+                                    props.setLogginPage(response.data)
+                                    handlePopUp(setLogin);
+                                    setLoginEmail("");
+                                    setLoginPassword("");
+                                    setRecaptchaState(false)
+
+                                  }
+                                  else if (!response.data) {
+                                    handlePopUp(setErrorLogin);
+
+                                  }
+
+                                })
 
 
-                        >
-                          Logga in
-                        </button >
-                        ):  <button className="setForm_submit" id="login_btn" disabled>Logga in</button>}
+                            }}
+
+
+                          >
+                            Logga in
+                          </button >
+                        ) : <button className="setForm_submit" id="login_btn" disabled>Logga in</button>}
                         {errorLogin ? (
                           <LoginError
                             setLoginError={(btnUseState) => {
@@ -207,40 +207,40 @@ function Header(props) {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Lösenord</Form.Label>
-                          <Form.Control required type="password" pattern=".{8,16}$ " placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
+                          <Form.Control required type="password" pattern=".{8,16}$ " title='Lösenordet måste vara minst 8 tecken långt' placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Upprepa lösenordet</Form.Label>
-                          <Form.Control required type="password" pattern=".{8,16}$" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
+                          <Form.Control required type="password" pattern=".{8,16}$" title='Lösenordet måste vara minst 8 tecken långt' placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                           {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                         </Form.Group>
 
-                         <Recaptcha className='recaptcha_container' setRecaptchaValue={(value) => {
+                        <Recaptcha className='recaptcha_container' setRecaptchaValue={(value) => {
                           setRecaptchaState(value);
 
-                        }} /> {recaptchaState?(
-                        <button className="setForm_submit"
-                          onClick={() => {
-                            post("/signUp", {
-                              name: name,
-                              email: email,
-                              password: password,
-                              passwordConfirm: passwordConfirm
-                            }).then((response) => {
-                              if (response.data) {
-                                handlePopUp(setRegistrera);
-                                setRecaptchaState(false);
-                              }
-                            })
+                        }} /> {recaptchaState ? (
+                          <button className="setForm_submit"
+                            onClick={() => {
+                              post("/signUp", {
+                                name: name,
+                                email: email,
+                                password: password,
+                                passwordConfirm: passwordConfirm
+                              }).then((response) => {
+                                if (response.data) {
+                                  handlePopUp(setRegistrera);
+                                  setRecaptchaState(false);
+                                }
+                              })
 
 
-                          }}
-                        >
-                          Registrera dig
-                        </button>
-                        ):<button className="setForm_submit" disabled>Registrera dig</button>}
+                            }}
+                          >
+                            Registrera dig
+                          </button>
+                        ) : <button className="setForm_submit" disabled>Registrera dig</button>}
                       </Form>
                     </div>
                   </div>
