@@ -4,16 +4,15 @@ import ReCAPTCHA from 'react-google-recaptcha'
 const Recaptcha = (props) => {
 
 
-  function onChange(value) {
+  function onChange() {
 
 
-    const button = document.getElementById("login_btn")
-    if (value === undefined) {
-      button.disabled = true
-    } else {
-      button.removeAttribute("disabled");
-    }
-  }
+    props.setRecaptchaValue((current) => !current); //toggle
+  };
+
+
+
+
 
 
   return (
