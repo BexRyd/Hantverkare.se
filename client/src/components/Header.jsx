@@ -93,6 +93,7 @@ function Header(props) {
                     <p className="popUp--close_form" onClick={() => {
                       handlePopUp(setLogin);
                       setErrorLogin(false)
+                      setRecaptchaState(false)
                     }}
                     >&times; </p>
                     <div className="popup_login_form">
@@ -104,11 +105,12 @@ function Header(props) {
                         <label for="password">Lösenord</label>
                         <input className='form_login_input' required id="password" name='password' type="password" pattern="(?=.{8,}" placeholder="Ange password" onChange={e => setLoginPassword(e.target.value)} />
 
-                        {/* <Recaptcha className='recaptcha_container' setRecaptchaValue={(value) => {
+                         <Recaptcha className='recaptcha_container' setRecaptchaValue={(value) => {
                           setRecaptchaState(value);
 
-                        }} /> */}
+                        }} /> 
 
+                           {recaptchaState?(
                         <button className="setForm_submit" id="login_btn"
 
                           onClick={() => {
@@ -131,6 +133,7 @@ function Header(props) {
                                   handlePopUp(setLogin);
                                   setLoginEmail("");
                                   setLoginPassword("");
+                                  setRecaptchaState(false)
 
                                 }
                                 else if (!response.data) {
@@ -147,6 +150,7 @@ function Header(props) {
                         >
                           Logga in
                         </button >
+                        ):  <button className="setForm_submit" id="login_btn" disabled>Logga in</button>}
                         {errorLogin ? (
                           <LoginError
                             setLoginError={(btnUseState) => {
