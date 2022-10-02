@@ -102,7 +102,7 @@ function Header(props) {
                         <label for="email">E-post</label>
                         <input className='form_login_input' required type="email" id="email" name="email" placeholder="Ange e-post" onChange={e => setLoginEmail(e.target.value)} />
                         <label for="password">Lösenord</label>
-                        <input className='form_login_input' required id="password" name='password' type="password" pattern="(?=.{8,}" placeholder="Ange password" onChange={e => setLoginPassword(e.target.value)} />
+                        <input className='form_login_input' required id="password" name='password' type="password" pattern=".{8,16}$ " placeholder="Ange password" onChange={e => setLoginPassword(e.target.value)} />
 
                         {/* <Recaptcha className='recaptcha_container' setRecaptchaValue={(value) => {
                           setRecaptchaState(value);
@@ -202,11 +202,11 @@ function Header(props) {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Lösenord</Form.Label>
-                          <Form.Control required type="password" pattern="/(?=.{8,}/ " placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
+                          <Form.Control required type="password" pattern=".{8,16}$ " placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Upprepa lösenordet</Form.Label>
-                          <Form.Control required type="password" pattern="/(?=.{8,}/" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
+                          <Form.Control required type="password" pattern=".{8,16}$" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                           {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
