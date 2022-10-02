@@ -187,6 +187,7 @@ function Header(props) {
                   <div>
                     <p className="popUp--close_form" onClick={() => {
                       handlePopUp(setRegistrera);
+                      setRecaptchaState(false);
                     }}
                     >&times; </p>
                     <div className="popup_login_form">
@@ -216,7 +217,11 @@ function Header(props) {
                           {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                         </Form.Group>
 
-                        <button variant="primary"
+                         <Recaptcha className='recaptcha_container' setRecaptchaValue={(value) => {
+                          setRecaptchaState(value);
+
+                        }} /> {recaptchaState?(
+                        <button className="setForm_submit"
                           onClick={() => {
                             post("/signUp", {
                               name: name,
@@ -226,6 +231,7 @@ function Header(props) {
                             }).then((response) => {
                               if (response.data) {
                                 handlePopUp(setRegistrera);
+                                setRecaptchaState(false);
                               }
                             })
 
@@ -234,6 +240,7 @@ function Header(props) {
                         >
                           Registrera dig
                         </button>
+                        ):<button className="setForm_submit" disabled>Registrera dig</button>}
                       </Form>
                     </div>
                   </div>
