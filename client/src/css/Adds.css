@@ -357,6 +357,10 @@ margin-top: 2px;
 
 }
 
+.floorLayer_h4_span {
+  background-image: linear-gradient(to right, #c74715dd, #c74715dd);
+}
+
 
 .painter_h4_span:hover, .tools_h4_span:hover, .floorLayer_h4_span:hover, .plumber_h4_span:hover {
   transition: 0.4s;
@@ -467,7 +471,7 @@ margin-top: 2px;
   align-items: center;
 }
 
-.floorLayer_h4_span {
-  background-image: linear-gradient(to right, #c74715dd, #c74715dd);
-}
+
+
+
 }
