@@ -5,11 +5,18 @@
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-bottom: 15%;
+
+
+
 }
 
 .userAddsContainer {
     width: 700px;
+
     height: auto;
+
+
+
     margin-top: 2%;
     margin-bottom: 2%;
     flex-direction: column;
@@ -25,6 +32,7 @@
 .changeAdd_Container {
     display: flex;
     flex-direction: row;
+
 }
 
 .change_img {
@@ -82,7 +90,7 @@
 
 
 
-/* .userOptions {
+.userOptions {
     display: flex;
     align-items: center;
     margin: 2%;
@@ -90,17 +98,6 @@
     flex-direction: row;
     z-index: -1;
 
-    position: relative;
-    top: 140px;
-    z-index: -1;
-} */
-
-.userOptions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    z-index: -1;
 }
 
 
@@ -113,10 +110,13 @@
     flex-direction: column;
     align-items: center;
     position: absolute;
+    top:-5%;  
+    right: 25%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    top: 100px;
+   
     text-align: center;
     border-radius: 8px;
+    
 }
 
 .error_h3 {
@@ -147,7 +147,9 @@
     margin-top: 2%;
     background-size: cover;
     background-blend-mode: screen;
+
     border-radius: 10px;
+
 }
 
 .myAdds_h4,
@@ -161,6 +163,8 @@
     top: 50px;
     left: 50px;
     width: 75%;
+
+
 }
 
 .myAdds_h4_span,
@@ -271,10 +275,7 @@
     justify-content: center;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-}
 
-.passwordError {
-    color: red;
 }
 
 .passwordError {

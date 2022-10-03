@@ -390,12 +390,15 @@ body {
 
 }
 
+.floorLayer_h4_span {
+  background-image: linear-gradient(to right, #c74715dd, #c74715dd);
+}
+
 .allAdds_h4_span {
   background-image: linear-gradient(to right, #eb4040, #eb4040);
 
 }
 
-.allAdds_h4_span:hover,
 .painter_h4_span:hover,
 .tools_h4_span:hover,
 .floorLayer_h4_span:hover,
@@ -528,4 +531,7 @@ body {
     align-items: center;
   }
 
+  .floorLayer_h4_span {
+    background-image: linear-gradient(to right, #c74715dd, #c74715dd);
+  }
 }
