@@ -203,7 +203,10 @@ export default function MinSida(props) {
           {loading ? (<h3>Loading...</h3>) : null}
           <select value={category} onChange={(e) =>
             setCategory(e.target.value)}>
-            <option value="Målare">Målare</option>
+            <option value="" selected disabled hidden>
+              Välj Kategori
+            </option>
+            <option value="Målare" >Målare </option>
             <option value="Snickare">Snickare</option>
             <option value="Rörmokare">Rörmokare</option>
             <option value="Golvläggare">Golvläggare</option>
@@ -401,8 +404,10 @@ export default function MinSida(props) {
                 <div className='change-box'>
                   <input className="img_input" id="addImg_input" type="file" name='file' placeholder="Ladda upp en bild" onChange={(e) => { setImg(e.target.files[0]) }}></input>
                   <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                    <option value="Målare">Målare</option>
+                    <option disabled selected value> -- Välj Kategori -- </option>
+
                     <option value="Snickare">Snickare</option>
+                    <option value="Målare">Målare</option>
                     <option value="Rörmokare">Rörmokare</option>
                     <option value="Golvläggare">Golvläggare</option>
                   </select>

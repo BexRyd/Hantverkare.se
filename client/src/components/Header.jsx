@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
 import React from 'react';
@@ -8,6 +8,7 @@ import '../css/Adds.css'
 import { get, post } from "./../utility/fetchHealper"
 import LoginError from './LoginError'
 import Recaptcha from './ReCAPTCHA'
+
 
 
 
@@ -33,8 +34,11 @@ function Header(props) {
 
 
 
+  let navigate = useNavigate();
 
-
+  function routeBack() {
+    navigate('/')
+  }
 
   const handlePopUp = (state) => {
     state(current => !current); //toggle
@@ -75,6 +79,7 @@ function Header(props) {
                 props.setLogginPage("");
 
                 get("/logout")
+                routeBack()
               }}>Logga ut</button>)}
 
 

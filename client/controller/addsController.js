@@ -101,7 +101,7 @@ getCarpenter = async (req, res) => {
 
 
 getPlumber = async (req, res) => {
-  await Adds.find({ category: "Rörmockare" }, (err, add) => {
+  await Adds.find({ category: "Rörmokare" }, (err, add) => {
     if (err) {
       return res.status(404).json({ success: false, error: err })
     } if (!add.length) {
@@ -158,9 +158,9 @@ createAdds = (req, res) => {
 
 }
 
-updateOneAdd = async(req,res)=>{
+updateOneAdd = async (req, res) => {
 
-   const body = req.body
+  const body = req.body
 
   if (!body) {
     return res.status(400).json({
@@ -168,15 +168,15 @@ updateOneAdd = async(req,res)=>{
       error: 'cant find an add to update',
     })
   }
-    await Adds.findOneAndUpdate({_id:req.params.AddsId},{
-      $set:{
-         
-  heading: req.body.heading,
-  description: req.body.description,
-  img: req.body.img,
-  category: req.body.category
-      }
-     }, (err, add) => {
+  await Adds.findOneAndUpdate({ _id: req.params.AddsId }, {
+    $set: {
+
+      heading: req.body.heading,
+      description: req.body.description,
+      img: req.body.img,
+      category: req.body.category
+    }
+  }, (err, add) => {
     if (err) {
       return res.status(404).json({
         err,
@@ -190,8 +190,8 @@ updateOneAdd = async(req,res)=>{
       message: 'add updated!',
     })
 
-     }).clone().catch(err => console.log(err))
-  
+  }).clone().catch(err => console.log(err))
+
 }
 
 

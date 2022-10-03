@@ -51,7 +51,7 @@ export default function Adds(props) {
     <div className="mainContainer">
 
 
-  
+
       <div className="mainCategoryContainer">
 
 
@@ -64,7 +64,7 @@ export default function Adds(props) {
 
         }} >
 
-                    <h4 className="tools_h4"><span className="tools_h4_span"> Annonser för Snickare</span></h4>
+          <h4 className="tools_h4"><span className="tools_h4_span"> Annonser för Snickare</span></h4>
         </div>
 
 
@@ -77,11 +77,11 @@ export default function Adds(props) {
           );
 
         }} >
-           <h4 className="floorLayer_h4"><span className="floorLayer_h4_span"> Annonser för Golvläggare</span></h4>
+          <h4 className="floorLayer_h4"><span className="floorLayer_h4_span"> Annonser för Golvläggare</span></h4>
         </div>
 
 
-          <div className=" painter" onClick={() => {
+        <div className=" painter" onClick={() => {
 
           get("/painter").then((response) =>
             setAdds(response.data)
@@ -89,11 +89,12 @@ export default function Adds(props) {
           );
 
         }}  >
-         
-         
-          <h4 className="painter_h4"><span className="painter_h4_span"> Annonser för Målare</span></h4>
-          
+
+
+          <h4 className="painter_h4"><span className="painter_h4_span"> Annonser för Målare </span></h4>
+
         </div>
+
 
 
 
@@ -105,10 +106,23 @@ export default function Adds(props) {
           );
 
         }} >
-           <h4 className="plumber_h4"><span className="plumber_h4_span"> Annonser för Rörmokare</span></h4>
+          <h4 className="plumber_h4"><span className="plumber_h4_span"> Annonser för Rörmokare</span></h4>
         </div>
 
 
+        <div className="allAdds" onClick={() => {
+
+          get("/MyPage").then((response) =>
+            setAdds(response.data)
+
+          );
+
+        }}  >
+
+
+          <h4 className="allAdds_h4"><span className="allAdds_h4_span"> Alla Annonser</span></h4>
+
+        </div>
       </div>
 
       <div className="searchBox">
@@ -138,8 +152,8 @@ export default function Adds(props) {
         </button>
 
 
-      </div> 
-     
+      </div>
+
 
 
       {
@@ -212,7 +226,7 @@ export default function Adds(props) {
             <p className="popUp--description">{description}</p>
             {props.authorized ?
               (
-              <p>{email}</p>
+                <p>{email}</p>
               )
               : null}
 
@@ -233,9 +247,9 @@ export default function Adds(props) {
               : null
             }
           </div>
-            
-            <EmailForm />
-        
+
+          <EmailForm />
+
         </div>
       </div>
     </div >
