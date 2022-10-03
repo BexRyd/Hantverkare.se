@@ -13,7 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
- 
+
 }
 
 .Home {
@@ -103,9 +103,34 @@ body {
     transition: 0.5s ease-in-out;
 }
 
+.welcome {
+    display: flex;
+    flex-direction: column;
+
+    background-image: linear-gradient(45deg, #ffb900 19.61%, #000000 19.61%, #000000 50%, #ffb900 50%, #ffb900 69.61%, #000000 69.61%, #000000 100%);
+    background-size: 72.12px 72.12px;
+}
+
+.LogoWelcome {
+    margin-left: 30px;
+    width: 100px;
+    height: auto;
+}
+
+.welcomeP {
+    font-size: larger;
+    font-weight: bolder;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 75%;
+    padding-left: 20px;
+
+    background-color: rgba(255, 255, 255, 0.8)
+}
+
 /* MEDIA QUERIES STYLES */
 
-@media screen and (max-width:1050px){
+@media screen and (max-width:1050px) {
 
     .Home {
         display: flex;

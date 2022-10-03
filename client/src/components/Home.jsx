@@ -2,6 +2,7 @@ import React from "react";
 import "../css/Hem.css";
 import { NavLink } from "react-router-dom";
 import video from "./../img/cuttingWood.mp4"
+import logo from "../img/logo.png"
 
 export default function Home(props) {
   console.log(props)
@@ -27,7 +28,12 @@ export default function Home(props) {
       <div className="main_images">
 
         {props.authorized ?
-          (<h1>Välkommen {props.authorized.user.name}</h1>
+          (
+            <div className="welcome">
+              <img className="LogoWelcome" src={logo}></img>
+
+              <p className="welcomeP">Välkommen {props.authorized.user.name}</p>
+            </div>
           ) : null}
         {/* <img className="image_homepage_stars" src="./images/Group_2.png" alt="Stars images" />
         <img className="image_homepage_workers" src="./images/Worker.png" alt="Main images" /> */}

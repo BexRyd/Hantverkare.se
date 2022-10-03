@@ -27,12 +27,13 @@ export default function MinSida(props) {
   const [imgPopup, setImgPopup] = useState("");
   const [popUpAdds, setPopUpAdds] = useState(false);
   const [categoryPopup, setCategoryPopup] = useState("")
-  const [deleteUser, setDeleteUser] = useState(false);
+  const [category, setCategory] = useState("")
+
+
   //usestate for changing add
   const [changeAdds, setChangeAdds] = useState(false);
   const [changeTitlePopup, setChangeTitlePopup] = useState(titlePopup)
-  const [changeDescriptionPopup, setChangeDescriptionPopup] =
-    useState(descriptionPopup)
+  const [changeDescriptionPopup, setChangeDescriptionPopup] = useState(descriptionPopup)
 
 
   //usestate for settings
@@ -105,7 +106,8 @@ export default function MinSida(props) {
     }
 
   }, [popUpAdds])
-  const [category, setCategory] = useState("")
+
+
   useEffect(() => {
     if (props.authorized) {
       get(`/myPage/${props.authorized.user.email}`).then((response) =>
@@ -173,14 +175,17 @@ export default function MinSida(props) {
             setMyAdds(false);
             setNewAdd(false);
             setSettings(true);
+
           }}
         ><h4 className="settings_h4"><span className="settings_h4_span">Inställningar</span></h4></div>
         <div className='optionBox_newAdd '
           onClick={() => {
+
             setMyAdds(false);
             setNewAdd(true);
             setSettings(false);
             setComparePassword("")
+
           }}
         ><h4 className="newAdd_h4"><span className="newAdd_h4_span"> Lägg till annons</span></h4></div>
       </div>
@@ -200,12 +205,10 @@ export default function MinSida(props) {
           <input className="img_input" id="addImg_input" type="file" name='file' placeholder="Ladda upp en bild"
             onChange={(e) => { setImg(e.target.files[0]) }}>
           </input>
-          {loading ? (<h3>Loading...</h3>) : null}
+
           <select value={category} onChange={(e) =>
             setCategory(e.target.value)}>
-            <option value="" selected disabled hidden>
-              Välj Kategori
-            </option>
+            <option selected value> -- Välj en kategori -- </option>
             <option value="Målare" >Målare </option>
             <option value="Snickare">Snickare</option>
             <option value="Rörmokare">Rörmokare</option>
@@ -223,6 +226,7 @@ export default function MinSida(props) {
               uploadImage();
               handlePopUp();
               setNewAddPopup(true);
+
             }} >Förhandsgranska
           </button>
         </div>

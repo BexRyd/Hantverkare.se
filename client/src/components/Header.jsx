@@ -65,6 +65,7 @@ function Header(props) {
           )
             : null
           }
+
           <div className='buttons'>
 
             {props.login ? (
