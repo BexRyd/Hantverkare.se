@@ -206,18 +206,18 @@ export default function MinSida(props) {
             onChange={(e) => { setImg(e.target.files[0]) }}>
           </input>
 
-          <select value={category} onChange={(e) =>
+          <select className='options_list' value={category} onChange={(e) =>
             setCategory(e.target.value)}>
             <option selected value> -- Välj en kategori -- </option>
-            <option value="Målare" >Målare </option>
-            <option value="Snickare">Snickare</option>
-            <option value="Rörmokare">Rörmokare</option>
-            <option value="Golvläggare">Golvläggare</option>
+            <option className='option_item' value="Målare" >Målare </option>
+            <option className='option_item' value="Snickare">Snickare</option>
+            <option className='option_item' value="Rörmokare">Rörmokare</option>
+            <option className='option_item' value="Golvläggare">Golvläggare</option>
           </select>
-          <input value={heading} placeholder="Rubrik" onChange={(e) =>
+          <input className='option_rubrik' value={heading} placeholder="Rubrik" onChange={(e) =>
             setHeading(e.target.value)}>
           </input>
-          <textarea value={description} placeholder="Beskrivning"
+          <textarea className='option_message' value={description} placeholder="Beskrivning"
             onChange={(e) => setDescription(e.target.value)} >
           </textarea>
           <button
@@ -236,6 +236,7 @@ export default function MinSida(props) {
 
       {myAdds ? (
         <div className='userAddsContainer'>
+          <h2 className='mina_annonser_h2'>Mina annonser</h2>
           <p className="Adds--close_form" onClick={() => {
             setMyAdds(false);
           }}
@@ -244,7 +245,6 @@ export default function MinSida(props) {
           {props.authorized && useradds ? (
             useradds.map((add, id) => {
               return (
-
                 <div className="userAdds" key={id}>
                   <img className="addsImg" src={add.img}></img>
                   <div className="textBox">
@@ -282,7 +282,7 @@ export default function MinSida(props) {
           }}>&times;
           </p>
           <form onSubmit={handleSubmit} className='test'>
-            <h2>Ändra Namn och Email</h2>
+            <h4 className='test_h4'>Ändra Namn och Email</h4>
 
             <input className='nameInput' required placeholder='Ange nytt namn' onChange={(e) => setNewName(e.target.value)}></input>
             <input className='emailInput' required type="email" placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)}></input>
@@ -302,7 +302,7 @@ export default function MinSida(props) {
 
 
           <form onSubmit={handleSubmit} className='test'>
-            <h2>Ändra Lösenord</h2>
+            <h4 className='test_h4'>Ändra Lösenord</h4>
 
             <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt lösenord ' onChange={(e) => setCurrentPassword(e.target.value)} ></input>
             <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt nya lösenord ' onChange={(e) => setNewPassword(e.target.value)} ></input>

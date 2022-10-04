@@ -202,8 +202,10 @@ li {
 }
 
 .popUp--img {
-    width: 400px;
-    height: auto;
+    width: 300px;
+    height: 200px;
+    margin-top:30px;
+    margin-bottom: 10px;
 
 }
 
@@ -249,6 +251,14 @@ button[disabled] {
 
 /* MEDIA QUERIES STYLES */
 
+@media screen and (max-width:918px) {
+    .logo {
+        display: flex;
+        flex-direction: row;
+        margin-left: 30px;
+    }
+}
+
 @media screen and (max-width:765px) {
 
     .header {
@@ -259,10 +269,13 @@ button[disabled] {
 
     .logo {
         display: flex;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
+        margin-left: 15px;
+    }
+    
+    .logo_text_span {
         margin-left: 0;
-        margin-top: 25px;
     }
 
     span {
@@ -276,7 +289,7 @@ button[disabled] {
         align-items: center;
         justify-content: center;
         position: absolute;
-        top: 100px;
+        top: 110px;
         width: 100%;
         padding: 20px 0;
         background-color: rgb(51, 51, 51, 0.8);
