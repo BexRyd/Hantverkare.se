@@ -306,7 +306,7 @@ export default function MinSida(props) {
 
             <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt lösenord ' onChange={(e) => setCurrentPassword(e.target.value)} ></input>
             <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Ange ditt nya lösenord ' onChange={(e) => setNewPassword(e.target.value)} ></input>
-            <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='bekräfta ditt nya lösenord ' onChange={(e) => setConfirmPassword(e.target.value)} ></input>
+            <input className='nameInput' pattern="(?=.{8,}" required type="password" placeholder='Bekräfta ditt nya lösenord ' onChange={(e) => setConfirmPassword(e.target.value)} ></input>
             <button className="addsBtn"
               onClick={() => {
                 patch("/updateMyPassword", {

@@ -501,6 +501,8 @@ body {
     align-items: center;
     justify-content: center;
     text-align: justify;
+    margin-left: 17px;
+    width: 90%;
   }
 
   .allAdds,
@@ -510,6 +512,8 @@ body {
   .plumber {
     align-items: center;
     justify-content: center;
+    width: 95%;
+    height: 160px;
   }
 
   .addsHeading {
@@ -524,7 +528,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+  }
+  .searchField {
+    width: 75%;
   }
 
   .allAdds_h4_span,
