@@ -1,51 +1,91 @@
 .uploadAdd-Container {
-    width: 500px;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    height: 250px;
     position: relative;
+    width: 500px;
+    height: auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    margin-bottom: 15%;
-
-
-
+    margin: 3% 0; 
+    padding: 50px 50px 30px 50px; 
+    border-radius: 15px;
 }
 
 .userAddsContainer {
-    width: 700px;
-
-    height: auto;
-
-
-
-    margin-top: 2%;
-    margin-bottom: 2%;
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: relative;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    width: 63%;
+    min-height: 400px;
+    margin-top: 4%;
+    margin-bottom: 10%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
+    padding: 50px;
 }
+
+.img_input {
+    padding: 25px 0;
+}
+
 
 .changeAdd_Container {
     display: flex;
     flex-direction: row;
-
+    flex-wrap: wrap;
 }
 
 .change_img {
     margin-right: 5%;
 }
 
+.options_list {
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.option_item {
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.option_rubrik {
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.option_message {
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 11px;
+    min-height: 120px;
+}
+
+
 .userAdds {
     display: flex;
     flex-direction: row;
-    width: 70%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     margin: 1%;
+    padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.mina_annonser_h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 
 .newAdd--close_form {
     color: black;
@@ -78,26 +118,19 @@
 .pageContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: relative;
+    margin-bottom: 25%;
     z-index: -5;
-
-
 }
-
-
-
-
 
 .userOptions {
     display: flex;
-    align-items: center;
-    margin: 2%;
-    margin-left: 35%;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     z-index: -1;
-
+    width: 100%;
 }
 
 
@@ -113,10 +146,8 @@
     top:-5%;  
     right: 25%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-   
     text-align: center;
     border-radius: 8px;
-    
 }
 
 .error_h3 {
@@ -129,7 +160,8 @@
 .optionBtn {
     width: 200px;
     height: 40px;
-    margin-bottom: 4%;
+    margin-bottom: 3%;
+    margin-top: 3%;
     border-radius: 10px;
     color: white;
     border: none;
@@ -147,9 +179,7 @@
     margin-top: 2%;
     background-size: cover;
     background-blend-mode: screen;
-
     border-radius: 10px;
-
 }
 
 .myAdds_h4,
@@ -163,14 +193,11 @@
     top: 50px;
     left: 50px;
     width: 75%;
-
-
 }
 
 .myAdds_h4_span,
 .newAdd_h4_span,
 .settings_h4_span {
-
     padding: 5px 5px;
     margin-top: 2px;
     -webkit-box-decoration-break: clone;
@@ -209,73 +236,57 @@
 .test {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    gap: 5px;
-    width: 500px;
-
-}
-
-.test {
+    align-items: center;
+    justify-content: center;
     width: 400px;
     height: auto;
-
-    margin: 2%;
-    margin-bottom: 10%;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
     position: relative;
-    padding-top: 2%;
-    padding-left: 2%;
-    padding-bottom: 2%;
-
+    padding: 6%;
+    margin: 20px 20px 0 20px;
     background: linear-gradient(to left, #ffb900, #ffb900, #ff7730);
-
+    border-radius: 2px;
 }
+
+.test_h4 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
 
 .emailInput,
 .nameInput {
     width: 300px;
     border: none;
-    border-radius: 2px;
-
+    border-radius: 3px;
+    margin: 10px 0;
+    padding: 5px 10px;
 }
 
 .changeBtn {
     width: 60px;
     border-radius: 5px;
-
-
-
-
 }
 
 .deleteBtn {
     width: 150px;
     border-radius: 5px;
     margin-bottom: 20px;
-    margin-top: 20px;
-
-
-
-
-
-
+    margin-top: 10px;
 }
 
 .settingsBox {
-    position: relative;
-    z-index: -1;
-    width: 80%;
-    padding-top: 5%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-items: center;
     justify-content: center;
+    position: relative;
+    margin-top: 5%;
+    z-index: -1;
+    width: 70%;
+    padding: 3%;
+    border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-
 }
 
 .passwordError {

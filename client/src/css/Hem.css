@@ -106,26 +106,27 @@ body {
 .welcome {
     display: flex;
     flex-direction: column;
-
+    align-items: center;
+    justify-content: center;
     background-image: linear-gradient(45deg, #ffb900 19.61%, #000000 19.61%, #000000 50%, #ffb900 50%, #ffb900 69.61%, #000000 69.61%, #000000 100%);
     background-size: 72.12px 72.12px;
+    height: 400px;
+    width: auto;
+    margin-bottom: 10px;
 }
 
 .LogoWelcome {
-    margin-left: 30px;
-    width: 100px;
+    width: 180px;
     height: auto;
 }
 
 .welcomeP {
+    text-align: center;
     font-size: larger;
     font-weight: bolder;
-    margin-top: 10px;
-    margin-left: 20px;
-    width: 75%;
-    padding-left: 20px;
-
-    background-color: rgba(255, 255, 255, 0.8)
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    margin: 20px;
 }
 
 /* MEDIA QUERIES STYLES */

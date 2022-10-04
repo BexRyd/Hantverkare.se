@@ -111,7 +111,7 @@ body {
   align-items: center;
   background-color: rgb(255, 255, 255);
   width: 55vw;
-  height: 70vh;
+  height: 75vh;
   position: absolute;
   top: 57%;
   left: 50%;
@@ -124,11 +124,16 @@ body {
 
 }
 
+.popUp_content {
+  height: 90%;
+  margin-bottom: 100px;
+}
+
 .popUp--close {
   color: black;
   position: absolute;
   top: 5px;
-  left: 95%;
+  left: 93%;
   font-size: 3rem;
   text-decoration: none;
   display: inline-block;
@@ -416,7 +421,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 40%;
+    width: 90%;
     height: 80vh;
     padding: 30px 0 40px 0;
     margin-bottom: 10%;
@@ -432,10 +437,10 @@ body {
     margin: 15px 0;
     width: 300px;
   }
-
+/* 
   .popUp--img {
     max-width: 300px;
-  }
+  } */
 
   .popUp--title {
     text-align: center;
