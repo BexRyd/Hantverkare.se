@@ -259,7 +259,7 @@ button[disabled] {
     }
 }
 
-@media screen and (max-width:765px) {
+@media screen and (max-width:885px) {
 
     .header {
         flex-wrap: wrap;

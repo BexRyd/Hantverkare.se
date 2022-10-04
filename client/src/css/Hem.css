@@ -131,7 +131,14 @@ body {
 
 /* MEDIA QUERIES STYLES */
 
-@media screen and (max-width:1050px) {
+
+@media screen and (min-width: 1920px) {
+    .main_information, .main_images {
+        margin-bottom: 120px;
+    }
+}
+
+@media screen and (max-width: 882px) {
 
     .Home {
         display: flex;
@@ -141,7 +148,14 @@ body {
     }
 
     .main_information {
-        padding: 0 20px;
+        margin: 0;
     }
 
+    .main_images {
+        display: flex;
+        align-items: center;
+        margin-left: 0;
+    }
+   
 }
+
