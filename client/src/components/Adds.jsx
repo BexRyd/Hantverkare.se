@@ -161,7 +161,7 @@ export default function Adds(props) {
           adds.map((add, id) => {
 
             return (
-              <div>
+              <div className="main_adds_container">
                 <div className="addsContainer" key={id}>
                   <img className="addsImg" src={add.img}></img>
 

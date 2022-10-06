@@ -41,7 +41,6 @@ li {
 .appContainer {
     position: sticky;
     top: 0;
-    z-index: 0;
 }
 
 /* HEADER MAIN STYLES */
@@ -218,6 +217,7 @@ li {
 
 }
 
+
 .btn_send {
     margin-top: 25px;
     padding: 10px 11px;
@@ -262,16 +262,16 @@ button[disabled] {
 @media screen and (max-width:885px) {
 
     .header {
-        flex-wrap: wrap;
+        flex-direction: column;
+        height: auto;
         align-items: center;
         justify-content: center;
     }
 
     .logo {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
-        margin-left: 15px;
     }
     
     .logo_text_span {
@@ -288,8 +288,6 @@ button[disabled] {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        top: 110px;
         width: 100%;
         padding: 20px 0;
         background-color: rgb(51, 51, 51, 0.8);

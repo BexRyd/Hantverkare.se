@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import Navbar from 'react-bootstrap/Navbar'
 import { useState, useEffect } from 'react';
 import React from 'react';
 import "../css/header.css"
@@ -57,7 +58,7 @@ function Header(props) {
           <img className='logo_img' src='../images/logo.png'></img>
           <span className='logo_text_span'>Hantverkare.se</span>
         </NavLink>
-        <div className="menu_buttons_container">
+        
           <NavLink to="/" className='menu_link'>Hem</NavLink>
           <NavLink to="/Adds" className='menu_link'>Annonser</NavLink>
           {!props.login ? (
@@ -257,7 +258,6 @@ function Header(props) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
