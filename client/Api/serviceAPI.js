@@ -86,7 +86,16 @@ router.delete("/myPage/:AddsId", authController.protect, authController.restrict
 
   });
 })
-router.delete("/myAdd/:AddsId",authController.protect, addsController.deleteAdds, (request, response) => {
+router.delete("/myAdd/:AddsId", authController.protect, addsController.deleteAdds, (request, response) => {
+
+
+  response.json({
+    status: "success",
+    method: request.method,
+
+  });
+})
+router.put("/updateMyAdd/:AddsId",authController.protect, addsController.updateOneAdd, (request, response) => {
   
 
   response.json({
@@ -96,7 +105,7 @@ router.delete("/myAdd/:AddsId",authController.protect, addsController.deleteAdds
   });
 })
 
-router.put("/myPage/:serviceid", (request, response) => {
+router.put("/myage/:serviceid", (request, response) => {
 
   const serviceid = Number(request.params.serviceid);
   const heading = request.body.heading;
@@ -114,6 +123,8 @@ router.put("/myPage/:serviceid", (request, response) => {
   }
 
 
+
+
   const serviceIndex = services.findIndex((service) => service.id === serviceid) // hämtar ut index för service vi vill uppdatera
   services[serviceIndex] = newService                                  // i det index vi hämtar ut vill vi skriva över med newService
 
@@ -125,6 +136,10 @@ router.put("/myPage/:serviceid", (request, response) => {
     method: request.method,
     data: newService,
   });
+
+})
+
+router.patch("/myPage/:email", authController.protect, addsController.updateAdds, (req, res) => {
 
 })
 

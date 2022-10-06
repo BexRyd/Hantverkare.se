@@ -8,9 +8,11 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import "../css/header.css"
 import '../css/Adds.css'
-import {get, post} from "./../utility/fetchHealper"
+import { get, post } from "./../utility/fetchHealper"
 import LoginError from './LoginError'
 import Recaptcha from './ReCAPTCHA'
+
+
 
 
 
@@ -30,24 +32,18 @@ function Header(props) {
   const [emailConfirm, setEmailConfirm] = useState(""); // ska vara en validering för email endast på frontend- Ska jämföras med email och emailconfirm innan det skickas till backend.
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  
-  const [autorized, setAutorized] = useState(false);
-  //const [checked, setChecked] = useState(false);
- 
-  
 
-  /*   useEffect(() => {
-     get("/login").then((response) => setLogin(response.data));
-   }, []);  */
+  const [autorized, setAutorized] = useState(false);
+
+
+
 
 
   const handlePopUp = (state) => {
     state(current => !current); //toggle
   }
 
-
-   
-// HEADER CONTAINER
+  // HEADER CONTAINER
 
   return (
     <div className="appContainer">
@@ -58,33 +54,42 @@ function Header(props) {
         <div className="menu_buttons_container">
           <NavLink to="/" className='menu_link'>Hem</NavLink>
           <NavLink to="/Adds" className='menu_link'>Annonser</NavLink>
-          {autorized?(
+          {!props.login?(
           <NavLink to="/MinSida" className='menu_link'>Minsida</NavLink>
           )
-          :null
-            }
+            : null
+          }
           <div className='buttons'>
-              {autorized ? (<button className='btn_nav_red' onClick={() => {
+            {console.log(props.login)}
+              {props.login? (
+              
+              (<button className='btn_nav_red' onClick={() => {
+
+                  handlePopUp(setLogin);
+                  
+                }}>Logga in</button>) )
+
+                : ( <button className='btn_nav_red' onClick={() => {
+                props.setLogginPage("");
+                
+                get("/logout")
+              }}>Logga ut</button> ) }
+
+               {/* { props.authorized!==""?( <button className='btn_nav_red' onClick={() => {
                 props.setLogginPage("");
                 setAutorized("");
                 get("/logout")
-              }}>Logga ut</button>)
-
-                : (<button className='btn_nav_red' onClick={() => {
-
-                  handlePopUp(setLogin);
-
-                }}>Logga in</button>)}
+              }}>Logga ut</button> ): null} */}
 
 
-              <div className='blurr'
-                style={{
-                  opacity: login ? '1' : '0',
-                  visibility: login ? 'visible' : 'hidden',
-                  zIndex: login ? '2' : '-2',
-                }}
-              >
-                {login ?(
+            <div className='blurr'
+              style={{
+                opacity: login ? '1' : '0',
+                visibility: login ? 'visible' : 'hidden',
+                zIndex: login ? '2' : '-2',
+              }}
+            >
+              {login ? (
 
                 <div className='popup_form'>
                   <div>
@@ -98,88 +103,89 @@ function Header(props) {
                       <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={e=> setLoginEmail(e.target.value).this.state.email}/>
-                      
+                          <Form.Control  type="email" placeholder="Ange e-post" onChange={e=> setLoginEmail(e.target.value)}/>
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
-                          </Form.Group>
+                        </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Lösenord</Form.Label>
-                          <Form.Control type="password" placeholder="Ange lösenord" onChange={ e=> setLoginPassword(e.target.value)}/>
+                          <Form.Control   type="password" placeholder="Ange lösenord" onChange={ e=> setLoginPassword(e.target.value)}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                         {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
-                        </Form.Group >
+                          {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
+                        </Form.Group>
                         <Recaptcha />
-                        <Button className='btn_send' type="submit" disabled id="login_btn" variant="dark" pt-2
-                         
-                          onClick = {()=>{
-                            post("/login",{
-                                
-                                  
-                                  email:loginEmail,
-                                  password: loginPassword,
-                                  required:true,
+                        <Button
 
-  
-                        }).then((response) =>{ 
-                          props.setLogginPage(response.data)
-                         // props.setUser(response.data)
-                          setAutorized(true)
-                          
-                         if (response.data) {
-                       handlePopUp(setLogin);
-                     
-                      
-                    }
-                    else{
+                          onClick={() => {
+                            post("/login", {
+
+
+                              email: loginEmail,
+                              password: loginPassword,
+
+
+
+                            })  
+                           .then((response) =>{ 
+                       
+                       // props.setUser(response.data)
+                       
+                        
+                           if (response.data) {
+                         props.setLogginPage(response.data)
+                         handlePopUp(setLogin);
+                         setLoginEmail("");
+                        setLoginPassword("");
+                        }
+                      else{
                       handlePopUp(setErrorLogin);
-                    }
-                        
-                          
-                           })
-                        
-                        }}
+                       }
+                      
+                         })
+          
 
-
+                          }}
+  
+  
                         >
                           Logga in
                         </Button >
-             {errorLogin?(
-                      <LoginError 
-                      setLoginError={(btnUseState) => {
-                      setErrorLogin(btnUseState);
-          
-        }}
-                      />
-                   )
-                :null
-                }
+                        {errorLogin ? (
+                          <LoginError
+                            setLoginError={(btnUseState) => {
+                              setErrorLogin(btnUseState);
+
+                            }}
+                          />
+                        )
+                          : null
+                        }
                       </Form>
-                      </div>
                     </div>
                   </div>
-                  ) : null}
-              </div>
+                </div>
+              ) : null}
+            </div>
 
 
-              <button className='btn_nav' onClick={() => {
-                handlePopUp(setRegistrera);
-              }} >Registrera</button>
+            <button className='btn_nav' onClick={() => {
+              handlePopUp(setRegistrera);
+            }} >Registrera</button>
 
 
-              <div className='blurr'
-                style={{
-                  opacity: registrera ? '1' : '0',
-                  visibility: registrera ? 'visible' : 'hidden',
-                  zIndex: registrera ? '2' : '-2',
+            <div className='blurr'
+              style={{
+                opacity: registrera ? '1' : '0',
+                visibility: registrera ? 'visible' : 'hidden',
+                zIndex: registrera ? '2' : '-2',
 
-                }}
-              > 
-              {registrera?(
-              <div className='popup_form'>
+              }}
+            >
+              {registrera ? (
+                <div className='popup_form'>
                   <div>
                     <p className="popUp--close_form" onClick={() => {
                       handlePopUp(setRegistrera);
@@ -190,12 +196,12 @@ function Header(props) {
                       <Form >
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                           <Form.Label>Ange namn</Form.Label>
-                          <Form.Control type="text" placeholder="Ange namn" onChange={ (e) => setName(e.target.value)} />
+                          <Form.Control type="text" placeholder="Ange namn" onChange={(e) => setName(e.target.value)} />
                           <Form.Label>Ange E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Ange e-post" onChange={ (e) => setEmail(e.target.value)} />
+                          <Form.Control type="email" placeholder="Ange e-post" onChange={(e) => setEmail(e.target.value)} />
                           <Form.Label>Upprepa E-post</Form.Label>
-                          <Form.Control type="email" placeholder="Upprepa e-post" onChange={ (e) => setEmailConfirm(e.target.value)} />
-                         
+                          <Form.Control type="email" placeholder="Upprepa e-post" onChange={(e) => setEmailConfirm(e.target.value)} />
+
                           {/* <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                           </Form.Text> */}
@@ -211,27 +217,34 @@ function Header(props) {
                           <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}
                           </Form.Group>
-                          <Button variant="primary"
+                        </Form>
+                        <button variant="primary"
                             onClick={() => {
                               post("/signUp", {
                                 name: name,
                                 email: email,
                                 password: password,
                                 passwordConfirm: passwordConfirm
+                              }).then((response)=>{
+                                   if (response.data) {
+                       handlePopUp(setRegistrera);
+                            }
                               })
-                            }}
+
+
+                             }}
                           >
                             Registrera dig
-                          </Button>
-                        </Form>
+                          </button>
                       </div>
                     </div>
                   </div>
-                  ) : null}
-              </div>
+               
+              ) : null}
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 }
