@@ -11,26 +11,29 @@ import "./css/App.css";
 function App() {
 
   const [authorized, setAuthorized] = useState("");
-  const [login, setLogin]= useState(false)
+  const [login, setLogin] = useState(false)
 
 
- useEffect(()=>{
- setLogin(current => !current); 
-},[authorized])
-  
+  useEffect(() => {
+    setLogin(current => !current);
+  }, [authorized])
+
   return (
     <div className="appContainer">
-      <Header 
-       setLogginPage={(logginValue) => {
+      <Header
+        setLogginPage={(logginValue) => {
           setAuthorized(logginValue);
-          
+
         }}
         login={login}
       />
       <Routes>
         <Route path="/" element={<Home authorized={authorized} />} />
-        <Route path="/Adds" element={<Adds authorized={authorized}  />} />
-        <Route path="/MinSida" element={<MinSida authorized={authorized}  />} />
+        <Route path="/Adds" element={<Adds authorized={authorized} />} />
+        <Route path="/MinSida" element={<MinSida authorized={authorized} setLogginPage={(logginValue) => {
+          setAuthorized(logginValue);
+
+        }} />} />
       </Routes>
       <Footer />
     </div>
