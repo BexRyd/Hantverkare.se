@@ -17,8 +17,8 @@
     width: 280px;
     height: 420px;
     padding: 40px;
-    background: linear-gradient(to left, #ffb900, #ffb900, #ff7730);
-    border-radius: 6px;
+    background-color: #ffb900;
+    border-radius: 8px;
     margin-left: 25px;
     margin-top: 10px;
 }
@@ -26,8 +26,12 @@
 .submit {
     margin-top: 20px;
     padding: 6px 0;
-    border-radius: 8px;
+    border-radius: 2px;
     background-color: #000;
+    color: #ffb900;
+}
+
+.submit:hover {
     color: #fff;
 }
 
@@ -60,5 +64,19 @@ label {
     .contacts {
         margin-left: 0;
         margin-right: 15px;
+    }
+}
+
+@media screen and (max-width:885px) {
+    .contacts {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .email_form {
+        width: 80%;
+        margin-bottom: 100px;
+        margin-top: 10px;
     }
 }
