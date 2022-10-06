@@ -1,13 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.db284bd8.css",
-    "main.js": "/static/js/main.fce682a9.js",
+    "main.css": "/static/css/main.f251e318.css",
+    "main.js": "/static/js/main.04d17e32.js",
+    "static/media/cuttingWood.mp4": "/static/media/cuttingWood.c6bd4271bf872b47db2d.mp4",
+    "static/media/logo.png": "/static/media/logo.238ff4b2e0911e785612.png",
+    "static/media/macro-gd8da06a13_300.jpg": "/static/media/macro-gd8da06a13_300.e63e3861069ad4479e14.jpg",
+    "static/media/tools-ga351a9cd6_250.jpg": "/static/media/tools-ga351a9cd6_250.260976cc73b67692b2f2.jpg",
+    "static/media/meeting-g25588f35e_300.jpg": "/static/media/meeting-g25588f35e_300.394ac0f3e3445f7595ce.jpg",
+    "static/media/plumbing-gc34751c1c_250.jpg": "/static/media/plumbing-gc34751c1c_250.f4d73512355fb48ae279.jpg",
+    "static/media/cup-of-coffee-g0316968e5_300.jpg": "/static/media/cup-of-coffee-g0316968e5_300.a3808ee4c673202f68e3.jpg",
+    "static/media/paint-brush-g5165d4524_250.jpg": "/static/media/paint-brush-g5165d4524_250.d139131243ef65d67509.jpg",
+    "static/media/tiler-g13aaf9b5e_250.jpg": "/static/media/tiler-g13aaf9b5e_250.bf592783df8a812f57a2.jpg",
     "index.html": "/index.html",
-    "main.db284bd8.css.map": "/static/css/main.db284bd8.css.map",
-    "main.fce682a9.js.map": "/static/js/main.fce682a9.js.map"
+    "main.f251e318.css.map": "/static/css/main.f251e318.css.map",
+    "main.04d17e32.js.map": "/static/js/main.04d17e32.js.map"
   },
   "entrypoints": [
-    "static/css/main.db284bd8.css",
-    "static/js/main.fce682a9.js"
+    "static/css/main.f251e318.css",
+    "static/js/main.04d17e32.js"
   ]
 }

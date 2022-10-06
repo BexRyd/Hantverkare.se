@@ -1,63 +1,141 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-
 * {
     box-sizing: border-box;
     margin: 0;
 }
 
-html,body {
+html,
+body {
     font-family: 'Karla', sans-serif;
 }
-ul{ width:300%;
-    margin-left:-30%;
-  
+
+
+.logo_text_span {
+    font-size: 18px;
+    letter-spacing: 7.3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+
+ul {
+    width: 300%;
+    margin-left: -30%;
+}
+
 li {
     display: inline;
     list-style-type: none;
-
     margin-left: 10%;
     font-size: 105%;
     padding-top: 10px;
-
     font-family: "Lora", serif;
 }
+
+/* MAIN CONTAINER STYLE */
 
 .appContainer {
     position: sticky;
     top: 0;
+    z-index: 0;
 }
 
-.navbar {
+/* HEADER MAIN STYLES */
+
+.header {
     display: flex;
-    height: 100px;
-    background-color: #f8d815;
+    flex-direction: row;
+    align-items: center;
+    height: 110px;
+    width: 100%;
+    background: linear-gradient(to left, #ffb900, #ffb900, #ff7730);
+}
+
+.logo_img {
+    margin-bottom: 15px;
+    width: 100px;
+}
+
+.menu_buttons_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 45px;
+    margin-left: 20px;
+    width: 250px;
 }
 
 .logo {
-    margin-left: 11%;
-    text-transform: uppercase;
+    margin-left: 80px;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.menu_link {
+    text-decoration: none;
+    color: #333;
+    text-align: right;
+    width: 60px;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.menu_link:hover {
+    font-weight: 600;
+    color: #333;
+}
+
+.btn_nav {
+    width: 120px;
+    color: #333;
+    padding: 7px 11px;
+    border-radius: 5px;
+    border: none;
     font-weight: 700;
-    font-size: 48px;
 }
 
-.btn_main {
-    display: flex;
-    padding-right: 3%;
-    margin: 0 25px;
+.btn_nav:hover {
+    background-color: #fff;
+    color: #DA4B44;
+    transition: 0.5s ease-in-out;
 }
 
-  
+.btn_nav_red {
+    width: 120px;
+    background-color: #DA4B44;
+    color: #fff;
+    padding: 7px 11px;
+    margin: 0 20px 0 0;
+    border-radius: 5px;
+    border: none;
+    font-weight: 700;
+}
+
+.btn_nav_red:hover {
+    background-color: #BFC9CA;
+    color: #333;
+    transition: 0.5s ease-in-out;
+}
+
 .navlink {
     letter-spacing: 1px;
     text-align: center;
     text-decoration: none;
-    
     color: black;
-
-   
-   
 }
 
 .form {
@@ -87,27 +165,29 @@ li {
     align-items: center;
     justify-content: center;
 }
+
 .popup_form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  left: 40%;
-  top: 7%;
-  z-index: 0;
-  padding: 4%;
-  background-color: rgb(255, 255, 255);
-  width: 50vh;
-  min-height: 40vh;
-  visibility: visible;
-  border-radius: 10px;
-  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 40%;
+    top: 12%;
+    z-index: 1;
+    padding: 4%;
+    background-color: rgb(255, 255, 255);
+    max-width: 27.7vw;
+    min-height: 37vh;
+    visibility: visible;
+    border-radius: 10px;
+
 }
 
-.popUp--close_form{
-  color: black;
+.popUp--close_form {
+    color: black;
     position: absolute;
-    top:5px;
+    top: 5px;
     left: 92%;
     font-size: 2rem;
     text-decoration: none;
@@ -116,37 +196,134 @@ li {
 
 }
 
-.popUp--close_form:hover{
-  cursor: pointer;
-  color: rgba(0, 0, 0, 0.521);
+.popUp--close_form:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.521);
 }
 
 .popUp--img {
-  width: 400px;
-  height: auto;
-  
+    width: 300px;
+    height: 200px;
+    margin-top:30px;
+    margin-bottom: 10px;
+
 }
+
 .popUp--title_form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding-bottom: 30px;
-  
-}
-
-/* MEDIA QUERIES To Do */
-
-/* .navbar-toggler {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
+    text-align: center;
+    padding-bottom: 20px;
+
 }
 
-.navbar-collapse {
-    width: 100%;
-    background-color:#f8d815;
-    padding: 50px;
-    margin-top: 12px;
-} */
+.btn_send {
+    margin-top: 25px;
+    padding: 10px 11px;
+}
+
+/* FORM STYLES */
+
+.setForm_submit {
+    border: none;
+    border-radius: 7px;
+    padding: 10px 15px;
+    margin-top: 25px;
+    background-color: #333;
+    color: #fff;
+}
+
+button:disabled,
+button[disabled] {
+    cursor: not-allowed;
+}
+
+.form_login_input {
+    border: none;
+    padding: 5px 25px;
+    background-color: #ebeeee;
+    margin: 15px 0;
+    border-radius: 7px;
+}
+
+
+
+/* MEDIA QUERIES STYLES */
+
+@media screen and (max-width:918px) {
+    .logo {
+        display: flex;
+        flex-direction: row;
+        margin-left: 30px;
+    }
+}
+
+@media screen and (max-width:885px) {
+
+    .header {
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 15px;
+    }
+    
+    .logo_text_span {
+        margin-left: 0;
+    }
+
+    span {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .menu_buttons_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 110px;
+        width: 100%;
+        padding: 20px 0;
+        background-color: rgb(51, 51, 51, 0.8);
+    }
+
+    .menu_link {
+        color: #fff;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 0;
+    }
+
+    .menu_link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 5px 0;
+    }
+
+    .btn_nav_red {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .popup_form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        margin: 20px;
+    }
+}

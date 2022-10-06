@@ -13,12 +13,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .Home {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
@@ -27,6 +26,8 @@ body {
     display: flex;
     flex-direction: column;
     max-width: 350px;
+    padding: 30px 0 0 0;
+    margin-top: 50px;
 }
 
 .main_images {
@@ -43,47 +44,118 @@ body {
 }
 
 .main_h1 {
-    padding: 30px 0 0 0;
     font-size: 2.5rem;
     font-weight: 700;
 }
 
-
 .main_h3 {
     display: flex;
     width: 70%;
-    padding: 30px 0;
     letter-spacing: 1.5px;
     font-weight: 200;
     font-size: 24px;
     margin-left: 0;
+    margin-top: 20px;
 }
 
 .navlink {
     letter-spacing: 1px;
     text-align: center;
     text-decoration: none;
-
     color: black;
 
-
-
 }
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .30;
+    overflow: hidden;
+}
+
+.bg-video__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 .main_btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f8d815;
+    background-color: #ffb900;
     width: 160px;
     height: 60px;
     border-radius: 3px;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
+    margin-bottom: 25%;
+    border: none;
+    margin-top: 20px;
 }
 
 .main_btn:hover {
-    background-color: #fff4ab;
-    color: #000000;
-    border: #000000 2px solid;
-    font-weight: 700;
+    font-weight: 900;
+    transition: 0.5s ease-in-out;
 }
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(45deg, #ffb900 19.61%, #000000 19.61%, #000000 50%, #ffb900 50%, #ffb900 69.61%, #000000 69.61%, #000000 100%);
+    background-size: 72.12px 72.12px;
+    height: 400px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.LogoWelcome {
+    width: 180px;
+    height: auto;
+}
+
+.welcomeP {
+    text-align: center;
+    font-size: larger;
+    font-weight: bolder;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    margin: 20px;
+}
+
+/* MEDIA QUERIES STYLES */
+
+
+@media screen and (min-width: 1920px) {
+    .main_information, .main_images {
+        margin-bottom: 120px;
+    }
+}
+
+@media screen and (max-width: 882px) {
+
+    .Home {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main_information {
+        margin: 0;
+    }
+
+    .main_images {
+        display: flex;
+        align-items: center;
+        margin-left: 0;
+    }
+   
+}
+
