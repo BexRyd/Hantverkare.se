@@ -18,7 +18,7 @@ const Recaptcha = (props) => {
   return (
     <div className="App">
       <ReCAPTCHA
-        sitekey="6LdqMAwiAAAAADCSKAnd9VLheBJj3oFwBpicdF4N"
+        sitekey="6Lf03l4iAAAAAF45kd6Btcy7duLg_1V10-5dNnxD"
         onChange={onChange}
       />
     </div>

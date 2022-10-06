@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.b32cea34.css",
-    "main.js": "/static/js/main.b300134d.js",
+    "main.js": "/static/js/main.3540ca24.js",
     "static/media/cuttingWood.mp4": "/static/media/cuttingWood.c6bd4271bf872b47db2d.mp4",
     "static/media/logo.png": "/static/media/logo.238ff4b2e0911e785612.png",
     "static/media/macro-gd8da06a13_300.jpg": "/static/media/macro-gd8da06a13_300.e63e3861069ad4479e14.jpg",
@@ -13,10 +13,10 @@
     "static/media/tiler-g13aaf9b5e_250.jpg": "/static/media/tiler-g13aaf9b5e_250.bf592783df8a812f57a2.jpg",
     "index.html": "/index.html",
     "main.b32cea34.css.map": "/static/css/main.b32cea34.css.map",
-    "main.b300134d.js.map": "/static/js/main.b300134d.js.map"
+    "main.3540ca24.js.map": "/static/js/main.3540ca24.js.map"
   },
   "entrypoints": [
     "static/css/main.b32cea34.css",
-    "static/js/main.b300134d.js"
+    "static/js/main.3540ca24.js"
   ]
 }
