@@ -213,11 +213,11 @@ function Header(props) {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Lösenord</Form.Label>
-                          <Form.Control required type="password" pattern=".{8,16}$ " title='Lösenordet måste vara minst 8 tecken långt' placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
+                          <Form.Control required type="password" pattern=".{7,16}$" placeholder="Minst 8 tecken" onChange={(e) => setPassword(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                           <Form.Label>Upprepa lösenordet</Form.Label>
-                          <Form.Control required type="password" pattern=".{8,16}$" title='Lösenordet måste vara minst 8 tecken långt' placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
+                          <Form.Control required type="password" placeholder="Minst 8 tecken" onChange={(e) => setPasswordConfirm(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                           {/*  <Form.Check type="checkbox" label="Bekräfta" /> */}

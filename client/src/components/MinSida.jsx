@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { post, get, erase, put, patch } from "../utility/fetchHealper"
+import { useNavigate } from 'react-router-dom';
 /* import "./../css/Adds.css" */
 import "./../css/MinSida.css"
 import Axios from "axios"
@@ -142,6 +143,10 @@ export default function MinSida(props) {
       console.error(err);
     }
   };
+  const navigate = useNavigate()
+  function routeBack() {
+    navigate('/')
+  }
   /* const uploadImage = (files)=>{
   const formData = new formData();
   formData.append("file", files[0])
@@ -192,7 +197,7 @@ export default function MinSida(props) {
 
 
 
-      {newAdd ? (
+      {props.authorized && newAdd ? (
         <div className='uploadAdd-Container'>
           <p className="newAdd--close_form" onClick={() => {
             setNewAdd(false);
@@ -274,7 +279,7 @@ export default function MinSida(props) {
 
 
 
-      {settings ? (
+      {props.authorized && settings ? (
         <div className='settingsBox'>
           <p className="Adds--close_form" onClick={() => {
             setSettings(false)
@@ -288,7 +293,7 @@ export default function MinSida(props) {
             <input className='emailInput' required type="email" placeholder='Ange ny email-adress' onChange={(e) => setNewEmail(e.target.value)}></input>
             <button className="addsBtn"
               onClick={() => {
-                console.log(props.authorized.user.email)
+
                 patch(`/myPage/${props.authorized.user.email}`, { email: newEmail })
                 patch("/updateMe", { name: newName, email: newEmail })
                 props.authorized.user.name = newName
@@ -330,9 +335,12 @@ export default function MinSida(props) {
         </div>
       ) : null}
 
-      {settings ? (
+      {props.authorized && settings ? (
         <button className="addsBtn" onClick={() => {
           erase(`/deleteMe/${props.authorized.user._id}`)
+          routeBack()
+          get("/logout")
+          props.setLogginPage("");
         }}>Ta bort ditt konto</button>
 
       ) : null}
@@ -368,6 +376,7 @@ export default function MinSida(props) {
                   setCounter(Date.now())
                   setImageUrl("");
                   handlePopUp();
+                  setNewAdd(false)
                 }}>Publicera Annons
               </button>
             </div>
@@ -448,6 +457,7 @@ export default function MinSida(props) {
                       setChangeAdds(true)
                       setImageUrl(imgPopup)
                       setCategory(categoryPopup)
+
                     }}>ändra annons
                   </button>
                 </div>
@@ -474,6 +484,7 @@ export default function MinSida(props) {
                       .then((response) => setUserAdds(response.data)))
                   }
                   handlePopUp();
+                  setMyAdds(false);
 
                 }} >Spara
                 </button>
